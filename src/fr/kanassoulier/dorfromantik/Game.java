@@ -2,8 +2,12 @@ package fr.kanassoulier.dorfromantik;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 
 import fr.kanassoulier.dorfromantik.board.Board;
 import fr.kanassoulier.dorfromantik.gui.Gui;
@@ -22,14 +26,23 @@ public class Game extends JFrame implements MouseMotionListener {
 
   public Game() {
     this.setTitle(Game.WINDOW_TITLE);
+    this.setIcon("./resources/images/favicon.png");
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setSize(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
     this.setLocationRelativeTo(null);
     this.setResizable(false);
     this.setLayout(null);
-    this.add(this.gui);
-    this.add(this.board);
+    this.add(this.gui, JLayeredPane.PALETTE_LAYER);
+    this.add(this.board, JLayeredPane.DEFAULT_LAYER);
     this.addMouseMotionListener(this);
+  }
+
+  private void setIcon(String path) {
+    try {
+      this.setIconImage(ImageIO.read(new File(path)));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   public Board getBoard() {

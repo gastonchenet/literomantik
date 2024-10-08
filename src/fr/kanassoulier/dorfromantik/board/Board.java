@@ -3,12 +3,12 @@ package fr.kanassoulier.dorfromantik.board;
 import java.awt.Component;
 import java.awt.Point;
 
-import javax.swing.JPanel;
+import javax.swing.JLayeredPane;
 
 import fr.kanassoulier.dorfromantik.Game;
 import fr.kanassoulier.dorfromantik.Options;
 
-public class Board extends JPanel {
+public class Board extends JLayeredPane {
   private static final int BOARD_RADIUS = Options.TURNS * Options.CELL_RADIUS * 2;
 
   private Game game;
@@ -50,6 +50,17 @@ public class Board extends JPanel {
     return this.getCell(point.x, point.y);
   }
 
+  public int countTiles() {
+    int count = 0;
+
+    for (Component component : this.getComponents()) {
+      if (component instanceof PlaceableTile)
+        count++;
+    }
+
+    return count;
+  }
+
   public void placeTile(PlaceableArea area) {
     this.remove(area);
 
@@ -72,7 +83,5 @@ public class Board extends JPanel {
         this.y - Board.BOARD_RADIUS,
         Board.BOARD_RADIUS * 2,
         Board.BOARD_RADIUS * 2);
-
-    this.game.repaint();
   }
 }

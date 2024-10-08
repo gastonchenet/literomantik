@@ -182,7 +182,7 @@ public abstract class Tile extends Cell {
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    Graphics2D g2d = (Graphics2D) g;
+    Graphics2D g2d = (Graphics2D) g.create();
     int radius = this.getRadius();
     Hexagon hexagon = new Hexagon(radius, radius, radius);
 
@@ -205,7 +205,7 @@ public abstract class Tile extends Cell {
 
     g2d.setClip(null);
 
-    g2d.setStroke(new BasicStroke(3));
+    g2d.setStroke(new BasicStroke(4));
     g2d.setColor(Color.BLACK);
     g2d.drawPolygon(hexagon);
 
