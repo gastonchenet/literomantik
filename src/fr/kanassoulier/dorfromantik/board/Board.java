@@ -12,9 +12,7 @@ public class Board extends JLayeredPane {
   private static final int BOARD_RADIUS = Options.TURNS * Options.CELL_RADIUS * 2;
 
   private Game game;
-
-  private int x = Game.WINDOW_WIDTH / 2;
-  private int y = Game.WINDOW_HEIGHT / 2;
+  private int x = Game.WINDOW_WIDTH / 2, y = Game.WINDOW_HEIGHT / 2;
 
   public Board(Game game) {
     super();

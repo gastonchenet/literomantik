@@ -9,9 +9,7 @@ import fr.kanassoulier.dorfromantik.utils.Hexagon;
 
 public abstract class Cell extends JPanel {
   private Board board;
-  private int x;
-  private int y;
-  private int radius;
+  private int x, y, radius;
 
   protected Cell(Board board, int x, int y, int radius) {
     // On veut que le JPanel soit transparent pour ne pas cacher les autres éléments

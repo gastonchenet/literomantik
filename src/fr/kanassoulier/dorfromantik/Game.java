@@ -15,12 +15,9 @@ import fr.kanassoulier.dorfromantik.gui.Gui;
 public class Game extends JFrame implements MouseMotionListener {
   private static final String WINDOW_TITLE = "Dorfromantik";
 
-  public static final int WINDOW_WIDTH = 1080;
-  public static final int WINDOW_HEIGHT = 720;
+  public static final int WINDOW_WIDTH = 1080, WINDOW_HEIGHT = 720;
 
-  private int mouseX = Game.WINDOW_WIDTH / 2;
-  private int mouseY = Game.WINDOW_HEIGHT / 2;
-
+  private int mouseX = Game.WINDOW_WIDTH / 2, mouseY = Game.WINDOW_HEIGHT / 2;
   private Board board = new Board(this);
   private Gui gui = new Gui(this);
 

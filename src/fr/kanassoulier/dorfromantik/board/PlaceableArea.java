@@ -13,8 +13,7 @@ import fr.kanassoulier.dorfromantik.Options;
 import fr.kanassoulier.dorfromantik.utils.Hexagon;
 
 public class PlaceableArea extends Cell implements MouseMotionListener, MouseListener {
-  private static final float RADIUS_MULTIPLIER = 0.4f;
-  private static final float HOVER_RADIUS_MULTIPLIER = 0.6f;
+  private static final float RADIUS_MULTIPLIER = 0.4f, HOVER_RADIUS_MULTIPLIER = 0.6f;
 
   private boolean mouseOver = false;
 
