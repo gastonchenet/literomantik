@@ -14,7 +14,15 @@ import fr.kanassoulier.dorfromantik.enums.Biome;
 import fr.kanassoulier.dorfromantik.enums.TileSide;
 import fr.kanassoulier.dorfromantik.utils.Hexagon;
 
+/**
+ * Une tuile du jeu
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public abstract class Tile extends Cell {
+  public static final int MIN_SCROLL_OFFSET = 10;
+
   private HashMap<TileSide, Biome> biomes = new HashMap<TileSide, Biome>();
 
   public Tile(Board board, int x, int y, int radius, Biome... biomes) {
@@ -36,7 +44,7 @@ public abstract class Tile extends Cell {
    * Remplit la tuile avec des biomes aléatoires
    */
   public void refill() {
-    Random random = new Random();
+    Random random = new Random(this.getBoard().getGame().getSeed());
     Biome[] biomes = Biome.values();
     TileSide[] sides = TileSide.values();
 
@@ -66,6 +74,12 @@ public abstract class Tile extends Cell {
     this(board, center.x, center.y, radius);
   }
 
+  /**
+   * Récupère le biome d'un côté de la tuile
+   * 
+   * @param side Le côté de la tuile
+   * @return Le biome
+   */
   public Biome getBiome(TileSide side) {
     return this.biomes.get(side);
   }
@@ -97,6 +111,26 @@ public abstract class Tile extends Cell {
     }
 
     return null;
+  }
+
+  /**
+   * Fait tourner la tuile
+   * 
+   * @param clockwise Sens de rotation
+   */
+  public void rotate(boolean clockwise) {
+    TileSide[] sides = TileSide.values();
+    HashMap<TileSide, Biome> newBiomes = new HashMap<TileSide, Biome>();
+
+    for (int i = 0; i < sides.length; i++) {
+      TileSide side = sides[i];
+      TileSide newSide = clockwise ? sides[(i + 1) % sides.length] : sides[(i + sides.length - 1) % sides.length];
+      newBiomes.put(newSide, this.biomes.get(side));
+    }
+
+    this.biomes = newBiomes;
+
+    this.repaint();
   }
 
   /**

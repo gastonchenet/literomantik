@@ -10,7 +10,16 @@ import javax.swing.JLabel;
 
 import fr.kanassoulier.dorfromantik.Game;
 
+/**
+ * Le scoreboard du jeu ainsi que son affichage.
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class Scoreboard extends JLabel {
+  /**
+   * La hauteur du scoreboard.
+   */
   private static final int HEIGHT = 50;
 
   private int score = 0;

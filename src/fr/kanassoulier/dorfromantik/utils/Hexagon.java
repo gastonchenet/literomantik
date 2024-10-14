@@ -2,6 +2,12 @@ package fr.kanassoulier.dorfromantik.utils;
 
 import java.awt.Polygon;
 
+/**
+ * Classe représentant un hexagone
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class Hexagon extends Polygon {
   public Hexagon(int x, int y, int radius, double startAngle) {
     for (int i = 0; i < 6; i++) {

@@ -1,18 +1,21 @@
 package fr.kanassoulier.dorfromantik.enums;
 
 import java.awt.Color;
-import java.util.Random;
 
+/**
+ * Une énumération représentant les différents biomes du jeu.
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public enum Biome {
   SEA, FIELD, PLAIN, FOREST, MOUNTAIN;
 
-  public static Biome getRandomBiome() {
-    Biome[] biomes = Biome.values();
-    Random random = new Random();
-
-    return biomes[random.nextInt(biomes.length)];
-  }
-
+  /**
+   * Renvoie les couleurs du biome.
+   * 
+   * @return Les couleurs du biome.
+   */
   public Color[] getBiomeColors() {
     switch (this) {
       case SEA:

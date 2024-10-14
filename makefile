@@ -1,9 +1,31 @@
+PACKAGE = fr.kanassoulier.dorfromantik
+ENTRY = Main
+SOURCEDIR = ./src/fr/kanassoulier/dorfromantik/
+BUILDDIR = ./build/
+DOCDIR = ./doc/
+
+SOURCES := $(foreach dir, $(wildcard $(SOURCEDIR)**/), $(dir)*.java)
+
 all:
-	javac -d build ./src/fr/kanassoulier/dorfromantik/*.java ./src/fr/kanassoulier/dorfromantik/board/*.java ./src/fr/kanassoulier/dorfromantik/gui/*.java ./src/fr/kanassoulier/dorfromantik/enums/*.java ./src/fr/kanassoulier/dorfromantik/utils/*.java -Xlint:deprecation
-	java -cp build fr.kanassoulier.dorfromantik.Main
+	@make compile
+	@make run
+
+compile:
+	@echo "Compiling..."
+	@javac -d $(BUILDDIR) $(SOURCEDIR)*.java $(SOURCES) -Xlint:unchecked -Xlint:deprecation
+	@echo "Done."
+
+run:
+	@echo "Running..."
+	@java -cp $(BUILDDIR) $(PACKAGE).$(ENTRY)
+	@echo "Done."
 
 clean:
-	rm -rf build/*
+	@echo "Cleaning up..."
+	@rm -rf $(BUILDDIR)* $(DOCDIR)*
+	@echo "Done."
 
 javadoc:
-	javadoc -d doc -sourcepath src -subpackages fr.kanassoulier.dorfromantik
+	@echo "Generating javadoc..."
+	@javadoc -d $(DOCDIR) -sourcepath src -subpackages $(PACKAGE)
+	@echo "Done."

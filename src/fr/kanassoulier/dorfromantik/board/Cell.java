@@ -7,6 +7,12 @@ import javax.swing.JPanel;
 import fr.kanassoulier.dorfromantik.enums.TileSide;
 import fr.kanassoulier.dorfromantik.utils.Hexagon;
 
+/**
+ * Une cellule du plateau de jeu.
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public abstract class Cell extends JPanel {
   private Board board;
   private int x, y, radius;
@@ -42,14 +48,29 @@ public abstract class Cell extends JPanel {
     this(board, center.x, center.y, radius);
   }
 
+  /**
+   * Récupérer le plateau de jeu.
+   * 
+   * @return le plateau de jeu
+   */
   protected Board getBoard() {
     return this.board;
   }
 
+  /**
+   * Récupérer le centre de la cellule.
+   * 
+   * @return le centre de la cellule
+   */
   public Point getCenter() {
     return new Point(this.x, this.y);
   }
 
+  /**
+   * Récupérer le rayon de la cellule.
+   * 
+   * @return le rayon de la cellule
+   */
   public int getRadius() {
     return this.radius;
   }
@@ -61,10 +82,19 @@ public abstract class Cell extends JPanel {
     return new Hexagon(this.x, this.y, this.radius).contains(x, y);
   }
 
+  /**
+   * Vérifier si un point est sur la cellule.
+   */
   public boolean at(Point point) {
     return this.at(point.x, point.y);
   }
 
+  /**
+   * Récupérer le voisin d'une cellule.
+   * 
+   * @param side Le côté du voisin
+   * @return le voisin
+   */
   protected Cell getNeighbor(TileSide side) {
     int x = this.x;
     int y = this.y;

@@ -12,6 +12,12 @@ import javax.swing.JPanel;
 import fr.kanassoulier.dorfromantik.Game;
 import fr.kanassoulier.dorfromantik.Options;
 
+/**
+ * La pile de tuiles restantes
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class TileStack extends JPanel {
   private static final int TILE_HEIGHT = 6;
 

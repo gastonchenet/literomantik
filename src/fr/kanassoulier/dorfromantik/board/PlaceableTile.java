@@ -6,6 +6,12 @@ import fr.kanassoulier.dorfromantik.Options;
 import fr.kanassoulier.dorfromantik.enums.Biome;
 import fr.kanassoulier.dorfromantik.enums.TileSide;
 
+/**
+ * Une tuile qui peut être placée sur le plateau.
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class PlaceableTile extends Tile {
   public PlaceableTile(Board board, int x, int y, Biome... biomes) {
     super(board, x, y, Options.CELL_RADIUS, biomes);

@@ -12,6 +12,12 @@ import java.awt.event.MouseMotionListener;
 import fr.kanassoulier.dorfromantik.Options;
 import fr.kanassoulier.dorfromantik.utils.Hexagon;
 
+/**
+ * Une zone où l'on peut placer une tuile
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class PlaceableArea extends Cell implements MouseMotionListener, MouseListener {
   private static final float RADIUS_MULTIPLIER = 0.4f, HOVER_RADIUS_MULTIPLIER = 0.6f;
 
@@ -28,6 +34,11 @@ public class PlaceableArea extends Cell implements MouseMotionListener, MouseLis
     this(board, center.x, center.y);
   }
 
+  /**
+   * Récupérer l'hexagone de la zone
+   * 
+   * @return l'hexagone de la zone
+   */
   private Hexagon getHexagon() {
     int radius = this.getRadius();
 

@@ -1,8 +1,19 @@
 package fr.kanassoulier.dorfromantik.enums;
 
+/**
+ * Une énumération représentant les côtés d'une tuile.
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public enum TileSide {
   NORTH, NORTH_EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, NORTH_WEST;
 
+  /**
+   * Renvoie le côté opposé.
+   * 
+   * @return Le côté opposé.
+   */
   public TileSide opposite() {
     switch (this) {
       case NORTH:
