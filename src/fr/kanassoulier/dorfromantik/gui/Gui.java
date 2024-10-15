@@ -12,7 +12,7 @@ import fr.kanassoulier.dorfromantik.board.PreviewTile;
  * @author Gaston Chenet
  */
 public class Gui extends JLayeredPane {
-  private Scoreboard scoreboard = new Scoreboard();
+  private Scoreboard scoreboard = new Scoreboard(this);
   private TileStack tileStack = new TileStack(this);
   private PreviewTile previewTile;
   private Game game;

@@ -8,6 +8,6 @@ package fr.kanassoulier.dorfromantik;
  */
 public class Main {
   public static void main(String[] args) {
-    new Game(5).setVisible(true);
+    new Game().setVisible(true);
   }
 }

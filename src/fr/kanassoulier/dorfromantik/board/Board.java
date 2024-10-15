@@ -103,7 +103,7 @@ public class Board extends JLayeredPane {
     this.add(tile);
 
     Scoreboard scoreboard = this.game.getGui().getScoreboard();
-    scoreboard.updateScore((Tile) this.getCell(Board.BOARD_RADIUS, Board.BOARD_RADIUS));
+    scoreboard.updateScore();
 
     previewTile.refill();
     this.game.repaint();

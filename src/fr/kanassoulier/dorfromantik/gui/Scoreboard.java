@@ -1,5 +1,6 @@
 package fr.kanassoulier.dorfromantik.gui;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import javax.swing.JLabel;
 
 import fr.kanassoulier.dorfromantik.Game;
+import fr.kanassoulier.dorfromantik.board.Board;
 import fr.kanassoulier.dorfromantik.board.Cell;
 import fr.kanassoulier.dorfromantik.board.Tile;
 import fr.kanassoulier.dorfromantik.enums.Biome;
@@ -28,8 +30,12 @@ public class Scoreboard extends JLabel {
    */
   private static final int HEIGHT = 50;
 
-  public Scoreboard() {
+  private Gui gui;
+
+  public Scoreboard(Gui gui) {
     super("0", JLabel.CENTER);
+
+    this.gui = gui;
 
     this.setBounds(0, 0, Game.WINDOW_WIDTH, Scoreboard.HEIGHT);
 
@@ -45,7 +51,7 @@ public class Scoreboard extends JLabel {
     }
   }
 
-  private HashMap<String, Integer> getPockets(Tile tile, Biome biome, HashMap<String, Integer> visited,
+  private HashMap<String, Integer> groupPocket(Tile tile, Biome biome, HashMap<String, Integer> visited,
       int currentPocket) {
     String discriminator = tile.getDiscriminator();
 
@@ -53,65 +59,72 @@ public class Scoreboard extends JLabel {
       return visited;
     }
 
-    boolean hasBiome = tile.hasBiome(biome);
-
-    if (hasBiome) {
-      visited.put(discriminator, currentPocket);
-
-      for (TileSide side : TileSide.values()) {
-        if (tile.matchesWith(side)) {
-          Cell neighbor = tile.getNeighbor(side);
-
-          if (neighbor instanceof Tile) {
-            visited.putAll(this.getPockets((Tile) neighbor, biome, visited, currentPocket));
-          }
-        }
-      }
-    } else {
-      visited.put(discriminator, -1);
-    }
+    visited.put(discriminator, tile.hasBiome(biome) ? currentPocket : -1);
 
     for (TileSide side : TileSide.values()) {
-      if (tile.getBiome(side) == biome && tile.matchesWith(side))
-        continue;
-
       Cell neighbor = tile.getNeighbor(side);
       String neighborDiscriminator = neighbor.getDiscriminator();
 
-      if (visited.containsKey(neighborDiscriminator)) {
+      if (neighbor == null || !(neighbor instanceof Tile) || visited.containsKey(neighborDiscriminator)) {
         continue;
       }
 
-      if (neighbor instanceof Tile) {
-        visited.putAll(this.getPockets((Tile) neighbor, biome, visited, currentPocket + (hasBiome ? 1 : 0)));
+      if (tile.getBiome(side) != biome || !tile.matchesWith(side)) {
+        if (!((Tile) neighbor).hasBiome(biome)) {
+          visited.put(neighborDiscriminator, -1);
+        }
+
+        continue;
       }
+
+      HashMap<String, Integer> pockets = this.groupPocket((Tile) neighbor, biome, visited, currentPocket);
+      visited.putAll(pockets);
     }
 
     return visited;
   }
 
-  private HashMap<String, Integer> getPockets(Tile tile, Biome biome) {
-    return this.getPockets(tile, biome, new HashMap<>(), 0);
+  private HashMap<String, Integer> getPockets(Biome biome) {
+    HashMap<String, Integer> visited = new HashMap<>();
+    int currentPocket = 0;
+
+    Board board = this.gui.getGame().getBoard();
+
+    for (Component component : board.getComponents()) {
+      if (!(component instanceof Tile))
+        continue;
+
+      Tile tile = (Tile) component;
+
+      if (visited.containsKey(tile.getDiscriminator()))
+        continue;
+
+      int visitedCount = visited.size();
+
+      this.groupPocket(tile, biome, visited, currentPocket);
+
+      if (visitedCount < visited.size()) {
+        currentPocket++;
+      }
+
+    }
+
+    return visited;
   }
 
   /**
    * Mettre à jour le score du joueur.
-   * 
-   * @param rootTile La tuile racine du plateau
    */
-  public void updateScore(Tile tile) {
-    System.out.println("-----------------------------");
+  public void updateScore() {
     int score = 0;
 
     for (Biome biome : Biome.values()) {
-      HashMap<String, Integer> pockets = this.getPockets(tile, biome);
+      HashMap<String, Integer> pockets = this.getPockets(biome);
       int lastBiome = 0;
 
       for (int value : pockets.values()) {
         lastBiome = Integer.max(lastBiome, value);
       }
-
-      System.out.println(biome + " " + Arrays.asList(pockets) + " " + lastBiome);
 
       int[] pocketSizes = new int[lastBiome + 1];
       Arrays.fill(pocketSizes, 0);
