@@ -89,13 +89,18 @@ public abstract class Cell extends JPanel {
     return this.at(point.x, point.y);
   }
 
+  public String getDiscriminator() {
+    Point center = this.getCenter();
+    return center.x + "," + center.y;
+  }
+
   /**
    * Récupérer le voisin d'une cellule.
    * 
    * @param side Le côté du voisin
    * @return le voisin
    */
-  protected Cell getNeighbor(TileSide side) {
+  public Cell getNeighbor(TileSide side) {
     int x = this.x;
     int y = this.y;
 

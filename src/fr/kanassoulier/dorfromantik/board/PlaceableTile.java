@@ -56,14 +56,8 @@ public class PlaceableTile extends Tile {
     int matches = 0;
 
     for (TileSide side : TileSide.values()) {
-      Cell neighbour = this.getNeighbor(side);
-
-      if (neighbour instanceof PlaceableTile) {
-        PlaceableTile tile = (PlaceableTile) neighbour;
-
-        if (this.getBiome(side).equals(tile.getBiome(side.opposite())))
-          matches++;
-      }
+      if (this.matchesWith(side))
+        matches++;
     }
 
     return matches;

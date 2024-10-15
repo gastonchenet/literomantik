@@ -44,7 +44,8 @@ public abstract class Tile extends Cell {
    * Remplit la tuile avec des biomes aléatoires
    */
   public void refill() {
-    Random random = new Random(this.getBoard().getGame().getSeed());
+    long seed = this.getBoard().getGame().getSeed();
+    Random random = new Random(seed);
     Biome[] biomes = Biome.values();
     TileSide[] sides = TileSide.values();
 
@@ -131,6 +132,24 @@ public abstract class Tile extends Cell {
     this.biomes = newBiomes;
 
     this.repaint();
+  }
+
+  public boolean hasBiome(Biome biome) {
+    for (TileSide side : TileSide.values()) {
+      if (this.getBiome(side) == biome)
+        return true;
+    }
+
+    return false;
+  }
+
+  public boolean matchesWith(TileSide side) {
+    Cell neighborCell = (Cell) this.getNeighbor(side);
+    if (!(neighborCell instanceof Tile))
+      return false;
+
+    Tile neighbor = (Tile) neighborCell;
+    return this.getBiome(side).equals(neighbor.getBiome(side.opposite()));
   }
 
   /**

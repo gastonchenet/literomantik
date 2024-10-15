@@ -14,6 +14,7 @@ import javax.swing.JLayeredPane;
 import fr.kanassoulier.dorfromantik.board.Board;
 import fr.kanassoulier.dorfromantik.board.Tile;
 import fr.kanassoulier.dorfromantik.gui.Gui;
+import fr.kanassoulier.dorfromantik.utils.Tileset;
 
 /**
  * Classe contenant le jeu
@@ -35,11 +36,11 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
   private int mouseX = Game.WINDOW_WIDTH / 2, mouseY = Game.WINDOW_HEIGHT / 2;
   private Board board = new Board(this);
   private Gui gui = new Gui(this);
-  private long seed, lastRotation = 0;
+  private long seed;
+  private long lastRotation = 0;
 
   public Game(long seed) {
-    this.seed = seed % (Long.MAX_VALUE - Options.TURNS);
-
+    this.seed = seed;
     this.setTitle(Game.WINDOW_TITLE);
     this.setIcon("./resources/images/favicon.png");
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,6 +53,10 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
 
     this.addMouseMotionListener(this);
     this.addMouseWheelListener(this);
+  }
+
+  public Game(Tileset tileset) {
+    this(tileset.getSeed());
   }
 
   public Game() {
@@ -90,12 +95,12 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
   }
 
   /**
-   * Obtenir la graine de génération du jeu
+   * Obtenir la seed de génération du jeu
    * 
-   * @return La graine du génération jeu
+   * @return La seed de génération du jeu
    */
   public long getSeed() {
-    return this.seed = (this.seed + 1) % (Long.MAX_VALUE - Options.TURNS);
+    return this.seed = Tileset.normalizeSeed(this.seed + 1);
   }
 
   @Override

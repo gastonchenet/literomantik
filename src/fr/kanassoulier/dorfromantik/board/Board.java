@@ -7,6 +7,7 @@ import javax.swing.JLayeredPane;
 
 import fr.kanassoulier.dorfromantik.Game;
 import fr.kanassoulier.dorfromantik.Options;
+import fr.kanassoulier.dorfromantik.gui.Scoreboard;
 
 /**
  * Le plateau de jeu.
@@ -100,7 +101,9 @@ public class Board extends JLayeredPane {
     PlaceableTile tile = new PlaceableTile(previewTile, area.getCenter());
 
     this.add(tile);
-    this.game.getGui().getScoreboard().updateScore(tile.getMatches());
+
+    Scoreboard scoreboard = this.game.getGui().getScoreboard();
+    scoreboard.updateScore((Tile) this.getCell(Board.BOARD_RADIUS, Board.BOARD_RADIUS));
 
     previewTile.refill();
     this.game.repaint();
