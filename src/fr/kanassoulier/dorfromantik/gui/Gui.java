@@ -4,6 +4,7 @@ import javax.swing.JLayeredPane;
 
 import fr.kanassoulier.dorfromantik.Game;
 import fr.kanassoulier.dorfromantik.board.PreviewTile;
+import fr.kanassoulier.dorfromantik.enums.KeyboardKey;
 
 /**
  * La GUI du jeu
@@ -36,6 +37,10 @@ public class Gui extends JLayeredPane {
     this.add(this.previewTile);
     this.add(this.tileStack);
     this.add(this.scoreboard);
+
+    this.add(new KeyInfo(KeyboardKey.MOUSE_LEFT_CLICK, "Placer la tuile", Game.WINDOW_WIDTH - 250, 20));
+    this.add(new KeyInfo(KeyboardKey.MOUSE_WHEEL, "Tourner la tuile", Game.WINDOW_WIDTH - 250, 64));
+
     this.setOpaque(false);
   }
 

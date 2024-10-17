@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import fr.kanassoulier.dorfromantik.Game;
 import fr.kanassoulier.dorfromantik.board.Board;
 import fr.kanassoulier.dorfromantik.board.Cell;
-import fr.kanassoulier.dorfromantik.board.Tile;
+import fr.kanassoulier.dorfromantik.board.PlaceableTile;
 import fr.kanassoulier.dorfromantik.enums.Biome;
 import fr.kanassoulier.dorfromantik.enums.TileSide;
 
@@ -40,7 +40,7 @@ public class Scoreboard extends JLabel {
     this.setBounds(0, 0, Game.WINDOW_WIDTH, Scoreboard.HEIGHT);
 
     try {
-      Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./resources/fonts/Lexend.ttf")).deriveFont(30f);
+      Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./resources/fonts/Lexend-Bold.ttf")).deriveFont(30f);
 
       GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
       ge.registerFont(font);
@@ -60,7 +60,7 @@ public class Scoreboard extends JLabel {
    * @param currentPocket L'identifiant de la poche actuelle.
    * @return Les tuiles visitées et leur poche.
    */
-  private HashMap<String, Integer> groupPocket(Tile tile, Biome biome, HashMap<String, Integer> visited,
+  private HashMap<String, Integer> groupPocket(PlaceableTile tile, Biome biome, HashMap<String, Integer> visited,
       int currentPocket) {
     String discriminator = tile.getDiscriminator();
 
@@ -74,54 +74,20 @@ public class Scoreboard extends JLabel {
       Cell neighbor = tile.getNeighbor(side);
       String neighborDiscriminator = neighbor.getDiscriminator();
 
-      if (neighbor == null || !(neighbor instanceof Tile) || visited.containsKey(neighborDiscriminator)) {
+      if (neighbor == null || !(neighbor instanceof PlaceableTile) || visited.containsKey(neighborDiscriminator)) {
         continue;
       }
 
       if (tile.getBiome(side) != biome || !tile.matchesWith(side)) {
-        if (!((Tile) neighbor).hasBiome(biome)) {
+        if (!((PlaceableTile) neighbor).hasBiome(biome)) {
           visited.put(neighborDiscriminator, -1);
         }
 
         continue;
       }
 
-      HashMap<String, Integer> pockets = this.groupPocket((Tile) neighbor, biome, visited, currentPocket);
+      HashMap<String, Integer> pockets = this.groupPocket((PlaceableTile) neighbor, biome, visited, currentPocket);
       visited.putAll(pockets);
-    }
-
-    return visited;
-  }
-
-  /**
-   * Récupérer les poches de biomes.
-   * 
-   * @param biome Le biome à chercher.
-   * @return Les poches de biomes.
-   */
-  private HashMap<String, Integer> getPockets(Biome biome) {
-    HashMap<String, Integer> visited = new HashMap<>();
-    int currentPocket = 0;
-
-    Board board = this.gui.getGame().getBoard();
-
-    for (Component component : board.getComponents()) {
-      if (!(component instanceof Tile))
-        continue;
-
-      Tile tile = (Tile) component;
-
-      if (visited.containsKey(tile.getDiscriminator()))
-        continue;
-
-      int visitedCount = visited.size();
-
-      this.groupPocket(tile, biome, visited, currentPocket);
-
-      if (visitedCount < visited.size()) {
-        currentPocket++;
-      }
-
     }
 
     return visited;
@@ -132,10 +98,29 @@ public class Scoreboard extends JLabel {
    */
   public void updateScore() {
     int score = 0;
+    Board board = this.gui.getGame().getBoard();
 
     for (Biome biome : Biome.values()) {
-      HashMap<String, Integer> pockets = this.getPockets(biome);
+      HashMap<String, Integer> pockets = new HashMap<>();
       int lastBiome = 0;
+
+      for (Component component : board.getComponents()) {
+        if (!(component instanceof PlaceableTile))
+          continue;
+
+        PlaceableTile tile = (PlaceableTile) component;
+
+        if (pockets.containsKey(tile.getDiscriminator()))
+          continue;
+
+        int visitedCount = pockets.size();
+
+        this.groupPocket(tile, biome, pockets, lastBiome);
+
+        if (visitedCount < pockets.size()) {
+          lastBiome++;
+        }
+      }
 
       for (int value : pockets.values()) {
         lastBiome = Integer.max(lastBiome, value);

@@ -12,8 +12,8 @@ import java.awt.RenderingHints;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import fr.kanassoulier.dorfromantik.Game;
 import fr.kanassoulier.dorfromantik.Options;
@@ -24,7 +24,7 @@ import fr.kanassoulier.dorfromantik.Options;
  * @version 1.0
  * @author Gaston Chenet
  */
-public class TileStack extends JPanel {
+public class TileStack extends JComponent {
   private static final int STACK_WIDTH = 70;
   private static final int TILE_HEIGHT = 6;
 
@@ -37,8 +37,6 @@ public class TileStack extends JPanel {
    * @param gui L'interface graphique
    */
   public TileStack(Gui gui) {
-    super(true);
-
     this.gui = gui;
 
     this.setBounds(0, 0, TileStack.STACK_WIDTH, Game.WINDOW_HEIGHT);
@@ -50,7 +48,7 @@ public class TileStack extends JPanel {
     this.updateTilesLeft();
 
     try {
-      Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./resources/fonts/Lexend.ttf")).deriveFont(20f);
+      Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./resources/fonts/Lexend-Bold.ttf")).deriveFont(20f);
 
       GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
       ge.registerFont(font);

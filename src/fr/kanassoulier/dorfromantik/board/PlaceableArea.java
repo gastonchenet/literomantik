@@ -19,7 +19,7 @@ import fr.kanassoulier.dorfromantik.utils.Hexagon;
  * @author Gaston Chenet
  */
 public class PlaceableArea extends Tile implements MouseMotionListener, MouseListener {
-  private static final float RADIUS_MULTIPLIER = 0.4f, HOVER_RADIUS_MULTIPLIER = 0.6f;
+  private static final float RADIUS_MULTIPLIER = 0.4f, HOVER_RADIUS_MULTIPLIER = 0.68f;
 
   private boolean mouseOver = false;
 
@@ -58,7 +58,8 @@ public class PlaceableArea extends Tile implements MouseMotionListener, MouseLis
 
     return new Hexagon(radius, radius,
         (int) Math.round(
-            radius * (this.mouseOver ? PlaceableArea.HOVER_RADIUS_MULTIPLIER : PlaceableArea.RADIUS_MULTIPLIER)));
+            radius
+                * (this.mouseOver ? PlaceableArea.HOVER_RADIUS_MULTIPLIER * 1.1f : PlaceableArea.RADIUS_MULTIPLIER)));
   }
 
   @Override
@@ -110,13 +111,15 @@ public class PlaceableArea extends Tile implements MouseMotionListener, MouseLis
   public void paintComponent(Graphics g) {
     this.setBiomes(this.getBoard().getGame().getGui().getPreviewTile().getBiomes());
 
+    Graphics2D g2d = (Graphics2D) g.create();
+
+    g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
     if (mouseOver) {
       super.paintComponent(g, PlaceableArea.HOVER_RADIUS_MULTIPLIER);
+      g2d.setColor(new Color(255, 255, 255, 100));
+      g2d.fillPolygon(this.getHexagon());
     } else {
-      Graphics2D g2d = (Graphics2D) g.create();
-
-      g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-          RenderingHints.VALUE_ANTIALIAS_ON);
       g2d.setColor(new Color(215, 215, 215));
       g2d.fillPolygon(this.getHexagon());
 

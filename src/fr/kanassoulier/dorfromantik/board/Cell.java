@@ -2,7 +2,7 @@ package fr.kanassoulier.dorfromantik.board;
 
 import java.awt.Point;
 
-import javax.swing.JPanel;
+import javax.swing.JComponent;
 
 import fr.kanassoulier.dorfromantik.enums.TileSide;
 import fr.kanassoulier.dorfromantik.utils.Hexagon;
@@ -13,7 +13,7 @@ import fr.kanassoulier.dorfromantik.utils.Hexagon;
  * @version 1.0
  * @author Gaston Chenet
  */
-public abstract class Cell extends JPanel {
+public abstract class Cell extends JComponent {
   private Board board;
   private int x, y, radius;
 
@@ -40,8 +40,6 @@ public abstract class Cell extends JPanel {
    * @param radius Le rayon de la cellule
    */
   protected Cell(Board board, int x, int y, int radius) {
-    // On veut que le JPanel soit transparent pour ne pas cacher les autres éléments
-    super(true);
 
     this.board = board;
     this.radius = radius;
@@ -49,6 +47,8 @@ public abstract class Cell extends JPanel {
     this.y = y;
 
     this.setBounds(x - radius, y - radius, radius * 2, radius * 2);
+
+    // On veut que le JPanel soit transparent pour ne pas cacher les autres éléments
     this.setOpaque(false);
   }
 

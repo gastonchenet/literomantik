@@ -46,7 +46,7 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
    * Créer une instance du jeu
    */
   public Game() {
-    this.randomizer = new Tileset(1).getRandomizer();
+    this.randomizer = new Tileset(1000).getRandomizer();
     this.board = new Board(this);
     this.gui = new Gui(this);
 

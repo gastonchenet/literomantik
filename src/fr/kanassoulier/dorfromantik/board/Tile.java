@@ -183,6 +183,12 @@ public abstract class Tile extends Cell {
     this.repaint();
   }
 
+  /**
+   * Vérifie si la tuile a un biome spécifique
+   * 
+   * @param biome Le biome à vérifier
+   * @return Si la tuile a le biome
+   */
   public boolean hasBiome(Biome biome) {
     for (TileSide side : TileSide.values()) {
       if (this.getBiome(side) == biome)
@@ -222,9 +228,9 @@ public abstract class Tile extends Cell {
     TileSide[] sides = TileSide.values();
     double angle = Cell.to360Degrees(Math.toDegrees(Math.atan2(y - radius, x - radius)) + 120);
 
-    // On considère un taux d'erreur de 1 degré
-    int floorSide = (int) Math.floor(Cell.to360Degrees(angle - 1) / 60);
-    int ceilSide = (int) Math.floor(Cell.to360Degrees(angle + 1) / 60);
+    // On considère un taux d'erreur de 2 degrés
+    int floorSide = (int) Math.floor(Cell.to360Degrees(angle - 2) / 60);
+    int ceilSide = (int) Math.floor(Cell.to360Degrees(angle + 2) / 60);
 
     if (floorSide == ceilSide) {
       return sides[floorSide];
@@ -288,6 +294,12 @@ public abstract class Tile extends Cell {
     }
   }
 
+  /**
+   * Dessine la tuile
+   * 
+   * @param g     Le contexte graphique
+   * @param scale L'échelle de la tuile
+   */
   protected void paintComponent(Graphics g, float scale) {
     super.paintComponent(g);
     Graphics2D g2d = (Graphics2D) g.create();
