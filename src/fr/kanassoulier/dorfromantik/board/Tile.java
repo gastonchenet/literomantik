@@ -81,6 +81,19 @@ public abstract class Tile extends Cell {
   }
 
   /**
+   * Pour définir les biomes de la tuile
+   * 
+   * @param biomes Les biomes de la tuile
+   */
+  public void setBiomes(Biome... biomes) {
+    TileSide[] sides = TileSide.values();
+
+    for (int i = 0; i < sides.length; i++) {
+      this.biomes.put(sides[i], biomes[i]);
+    }
+  }
+
+  /**
    * Remplit la tuile avec des biomes aléatoires
    */
   public void refill() {
@@ -275,12 +288,13 @@ public abstract class Tile extends Cell {
     }
   }
 
-  @Override
-  public void paintComponent(Graphics g) {
+  protected void paintComponent(Graphics g, float scale) {
     super.paintComponent(g);
     Graphics2D g2d = (Graphics2D) g.create();
     int radius = this.getRadius();
-    Hexagon hexagon = new Hexagon(radius, radius, radius);
+    Point center = new Point(radius, radius);
+    radius = (int) (radius * scale);
+    Hexagon hexagon = new Hexagon(center, radius);
 
     // Antialiasing pour rendre les hexagones plus jolis
     g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -291,20 +305,28 @@ public abstract class Tile extends Cell {
     // Solution peu élégante pour dessiner les hexagones, mais elle fonctionne et ne
     // prend pas trop de place
 
-    this.hexRow(g2d, radius * 0.5, radius - radius * Math.sqrt(3) / 2, fillHexRadius, 4);
-    this.hexRow(g2d, 0, radius - radius * Math.sqrt(3) / 3, fillHexRadius, 6);
-    this.hexRow(g2d, -radius * 0.5, radius - radius * Math.sqrt(3) / 6, fillHexRadius, 8);
-    this.hexRow(g2d, -radius, radius, fillHexRadius, 10);
-    this.hexRow(g2d, -radius * 0.5, radius + radius * Math.sqrt(3) / 6, fillHexRadius, 8);
-    this.hexRow(g2d, 0, radius + radius * Math.sqrt(3) / 3, fillHexRadius, 6);
-    this.hexRow(g2d, radius * 0.5, radius + radius * Math.sqrt(3) / 2, fillHexRadius, 4);
+    double paddingX = center.x - radius;
+    double paddingY = center.y - radius;
+
+    this.hexRow(g2d, paddingX + radius * 0.5, paddingY + radius - radius * Math.sqrt(3) / 2, fillHexRadius, 4);
+    this.hexRow(g2d, paddingX, paddingY + radius - radius * Math.sqrt(3) / 3, fillHexRadius, 6);
+    this.hexRow(g2d, paddingX - radius * 0.5, paddingY + radius - radius * Math.sqrt(3) / 6, fillHexRadius, 8);
+    this.hexRow(g2d, paddingX - radius, paddingY + radius, fillHexRadius, 10);
+    this.hexRow(g2d, paddingX - radius * 0.5, paddingY + radius + radius * Math.sqrt(3) / 6, fillHexRadius, 8);
+    this.hexRow(g2d, paddingX, paddingY + radius + radius * Math.sqrt(3) / 3, fillHexRadius, 6);
+    this.hexRow(g2d, paddingX + radius * 0.5, paddingY + radius + radius * Math.sqrt(3) / 2, fillHexRadius, 4);
 
     g2d.setClip(null);
 
-    g2d.setStroke(new BasicStroke(3));
+    g2d.setStroke(new BasicStroke((int) radius / 15));
     g2d.setColor(Color.BLACK);
     g2d.drawPolygon(hexagon);
 
     g2d.dispose();
+  }
+
+  @Override
+  public void paintComponent(Graphics g) {
+    this.paintComponent(g, 1f);
   }
 }

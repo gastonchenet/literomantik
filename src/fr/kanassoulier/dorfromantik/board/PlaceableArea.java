@@ -18,7 +18,7 @@ import fr.kanassoulier.dorfromantik.utils.Hexagon;
  * @version 1.0
  * @author Gaston Chenet
  */
-public class PlaceableArea extends Cell implements MouseMotionListener, MouseListener {
+public class PlaceableArea extends Tile implements MouseMotionListener, MouseListener {
   private static final float RADIUS_MULTIPLIER = 0.4f, HOVER_RADIUS_MULTIPLIER = 0.6f;
 
   private boolean mouseOver = false;
@@ -42,6 +42,7 @@ public class PlaceableArea extends Cell implements MouseMotionListener, MouseLis
    * 
    * @param board  Le plateau de jeu
    * @param center Le centre de la zone
+   * @param biomes Les biomes de la zone
    */
   public PlaceableArea(Board board, Point center) {
     this(board, center.x, center.y);
@@ -96,15 +97,30 @@ public class PlaceableArea extends Cell implements MouseMotionListener, MouseLis
   public void mouseReleased(MouseEvent e) {
   }
 
+  /**
+   * Savoir si la souris est sur la zone
+   * 
+   * @return Vrai si la souris est sur la zone, faux sinon
+   */
+  public boolean isMouseOver() {
+    return this.mouseOver;
+  }
+
   @Override
-  protected void paintComponent(Graphics g) {
-    super.paintComponent(g);
-    Graphics2D g2d = (Graphics2D) g.create();
+  public void paintComponent(Graphics g) {
+    this.setBiomes(this.getBoard().getGame().getGui().getPreviewTile().getBiomes());
 
-    g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-    g2d.setColor(new Color(215, 215, 215));
-    g2d.fillPolygon(this.getHexagon());
+    if (mouseOver) {
+      super.paintComponent(g, PlaceableArea.HOVER_RADIUS_MULTIPLIER);
+    } else {
+      Graphics2D g2d = (Graphics2D) g.create();
 
-    g2d.dispose();
+      g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+          RenderingHints.VALUE_ANTIALIAS_ON);
+      g2d.setColor(new Color(215, 215, 215));
+      g2d.fillPolygon(this.getHexagon());
+
+      g2d.dispose();
+    }
   }
 }

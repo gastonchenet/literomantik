@@ -1,5 +1,6 @@
 package fr.kanassoulier.dorfromantik.utils;
 
+import java.awt.Point;
 import java.awt.Polygon;
 
 /**
@@ -30,11 +31,32 @@ public class Hexagon extends Polygon {
   /**
    * Constructeur d'un hexagone
    * 
+   * @param center     Centre de l'hexagone
+   * @param radius     Rayon de l'hexagone
+   * @param startAngle Angle de départ de l'hexagone
+   */
+  public Hexagon(Point center, int radius, double startAngle) {
+    this(center.x, center.y, radius, startAngle);
+  }
+
+  /**
+   * Constructeur d'un hexagone
+   * 
    * @param x      Position x du centre de l'hexagone
    * @param y      Position y du centre de l'hexagone
    * @param radius Rayon de l'hexagone
    */
   public Hexagon(int x, int y, int radius) {
     this(x, y, radius, 0);
+  }
+
+  /**
+   * Constructeur d'un hexagone
+   * 
+   * @param center Centre de l'hexagone
+   * @param radius Rayon de l'hexagone
+   */
+  public Hexagon(Point center, int radius) {
+    this(center.x, center.y, radius, 0);
   }
 }

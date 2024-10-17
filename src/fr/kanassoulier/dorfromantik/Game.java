@@ -1,5 +1,6 @@
 package fr.kanassoulier.dorfromantik;
 
+import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
@@ -13,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
 import fr.kanassoulier.dorfromantik.board.Board;
+import fr.kanassoulier.dorfromantik.board.PlaceableArea;
 import fr.kanassoulier.dorfromantik.board.Tile;
 import fr.kanassoulier.dorfromantik.gui.Gui;
 import fr.kanassoulier.dorfromantik.utils.Tileset;
@@ -116,13 +118,26 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
   @Override
   public void mouseWheelMoved(MouseWheelEvent e) {
     int rotation = e.getWheelRotation();
+    PlaceableArea area = null;
 
-    if (System.currentTimeMillis() - this.lastRotation < Tile.MIN_SCROLL_OFFSET)
-      return; // Empecher de tourner trop vite la tuile de preview (pour les pavés tactiles
-              // qui scrollent trop vite)
+    for (Component component : this.board.getComponents()) {
+      if (component instanceof PlaceableArea && ((PlaceableArea) component).isMouseOver()) {
+        area = (PlaceableArea) component;
+      }
+    }
 
-    this.gui.getPreviewTile().rotate(rotation > 0);
-    this.lastRotation = System.currentTimeMillis();
+    if (area == null) {
+
+    } else {
+      if (System.currentTimeMillis() - this.lastRotation < Tile.MIN_SCROLL_OFFSET)
+        return; // Empecher de tourner trop vite la tuile de preview (pour les pavés tactiles
+                // qui scrollent trop vite)
+
+      this.gui.getPreviewTile().rotate(rotation > 0);
+      this.lastRotation = System.currentTimeMillis();
+      area.repaint();
+    }
+
   }
 
   @Override
