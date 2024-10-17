@@ -51,6 +51,15 @@ public class Scoreboard extends JLabel {
     }
   }
 
+  /**
+   * Grouper les poches d'un biome spécifique à partir d'une tuile.
+   * 
+   * @param tile          La tuile à analyser.
+   * @param biome         Le biome à chercher.
+   * @param visited       Les tuiles déjà visitées.
+   * @param currentPocket L'identifiant de la poche actuelle.
+   * @return Les tuiles visitées et leur poche.
+   */
   private HashMap<String, Integer> groupPocket(Tile tile, Biome biome, HashMap<String, Integer> visited,
       int currentPocket) {
     String discriminator = tile.getDiscriminator();
@@ -84,6 +93,12 @@ public class Scoreboard extends JLabel {
     return visited;
   }
 
+  /**
+   * Récupérer les poches de biomes.
+   * 
+   * @param biome Le biome à chercher.
+   * @return Les poches de biomes.
+   */
   private HashMap<String, Integer> getPockets(Biome biome) {
     HashMap<String, Integer> visited = new HashMap<>();
     int currentPocket = 0;

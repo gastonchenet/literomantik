@@ -7,6 +7,11 @@ package fr.kanassoulier.dorfromantik;
  * @author Gaston Chenet
  */
 public class Main {
+  /**
+   * Méthode principale du jeu
+   * 
+   * @param args Les arguments passés au programme
+   */
   public static void main(String[] args) {
     new Game().setVisible(true);
   }

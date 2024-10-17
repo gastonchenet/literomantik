@@ -21,6 +21,11 @@ public class Board extends JLayeredPane {
   private Game game;
   private int x = Game.WINDOW_WIDTH / 2, y = Game.WINDOW_HEIGHT / 2;
 
+  /**
+   * Constructeur du plateau de jeu.
+   * 
+   * @param game La classe de jeu.
+   */
   public Board(Game game) {
     super();
 

@@ -17,19 +17,6 @@ public abstract class Cell extends JPanel {
   private Board board;
   private int x, y, radius;
 
-  protected Cell(Board board, int x, int y, int radius) {
-    // On veut que le JPanel soit transparent pour ne pas cacher les autres éléments
-    super(true);
-
-    this.board = board;
-    this.radius = radius;
-    this.x = x;
-    this.y = y;
-
-    this.setBounds(x - radius, y - radius, radius * 2, radius * 2);
-    this.setOpaque(false);
-  }
-
   /**
    * Pour convertir empécher les angles négatifs et les angles supérieurs à 360°
    * 
@@ -44,6 +31,34 @@ public abstract class Cell extends JPanel {
     return angle % 360;
   }
 
+  /**
+   * Créer une cellule avec un centre et un rayon.
+   * 
+   * @param board  Le plateau de jeu
+   * @param x      La coordonnée x du centre de la cellule
+   * @param y      La coordonnée y du centre de la cellule
+   * @param radius Le rayon de la cellule
+   */
+  protected Cell(Board board, int x, int y, int radius) {
+    // On veut que le JPanel soit transparent pour ne pas cacher les autres éléments
+    super(true);
+
+    this.board = board;
+    this.radius = radius;
+    this.x = x;
+    this.y = y;
+
+    this.setBounds(x - radius, y - radius, radius * 2, radius * 2);
+    this.setOpaque(false);
+  }
+
+  /**
+   * Créer une cellule avec un centre et un rayon.
+   * 
+   * @param board  Le plateau de jeu
+   * @param center Le centre de la cellule
+   * @param radius Le rayon de la cellule
+   */
   protected Cell(Board board, Point center, int radius) {
     this(board, center.x, center.y, radius);
   }
@@ -89,6 +104,11 @@ public abstract class Cell extends JPanel {
     return this.at(point.x, point.y);
   }
 
+  /**
+   * Récupérer le discriminant de la cellule.
+   * 
+   * @return le discriminant de la cellule
+   */
   public String getDiscriminator() {
     Point center = this.getCenter();
     return center.x + "," + center.y;

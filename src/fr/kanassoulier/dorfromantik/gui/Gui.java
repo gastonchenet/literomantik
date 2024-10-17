@@ -12,15 +12,22 @@ import fr.kanassoulier.dorfromantik.board.PreviewTile;
  * @author Gaston Chenet
  */
 public class Gui extends JLayeredPane {
-  private Scoreboard scoreboard = new Scoreboard(this);
-  private TileStack tileStack = new TileStack(this);
+  private Scoreboard scoreboard;
+  private TileStack tileStack;
   private PreviewTile previewTile;
   private Game game;
 
+  /**
+   * Constructeur de la GUI.
+   * 
+   * @param game La classe de jeu.
+   */
   public Gui(Game game) {
     super();
 
     this.game = game;
+    this.scoreboard = new Scoreboard(this);
+    this.tileStack = new TileStack(this);
 
     this.setLayout(null);
     this.setBounds(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);

@@ -15,7 +15,7 @@ public class Options {
   /**
    * Le rayon d'une cellule
    */
-  public static final int CELL_RADIUS = 80;
+  public static final int CELL_RADIUS = 56;
 
   /**
    * La taille d'une tuile de prévisualisation

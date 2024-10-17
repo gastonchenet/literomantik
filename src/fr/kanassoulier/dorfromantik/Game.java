@@ -6,6 +6,7 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -34,20 +35,27 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
   public static final int WINDOW_WIDTH = 1080, WINDOW_HEIGHT = 720;
 
   private int mouseX = Game.WINDOW_WIDTH / 2, mouseY = Game.WINDOW_HEIGHT / 2;
-  private Board board = new Board(this);
-  private Gui gui = new Gui(this);
-  private long seed;
   private long lastRotation = 0;
+  private Board board;
+  private Gui gui;
+  private Random randomizer;
 
-  public Game(long seed) {
-    this.seed = seed;
+  /**
+   * Créer une instance du jeu
+   */
+  public Game() {
+    this.randomizer = new Tileset(1).getRandomizer();
+    this.board = new Board(this);
+    this.gui = new Gui(this);
+
     this.setTitle(Game.WINDOW_TITLE);
-    this.setIcon("./resources/images/favicon.png");
+    this.setIconImage("./resources/images/favicon.png");
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setSize(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
     this.setLocationRelativeTo(null);
     this.setResizable(false);
     this.setLayout(null);
+
     this.add(this.gui, JLayeredPane.PALETTE_LAYER);
     this.add(this.board, JLayeredPane.DEFAULT_LAYER);
 
@@ -55,22 +63,14 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
     this.addMouseWheelListener(this);
   }
 
-  public Game(Tileset tileset) {
-    this(tileset.getSeed());
-  }
-
-  public Game() {
-    this(System.currentTimeMillis());
-  }
-
   /**
    * Définir l'icône de la fenêtre du jeu
    * 
    * @param path Le chemin de l'icône
    */
-  private void setIcon(String path) {
+  private void setIconImage(String path) {
     try {
-      this.setIconImage(ImageIO.read(new File(path)));
+      super.setIconImage(ImageIO.read(new File(path)));
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -95,12 +95,22 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
   }
 
   /**
-   * Obtenir la seed de génération du jeu
+   * Obtenir un nombre aléatoire
    * 
-   * @return La seed de génération du jeu
+   * @return Un nombre aléatoire
    */
-  public long getSeed() {
-    return this.seed = Tileset.normalizeSeed(this.seed + 1);
+  public int getRandomInt() {
+    return this.randomizer.nextInt();
+  }
+
+  /**
+   * Obtenir un nombre aléatoire
+   * 
+   * @param bound La borne du nombre aléatoire
+   * @return Un nombre aléatoire
+   */
+  public int getRandomInt(int bound) {
+    return this.randomizer.nextInt(bound);
   }
 
   @Override

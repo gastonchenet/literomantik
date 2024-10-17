@@ -8,8 +8,8 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Random;
 
+import fr.kanassoulier.dorfromantik.Game;
 import fr.kanassoulier.dorfromantik.enums.Biome;
 import fr.kanassoulier.dorfromantik.enums.TileSide;
 import fr.kanassoulier.dorfromantik.utils.Hexagon;
@@ -21,10 +21,19 @@ import fr.kanassoulier.dorfromantik.utils.Hexagon;
  * @author Gaston Chenet
  */
 public abstract class Tile extends Cell {
-  public static final int MIN_SCROLL_OFFSET = 10;
+  public static final int MIN_SCROLL_OFFSET = 40;
 
   private HashMap<TileSide, Biome> biomes = new HashMap<TileSide, Biome>();
 
+  /**
+   * Crée une tuile avec des biomes spécifiques
+   * 
+   * @param board  Le plateau de jeu
+   * @param x      La coordonnée x du centre de la tuile
+   * @param y      La coordonnée y du centre de la tuile
+   * @param radius Le rayon de la tuile
+   * @param biomes Les biomes de la tuile
+   */
   public Tile(Board board, int x, int y, int radius, Biome... biomes) {
     super(board, x, y, radius);
 
@@ -35,29 +44,59 @@ public abstract class Tile extends Cell {
     }
   }
 
+  /**
+   * Crée une tuile avec des biomes spécifiques
+   * 
+   * @param board  Le plateau de jeu
+   * @param x      La coordonnée x du centre de la tuile
+   * @param y      La coordonnée y du centre de la tuile
+   * @param radius Le rayon de la tuile
+   */
   public Tile(Board board, int x, int y, int radius) {
     super(board, x, y, radius);
     this.refill();
   }
 
   /**
+   * Crée une tuile avec des biomes spécifiques
+   * 
+   * @param board  Le plateau de jeu
+   * @param center Le centre de la tuile
+   * @param radius Le rayon de la tuile
+   * @param biomes Les biomes de la tuile
+   */
+  public Tile(Board board, Point center, int radius, Biome... biomes) {
+    this(board, center.x, center.y, radius, biomes);
+  }
+
+  /**
+   * Crée une tuile avec des biomes aléatoires
+   * 
+   * @param board  Le plateau de jeu
+   * @param center Le centre de la tuile
+   * @param radius Le rayon de la tuile
+   */
+  public Tile(Board board, Point center, int radius) {
+    this(board, center.x, center.y, radius);
+  }
+
+  /**
    * Remplit la tuile avec des biomes aléatoires
    */
   public void refill() {
-    long seed = this.getBoard().getGame().getSeed();
-    Random random = new Random(seed);
+    Game game = this.getBoard().getGame();
     Biome[] biomes = Biome.values();
     TileSide[] sides = TileSide.values();
 
     this.biomes.clear();
 
-    Biome firstBiome = biomes[random.nextInt(biomes.length)];
+    Biome firstBiome = biomes[game.getRandomInt(biomes.length)];
     // Retirer le biome déjà choisi
     biomes = Arrays.stream(biomes).filter(biome -> biome != firstBiome).toArray(Biome[]::new);
-    Biome secondBiome = biomes[random.nextInt(biomes.length)];
+    Biome secondBiome = biomes[game.getRandomInt(biomes.length)];
 
-    int firstBiomeSize = random.nextInt(biomes.length + 1);
-    int firstBiomeOffset = random.nextInt(sides.length);
+    int firstBiomeSize = game.getRandomInt(biomes.length + 1);
+    int firstBiomeOffset = game.getRandomInt(sides.length);
 
     for (int i = 0; i < sides.length; i++) {
       TileSide side = sides[(i + firstBiomeOffset) % sides.length];
@@ -65,14 +104,6 @@ public abstract class Tile extends Cell {
 
       this.biomes.put(side, biome);
     }
-  }
-
-  public Tile(Board board, Point center, int radius, Biome... biomes) {
-    this(board, center.x, center.y, radius, biomes);
-  }
-
-  public Tile(Board board, Point center, int radius) {
-    this(board, center.x, center.y, radius);
   }
 
   /**
@@ -85,6 +116,11 @@ public abstract class Tile extends Cell {
     return this.biomes.get(side);
   }
 
+  /**
+   * Récupère le biome le plus présent sur la tuile
+   * 
+   * @return Le biome dominant
+   */
   private Biome getDominantBiome() {
     TileSide[] sides = TileSide.values();
 
@@ -143,6 +179,13 @@ public abstract class Tile extends Cell {
     return false;
   }
 
+  /**
+   * Vérifie si la tuile du coté choisi ont des biomes identiques sur la même
+   * arête
+   * 
+   * @param side Le côté de la tuile
+   * @return Si les biomes sont identiques
+   */
   public boolean matchesWith(TileSide side) {
     Cell neighborCell = (Cell) this.getNeighbor(side);
     if (!(neighborCell instanceof Tile))
@@ -258,7 +301,7 @@ public abstract class Tile extends Cell {
 
     g2d.setClip(null);
 
-    g2d.setStroke(new BasicStroke(4));
+    g2d.setStroke(new BasicStroke(3));
     g2d.setColor(Color.BLACK);
     g2d.drawPolygon(hexagon);
 

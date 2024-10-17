@@ -12,6 +12,11 @@ import fr.kanassoulier.dorfromantik.enums.TileSide;
  * @author Gaston Chenet
  */
 public class PreviewTile extends Tile {
+  /**
+   * Constructeur de la tuile de prévisualisation.
+   * 
+   * @param board Le plateau de jeu.
+   */
   public PreviewTile(Board board) {
     super(board, 140, Game.WINDOW_HEIGHT - 120, Options.PREVIEW_TILE_SIZE);
   }

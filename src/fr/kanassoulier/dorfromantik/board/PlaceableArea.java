@@ -23,6 +23,13 @@ public class PlaceableArea extends Cell implements MouseMotionListener, MouseLis
 
   private boolean mouseOver = false;
 
+  /**
+   * Crée une zone où l'on peut placer une tuile
+   * 
+   * @param board Le plateau de jeu
+   * @param x     La coordonnée x du centre de la zone
+   * @param y     La coordonnée y du centre de la zone
+   */
   public PlaceableArea(Board board, int x, int y) {
     super(board, x, y, Options.CELL_RADIUS);
 
@@ -30,6 +37,12 @@ public class PlaceableArea extends Cell implements MouseMotionListener, MouseLis
     this.addMouseListener(this);
   }
 
+  /**
+   * Crée une zone où l'on peut placer une tuile
+   * 
+   * @param board  Le plateau de jeu
+   * @param center Le centre de la zone
+   */
   public PlaceableArea(Board board, Point center) {
     this(board, center.x, center.y);
   }

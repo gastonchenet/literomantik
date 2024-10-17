@@ -13,24 +13,58 @@ import fr.kanassoulier.dorfromantik.enums.TileSide;
  * @author Gaston Chenet
  */
 public class PlaceableTile extends Tile {
+  /**
+   * Crée une tuile à placer avec des biomes spécifiques.
+   * 
+   * @param board  Le plateau de jeu.
+   * @param x      La coordonnée x du centre de la tuile
+   * @param y      La coordonnée y du centre de la tuile
+   * @param biomes Les biomes de la tuile
+   */
   public PlaceableTile(Board board, int x, int y, Biome... biomes) {
     super(board, x, y, Options.CELL_RADIUS, biomes);
     this.fillNeighbors();
   }
 
+  /**
+   * Crée une tuile à placer avec des biomes spécifiques.
+   * 
+   * @param board  Le plateau de jeu.
+   * @param center Le centre de la tuile
+   * @param biomes Les biomes de la tuile
+   */
+  public PlaceableTile(Board board, Point center, Biome... biomes) {
+    this(board, center.x, center.y, biomes);
+  }
+
+  /**
+   * Crée une tuile à placer avec des biomes spécifiques.
+   * 
+   * @param board Le plateau de jeu.
+   * @param x     La coordonnée x du centre de la tuile
+   * @param y     La coordonnée y du centre de la tuile
+   */
   public PlaceableTile(Board board, int x, int y) {
     super(board, x, y, Options.CELL_RADIUS);
     this.fillNeighbors();
   }
 
-  public PlaceableTile(Board board, Point center, Biome... biomes) {
-    this(board, center.x, center.y, biomes);
-  }
-
+  /**
+   * Crée une tuile à placer avec des biomes spécifiques.
+   * 
+   * @param board  Le plateau de jeu.
+   * @param center Le centre de la tuile
+   */
   public PlaceableTile(Board board, Point center) {
     this(board, center.x, center.y);
   }
 
+  /**
+   * Crée une tuile à placer à partir d'une tuile de prévisualisation.
+   * 
+   * @param previewTile La tuile de prévisualisation.
+   * @param center      Le centre de la tuile.
+   */
   public PlaceableTile(PreviewTile previewTile, Point center) {
     this(previewTile.getBoard(), center, previewTile.getBiomes());
   }

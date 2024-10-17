@@ -1,47 +1,35 @@
 package fr.kanassoulier.dorfromantik.utils;
 
-import fr.kanassoulier.dorfromantik.Options;
+import java.util.Random;
 
 /**
  * Classe contenant le tileset
  */
 public class Tileset {
+  private Random randomizer;
+
   /**
-   * Normaliser la seed
+   * Constructeur de la classe Tileset
    * 
-   * @param seed La seed à normaliser
-   * @return La seed normalisée
+   * @param seed La seed permettant de générer des tuiles aléatoires
    */
-  public static long normalizeSeed(long seed) {
-    return seed % (Long.MAX_VALUE - Options.TURNS);
-  }
-
-  private long seed;
-
   public Tileset(long seed) {
-    this.seed = seed;
+    this.randomizer = new Random(seed);
   }
 
+  /**
+   * Constructeur de la classe Tileset
+   */
   public Tileset() {
-    this(System.currentTimeMillis());
+    this.randomizer = new Random(System.currentTimeMillis());
   }
 
   /**
-   * Définir la seed du tileset
-   * @param seed La seed du tileset
+   * Récupérer le générateur de nombres aléatoires
    * 
-   * @return L'instance du tileset
+   * @return Le générateur de nombres aléatoires
    */
-  public void setSeed(long seed) {
-    this.seed = seed;
-  }
-
-  /**
-   * Récupérer la seed du tileset
-   * 
-   * @return La seed du tileset
-   */
-  public long getSeed() {
-    return this.seed;
+  public Random getRandomizer() {
+    return this.randomizer;
   }
 }
