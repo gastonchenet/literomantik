@@ -90,10 +90,42 @@ public class PlaceableTile extends Tile {
     int matches = 0;
 
     for (TileSide side : TileSide.values()) {
-      if (this.matchesWith(side))
+      if (this.match(side))
         matches++;
     }
 
     return matches;
+  }
+
+  /**
+   * Vérifie si la tuile du coté choisi ont des biomes identiques sur la même
+   * arête
+   * 
+   * @param side Le côté de la tuile
+   * @return Si les biomes sont identiques
+   */
+  public boolean match(TileSide side) {
+    Cell neighborCell = this.getNeighbor(side);
+    if (!(neighborCell instanceof PlaceableTile))
+      return false;
+
+    PlaceableTile neighbor = (PlaceableTile) neighborCell;
+    return this.getBiome(side).equals(neighbor.getBiome(side.opposite()));
+  }
+
+  /**
+   * Compte le nombre de côtés de la tuile qui ont des biomes identiques sur la
+   * 
+   * @return Le nombre de côtés qui ont des biomes identiques
+   */
+  public int matchCount() {
+    int count = 0;
+
+    for (TileSide side : TileSide.values()) {
+      if (this.match(side))
+        count++;
+    }
+
+    return count;
   }
 }

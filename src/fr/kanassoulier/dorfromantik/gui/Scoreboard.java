@@ -78,7 +78,7 @@ public class Scoreboard extends JLabel {
         continue;
       }
 
-      if (tile.getBiome(side) != biome || !tile.matchesWith(side)) {
+      if (tile.getBiome(side) != biome || !tile.match(side)) {
         if (!((PlaceableTile) neighbor).hasBiome(biome)) {
           visited.put(neighborDiscriminator, -1);
         }

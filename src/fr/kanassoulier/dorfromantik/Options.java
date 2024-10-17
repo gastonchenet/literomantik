@@ -21,4 +21,14 @@ public class Options {
    * La taille d'une tuile de prévisualisation
    */
   public static final int PREVIEW_TILE_SIZE = 72;
+
+  /**
+   * Le volume de la musique
+   */
+  public static final int MUSIC_VOLUME = 50;
+
+  /**
+   * Le volume des effets sonores
+   */
+  public static final int SOUND_VOLUME = 50;
 }

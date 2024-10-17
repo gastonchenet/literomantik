@@ -16,6 +16,7 @@ import javax.swing.JLayeredPane;
 import fr.kanassoulier.dorfromantik.board.Board;
 import fr.kanassoulier.dorfromantik.board.PlaceableArea;
 import fr.kanassoulier.dorfromantik.board.Tile;
+import fr.kanassoulier.dorfromantik.enums.SoundChannel;
 import fr.kanassoulier.dorfromantik.gui.Gui;
 import fr.kanassoulier.dorfromantik.utils.Tileset;
 
@@ -63,6 +64,8 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
 
     this.addMouseMotionListener(this);
     this.addMouseWheelListener(this);
+
+    SoundPlayer.play("music", SoundChannel.MUSIC);
   }
 
   /**

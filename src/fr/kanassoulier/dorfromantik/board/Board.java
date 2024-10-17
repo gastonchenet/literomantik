@@ -7,6 +7,8 @@ import javax.swing.JLayeredPane;
 
 import fr.kanassoulier.dorfromantik.Game;
 import fr.kanassoulier.dorfromantik.Options;
+import fr.kanassoulier.dorfromantik.SoundPlayer;
+import fr.kanassoulier.dorfromantik.enums.SoundChannel;
 import fr.kanassoulier.dorfromantik.gui.Scoreboard;
 
 /**
@@ -109,6 +111,9 @@ public class Board extends JLayeredPane {
 
     Scoreboard scoreboard = this.game.getGui().getScoreboard();
     scoreboard.updateScore();
+
+    int matches = tile.matchCount();
+    SoundPlayer.play("tiles/linked-" + matches, SoundChannel.SOUND);
 
     previewTile.refill();
     this.game.repaint();

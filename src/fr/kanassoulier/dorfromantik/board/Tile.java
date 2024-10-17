@@ -199,22 +199,6 @@ public abstract class Tile extends Cell {
   }
 
   /**
-   * Vérifie si la tuile du coté choisi ont des biomes identiques sur la même
-   * arête
-   * 
-   * @param side Le côté de la tuile
-   * @return Si les biomes sont identiques
-   */
-  public boolean matchesWith(TileSide side) {
-    Cell neighborCell = (Cell) this.getNeighbor(side);
-    if (!(neighborCell instanceof Tile))
-      return false;
-
-    Tile neighbor = (Tile) neighborCell;
-    return this.getBiome(side).equals(neighbor.getBiome(side.opposite()));
-  }
-
-  /**
    * Récupère le côté d'un des hexagones de la tuile
    * 
    * @param x
