@@ -1,0 +1,41 @@
+package fr.kanassoulier.dorfromantik;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Environment {
+  public static HashMap<String, String> read() {
+    HashMap<String, String> env = new HashMap<String, String>();
+
+    try {
+      File envFile = new File(".env");
+      Scanner scanner = new Scanner(envFile);
+
+      while (scanner.hasNextLine()) {
+        String line = scanner.nextLine();
+        String removeComments = line.split("#")[0];
+        String[] parts = removeComments.split("=");
+
+        if (parts.length != 2)
+          continue;
+
+        String key = parts[0].trim();
+        String value = parts[1].trim();
+
+        if (key.isEmpty() || value.isEmpty())
+          continue;
+
+        env.put(key, value);
+      }
+
+      scanner.close();
+    } catch (FileNotFoundException e) {
+      System.err.println("Variables d'environnement inaccessibles.");
+      System.exit(1);
+    }
+
+    return env;
+  }
+}
