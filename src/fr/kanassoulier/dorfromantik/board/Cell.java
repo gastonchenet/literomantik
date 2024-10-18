@@ -40,7 +40,6 @@ public abstract class Cell extends JComponent {
    * @param radius Le rayon de la cellule
    */
   protected Cell(Board board, int x, int y, int radius) {
-
     this.board = board;
     this.radius = radius;
     this.x = x;
