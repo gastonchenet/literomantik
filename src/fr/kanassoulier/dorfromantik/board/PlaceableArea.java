@@ -5,9 +5,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
 import fr.kanassoulier.dorfromantik.Options;
 import fr.kanassoulier.dorfromantik.utils.Hexagon;
@@ -15,11 +12,12 @@ import fr.kanassoulier.dorfromantik.utils.Hexagon;
 /**
  * Une zone où l'on peut placer une tuile
  * 
- * @version 1.0
+ * @version 1.1
  * @author Gaston Chenet
+ * @author Maxence Raymond
  */
-public class PlaceableArea extends Tile implements MouseMotionListener, MouseListener {
-  private static final float RADIUS_MULTIPLIER = 0.4f, HOVER_RADIUS_MULTIPLIER = 0.68f;
+public class PlaceableArea extends Tile {
+  private static final float RADIUS_MULTIPLIER = 0.4f, HOVER_RADIUS_MULTIPLIER = 0.6f;
 
   private boolean mouseOver = false;
 
@@ -32,9 +30,7 @@ public class PlaceableArea extends Tile implements MouseMotionListener, MouseLis
    */
   public PlaceableArea(Board board, int x, int y) {
     super(board, x, y, Options.CELL_RADIUS);
-
-    this.addMouseMotionListener(this);
-    this.addMouseListener(this);
+    this.addMouseListener(new PlaceableAreaListener(this));
   }
 
   /**
@@ -62,40 +58,21 @@ public class PlaceableArea extends Tile implements MouseMotionListener, MouseLis
                 * (this.mouseOver ? PlaceableArea.HOVER_RADIUS_MULTIPLIER * 1.1f : PlaceableArea.RADIUS_MULTIPLIER)));
   }
 
-  @Override
-  public void mouseDragged(MouseEvent e) {
-  }
-
-  @Override
-  public void mouseMoved(MouseEvent e) {
-    this.mouseOver = this.getHexagon().contains(e.getPoint());
+  /**
+   * Permet de modifier l'attribut quand la souris survole l'élément
+   * 
+   * @param entree la valeur modifiée
+   */
+  void setMouseOver(boolean entree) {
+    this.mouseOver = entree;
     this.repaint();
   }
 
-  @Override
-  public void mouseClicked(MouseEvent e) {
-  }
-
-  @Override
-  public void mouseEntered(MouseEvent e) {
-  }
-
-  @Override
-  public void mouseExited(MouseEvent e) {
-    this.mouseOver = false;
-    this.repaint();
-  }
-
-  @Override
-  public void mousePressed(MouseEvent e) {
-    if (!this.mouseOver)
-      return;
-
+  /**
+   * Indique au gestionnaire de placer la tuile
+   */
+  void placeTile() {
     this.getBoard().placeTile(this);
-  }
-
-  @Override
-  public void mouseReleased(MouseEvent e) {
   }
 
   /**
