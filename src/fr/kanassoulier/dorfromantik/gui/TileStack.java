@@ -2,21 +2,17 @@ package fr.kanassoulier.dorfromantik.gui;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GraphicsEnvironment;
 import java.awt.Polygon;
 import java.awt.RenderingHints;
-import java.io.File;
-import java.io.IOException;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 import fr.kanassoulier.dorfromantik.Game;
 import fr.kanassoulier.dorfromantik.Options;
+import fr.kanassoulier.dorfromantik.utils.FontLoader;
 
 /**
  * La pile de tuiles restantes
@@ -47,16 +43,7 @@ public class TileStack extends JComponent {
 
     this.updateTilesLeft();
 
-    try {
-      Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./resources/fonts/Lexend-Bold.ttf")).deriveFont(20f);
-
-      GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-      ge.registerFont(font);
-
-      this.remaining.setFont(font);
-    } catch (IOException | FontFormatException e) {
-      e.printStackTrace();
-    }
+    this.remaining.setFont(FontLoader.LEXEND);
 
     this.add(this.remaining);
   }

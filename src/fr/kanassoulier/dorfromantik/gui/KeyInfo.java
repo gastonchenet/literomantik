@@ -1,20 +1,16 @@
 package fr.kanassoulier.dorfromantik.gui;
 
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.geom.RoundRectangle2D;
-import java.io.File;
-import java.io.IOException;
 
 import javax.swing.JPanel;
 
 import fr.kanassoulier.dorfromantik.enums.KeyboardKey;
+import fr.kanassoulier.dorfromantik.utils.FontLoader;
 
 /**
  * Expliquer l'utilisation des touches du clavier/la souris dans le jeu.
@@ -63,15 +59,7 @@ public class KeyInfo extends JPanel {
     g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-    try {
-      Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./resources/fonts/Lexend-Regular.ttf")).deriveFont(14f);
-
-      GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-      ge.registerFont(font);
-      g2d.setFont(font);
-    } catch (IOException | FontFormatException e) {
-      e.printStackTrace();
-    }
+    g2d.setFont(FontLoader.LEXEND);
 
     // Dessin de la touche du clavier/la souris
     switch (this.key) {
