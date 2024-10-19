@@ -6,9 +6,9 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Environment {
-  public static HashMap<String, String> read() {
-    HashMap<String, String> env = new HashMap<String, String>();
+  private static HashMap<String, String> values = new HashMap<String, String>();
 
+  public static void load() {
     try {
       File envFile = new File(".env");
       Scanner scanner = new Scanner(envFile);
@@ -27,7 +27,7 @@ public class Environment {
         if (key.isEmpty() || value.isEmpty())
           continue;
 
-        env.put(key, value);
+        Environment.values.put(key, value);
       }
 
       scanner.close();
@@ -35,7 +35,14 @@ public class Environment {
       System.err.println("Variables d'environnement inaccessibles.");
       System.exit(1);
     }
+  }
 
-    return env;
+  public static String getValue(String key) {
+    String value = Environment.values.get(key);
+
+    if (value == null)
+      throw new IllegalArgumentException("La variable d'environnement spécifiée n'existe pas.");
+
+    return value;
   }
 }

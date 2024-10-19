@@ -13,6 +13,7 @@ public class Main {
    * @param args Les arguments passés au programme
    */
   public static void main(String[] args) {
+    Environment.load();
     new Game().setVisible(true);
   }
 }

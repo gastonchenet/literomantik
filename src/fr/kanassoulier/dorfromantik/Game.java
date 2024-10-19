@@ -18,6 +18,8 @@ import fr.kanassoulier.dorfromantik.board.PlaceableArea;
 import fr.kanassoulier.dorfromantik.board.Tile;
 import fr.kanassoulier.dorfromantik.enums.SoundChannel;
 import fr.kanassoulier.dorfromantik.gui.Gui;
+import fr.kanassoulier.dorfromantik.tmp.DataBase;
+import fr.kanassoulier.dorfromantik.tmp.GameWindowListener;
 import fr.kanassoulier.dorfromantik.utils.Tileset;
 
 /**
@@ -42,6 +44,7 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
   private Board board;
   private Gui gui;
   private Random randomizer;
+  private DataBase dataBase;
 
   /**
    * Créer une instance du jeu
@@ -50,10 +53,11 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
     this.randomizer = new Tileset(1000).getRandomizer();
     this.board = new Board(this);
     this.gui = new Gui(this);
+    this.dataBase = new DataBase();
 
     this.setTitle(Game.WINDOW_TITLE);
     this.setIconImage("./resources/images/favicon.png");
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     this.setSize(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
     this.setLocationRelativeTo(null);
     this.setResizable(false);
@@ -62,6 +66,7 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
     this.add(this.gui, JLayeredPane.PALETTE_LAYER);
     this.add(this.board, JLayeredPane.DEFAULT_LAYER);
 
+    this.addWindowListener(new GameWindowListener(this, this.dataBase));
     this.addMouseMotionListener(this);
     this.addMouseWheelListener(this);
 
