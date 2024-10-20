@@ -1,5 +1,7 @@
 package fr.kanassoulier.dorfromantik;
 
+import fr.kanassoulier.dorfromantik.tmp.Menu;
+
 /**
  * Classe principale du jeu
  * 
@@ -14,6 +16,6 @@ public class Main {
    */
   public static void main(String[] args) {
     Environment.load();
-    new Game().setVisible(true);
+    new Menu().setVisible(true);
   }
 }

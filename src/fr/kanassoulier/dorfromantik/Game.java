@@ -32,7 +32,7 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
   /**
    * Titre de la fenêtre du jeu
    */
-  private static final String WINDOW_TITLE = "Dorfromantik";
+  public static final String WINDOW_TITLE = "Dorfromantik";
 
   /**
    * Dimensions de la fenêtre du jeu
