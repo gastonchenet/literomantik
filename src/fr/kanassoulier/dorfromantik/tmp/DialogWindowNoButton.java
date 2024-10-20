@@ -11,23 +11,22 @@ import javax.swing.JDialog;
  * @author Marco Orfao
  */
 public class DialogWindowNoButton implements ActionListener {
+  /**
+   * Fenetre modale
+   */
+  private JDialog dialogWin;
 
-    /**
-     * Fenetre modale
-     */
-    private JDialog dialogWin;
+  /**
+   * Constructeur du DialogWindowNoButton
+   * 
+   * @param dialogWin La fenêtre modale
+   */
+  public DialogWindowNoButton(JDialog dialogWin) {
+    this.dialogWin = dialogWin;
+  }
 
-    /**
-     * Constructeur du DialogWindowNoButton
-     * 
-     * @param dialogWin La fenêtre modale
-     */
-    public DialogWindowNoButton(JDialog dialogWin) {
-        this.dialogWin = dialogWin;
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        this.dialogWin.dispose();
-    }
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    this.dialogWin.dispose();
+  }
 }

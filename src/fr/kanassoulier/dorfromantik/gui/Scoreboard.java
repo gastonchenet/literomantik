@@ -28,7 +28,7 @@ public class Scoreboard extends JLabel {
 
     this.setBounds(0, 0, Game.WINDOW_WIDTH, Scoreboard.HEIGHT);
 
-    this.setFont(FontLoader.LEXEND);
+    this.setFont(FontLoader.LEXEND_BOLD);
   }
 
   /**

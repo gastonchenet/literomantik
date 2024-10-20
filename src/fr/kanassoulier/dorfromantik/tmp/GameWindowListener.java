@@ -15,66 +15,65 @@ import javax.swing.JLabel;
  * @author Marco Orfao
  */
 public class GameWindowListener implements WindowListener {
+  /**
+   * Fenetre de jeu
+   */
+  private JFrame window;
 
-    /**
-     * Fenetre de jeu
-     */
-    private JFrame window;
+  /**
+   * Base de donnée
+   */
+  private Database dataBase;
 
-    /**
-     * Base de donnée
-     */
-    private DataBase dataBase;
+  /**
+   * Constructeur du GameWindowListener
+   * 
+   * @param dataBase la base de donnée
+   * @param window   La fenêtre de jeu
+   */
+  public GameWindowListener(JFrame window, Database dataBase) {
+    this.window = window;
+    this.dataBase = dataBase;
+  }
 
-    /**
-     * Constructeur du GameWindowListener
-     * 
-     * @param dataBase la base de donnée
-     * @param window   La fenêtre de jeu
-     */
-    public GameWindowListener(JFrame window, DataBase dataBase) {
-        this.window = window;
-        this.dataBase = dataBase;
-    }
+  @Override
+  public void windowClosing(WindowEvent evenement) {
+    JDialog dialogWin = new JDialog(this.window, "Quitter Dorfromantik", true);
+    dialogWin.setSize(300, 100);
+    dialogWin.setLocationRelativeTo(this.window);
+    dialogWin.setLayout(new FlowLayout());
 
-    @Override
-    public void windowClosing(WindowEvent evenement) {
-        JDialog dialogWin = new JDialog(this.window, "Quitter Dorfromantik", true);
-        dialogWin.setSize(300, 100);
-        dialogWin.setLocationRelativeTo(this.window);
-        dialogWin.setLayout(new FlowLayout());
+    JLabel txtLabel = new JLabel("Êtes-vous sûr de vouloir fermer le jeu ? ");
 
-        JLabel txtLabel = new JLabel("Êtes-vous sûr de vouloir fermer le jeu ? ");
+    JButton yButton = new JButton("oui");
+    JButton nButton = new JButton("non");
 
-        JButton yButton = new JButton("oui");
-        JButton nButton = new JButton("non");
+    yButton.addActionListener(new DialogWindowYesButton(dialogWin, this.window));
+    nButton.addActionListener(new DialogWindowNoButton(dialogWin));
 
-        yButton.addActionListener(new DialogWindowYesButton(dialogWin, this.window));
-        nButton.addActionListener(new DialogWindowNoButton(dialogWin));
+    dialogWin.add(txtLabel);
+    dialogWin.add(yButton);
+    dialogWin.add(nButton);
+    dialogWin.setVisible(true);
+  }
 
-        dialogWin.add(txtLabel);
-        dialogWin.add(yButton);
-        dialogWin.add(nButton);
-        dialogWin.setVisible(true);
-    }
+  public void windowActivated(WindowEvent evenement) {
+  } // premier plan
 
-    public void windowActivated(WindowEvent evenement) {
-    } // premier plan
+  public void windowClosed(WindowEvent evenement) {
+    this.dataBase.closeDataBase();
+  } // après fermeture
 
-    public void windowClosed(WindowEvent evenement) {
-        this.dataBase.closeDataBase();
-    } // après fermeture
+  public void windowDeactivated(WindowEvent evenement) {
+  } // arrière-plan
 
-    public void windowDeactivated(WindowEvent evenement) {
-    } // arrière-plan
+  public void windowDeiconified(WindowEvent evenement) {
+  } // restauration
 
-    public void windowDeiconified(WindowEvent evenement) {
-    } // restauration
+  public void windowIconified(WindowEvent evenement) {
+  } // minimisation
 
-    public void windowIconified(WindowEvent evenement) {
-    } // minimisation
-
-    public void windowOpened(WindowEvent evenement) {
-    } // après ouverture
+  public void windowOpened(WindowEvent evenement) {
+  } // après ouverture
 
 }

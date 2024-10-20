@@ -43,7 +43,7 @@ public class TileStack extends JComponent {
 
     this.updateTilesLeft();
 
-    this.remaining.setFont(FontLoader.LEXEND);
+    this.remaining.setFont(FontLoader.LEXEND_BOLD);
 
     this.add(this.remaining);
   }

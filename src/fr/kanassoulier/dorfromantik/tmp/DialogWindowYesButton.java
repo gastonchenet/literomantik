@@ -12,31 +12,30 @@ import javax.swing.JFrame;
  * @author Marco Orfao
  */
 public class DialogWindowYesButton implements ActionListener {
+  /**
+   * Fenetre modale
+   */
+  private JDialog dialogWin;
 
-    /**
-     * Fenetre modale
-     */
-    private JDialog dialogWin;
+  /**
+   * Fenetre de jeu
+   */
+  private JFrame window;
 
-    /**
-     * Fenetre de jeu
-     */
-    private JFrame window;
+  /**
+   * Constructeur du DialogWindowYesButton
+   * 
+   * @param window    La fenêtre de jeu
+   * @param dialogWin La fenêtre modale
+   */
+  public DialogWindowYesButton(JDialog dialogWin, JFrame window) {
+    this.dialogWin = dialogWin;
+    this.window = window;
+  }
 
-    /**
-     * Constructeur du DialogWindowYesButton
-     * 
-     * @param window    La fenêtre de jeu
-     * @param dialogWin La fenêtre modale
-     */
-    public DialogWindowYesButton(JDialog dialogWin, JFrame window) {
-        this.dialogWin = dialogWin;
-        this.window = window;
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        this.dialogWin.dispose();
-        this.window.dispose();
-    }
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    this.dialogWin.dispose();
+    this.window.dispose();
+  }
 }

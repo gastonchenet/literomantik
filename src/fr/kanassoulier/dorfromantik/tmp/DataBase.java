@@ -10,8 +10,7 @@ import fr.kanassoulier.dorfromantik.Environment;
  * @version 1.0
  * @author Marco Orfao
  */
-public class DataBase {
-
+public class Database {
   /**
    * chargement des variables d'environnements
    */
@@ -27,7 +26,7 @@ public class DataBase {
   /**
    * Ouvre la connexion avec la base de donnée
    */
-  public DataBase() {
+  public Database() {
     try {
       Class.forName("org.mariadb.jdbc.Driver");
       this.dataBase = DriverManager.getConnection(url, login, password);
@@ -69,7 +68,8 @@ public class DataBase {
    */
   public void closeDataBase() {
     try {
-      this.dataBase.close();
+      if (this.dataBase != null)
+        this.dataBase.close();
     } catch (SQLException e) {
       System.err.println(e.getMessage());
     }
