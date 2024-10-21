@@ -28,10 +28,10 @@ public class LandingMenuLeaderboard extends JPanel {
     RoundRectangle2D container = new RoundRectangle2D.Double(0, 0, this.getWidth(), this.getHeight(), 10, 10);
 
     g2d.setClip(container);
-    g2d.setColor(new Color(59, 59, 148));
+    g2d.setColor(new Color(0, 0, 0, 70));
     g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
 
-    g2d.setColor(new Color(43, 43, 117));
+    g2d.setColor(new Color(0, 0, 0, 40));
     g2d.fillRect(0, 0, this.getWidth(), 44);
 
     g2d.setFont(FontLoader.LEXEND_REGULAR.deriveFont(16f));

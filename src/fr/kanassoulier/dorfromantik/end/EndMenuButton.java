@@ -1,4 +1,4 @@
-package fr.kanassoulier.dorfromantik.landing;
+package fr.kanassoulier.dorfromantik.end;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,14 +8,15 @@ import java.awt.RenderingHints;
 import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
+import fr.kanassoulier.dorfromantik.Game;
 import fr.kanassoulier.dorfromantik.enums.ButtonType;
 import fr.kanassoulier.dorfromantik.utils.FontLoader;
 
-public class LandingMenuControlButton extends JButton {
+public class EndMenuButton extends JButton {
+  private EndMenuButtonListener listener;
   private ButtonType type;
-  public LandingMenuControlButtonListener listener;
 
-  public LandingMenuControlButton(String text, ButtonType type) {
+  public EndMenuButton(Game game, String text, ButtonType type) {
     super(text);
 
     this.type = type;
@@ -25,10 +26,12 @@ public class LandingMenuControlButton extends JButton {
     this.setContentAreaFilled(false);
 
     this.setBorder(new EmptyBorder(10, 0, 10, 0));
+    this.setForeground(Color.BLACK);
     this.setFont(FontLoader.LEXEND_REGULAR.deriveFont(14f));
 
-    this.listener = new LandingMenuControlButtonListener(this);
-    this.addMouseListener(this.listener);
+    this.listener = new EndMenuButtonListener(this, game);
+    this.addMouseListener(listener);
+    this.addActionListener(listener);
   }
 
   public ButtonType getType() {
@@ -42,9 +45,9 @@ public class LandingMenuControlButton extends JButton {
     g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
     if (this.listener.isMouseOver()) {
-      g2d.setColor(new Color(255, 255, 255, 225));
+      g2d.setColor(new Color(210, 210, 210));
     } else {
-      g2d.setColor(Color.WHITE);
+      g2d.setColor(new Color(220, 220, 220));
     }
 
     g2d.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 10, 10);

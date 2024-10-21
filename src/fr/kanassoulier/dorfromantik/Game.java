@@ -16,6 +16,7 @@ import javax.swing.JLayeredPane;
 import fr.kanassoulier.dorfromantik.board.Board;
 import fr.kanassoulier.dorfromantik.board.PlaceableArea;
 import fr.kanassoulier.dorfromantik.board.Tile;
+import fr.kanassoulier.dorfromantik.end.EndMenu;
 import fr.kanassoulier.dorfromantik.enums.SoundChannel;
 import fr.kanassoulier.dorfromantik.gui.Gui;
 import fr.kanassoulier.dorfromantik.tmp.Database;
@@ -46,11 +47,13 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
   private Gui gui;
   private Random randomizer;
   private Database database;
+  private long seed;
 
   /**
    * Créer une instance du jeu
    */
   public Game(long seed) {
+    this.seed = seed;
     this.randomizer = new Random(seed);
     this.board = new Board(this);
     this.gui = new Gui(this);
@@ -116,6 +119,10 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
     return this.randomizer.nextInt();
   }
 
+  public long getSeed() {
+    return this.seed;
+  }
+
   /**
    * Obtenir un nombre aléatoire
    * 
@@ -148,7 +155,10 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
       this.lastRotation = System.currentTimeMillis();
       area.repaint();
     }
+  }
 
+  public void end() {
+    new EndMenu(this).setVisible(true);
   }
 
   @Override

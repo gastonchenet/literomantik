@@ -39,8 +39,13 @@ public class Board extends JLayeredPane {
         Board.BOARD_RADIUS * 2, Board.BOARD_RADIUS * 2);
 
     this.setLayout(null);
-
     this.add(new PlaceableTile(this, Board.BOARD_RADIUS, Board.BOARD_RADIUS));
+  }
+
+  public void refill() {
+    this.removeAll();
+    this.add(new PlaceableTile(this, Board.BOARD_RADIUS, Board.BOARD_RADIUS));
+    this.repaint();
   }
 
   /**
@@ -117,6 +122,9 @@ public class Board extends JLayeredPane {
 
     previewTile.refill();
     this.game.repaint();
+
+    if (this.countTiles() >= Options.TURNS)
+      this.game.end();
   }
 
   /**

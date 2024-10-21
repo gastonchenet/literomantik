@@ -1,4 +1,4 @@
-package fr.kanassoulier.dorfromantik.tmp;
+package fr.kanassoulier.dorfromantik.end;
 
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
@@ -9,16 +9,16 @@ import java.awt.event.MouseListener;
 import javax.swing.SwingUtilities;
 
 import fr.kanassoulier.dorfromantik.Game;
+import fr.kanassoulier.dorfromantik.landing.LandingMenu;
 
-public class CloseGameDialogButtonListener implements ActionListener, MouseListener {
-  private boolean positive, mouseOver = false;
-  private CloseGameDialogButton button;
+public class EndMenuButtonListener implements ActionListener, MouseListener {
+  private boolean mouseOver = false;
+  private EndMenuButton button;
   private Game game;
 
-  public CloseGameDialogButtonListener(CloseGameDialogButton button, Game game, boolean positive) {
+  public EndMenuButtonListener(EndMenuButton button, Game game) {
     this.button = button;
     this.game = game;
-    this.positive = positive;
   }
 
   public boolean isMouseOver() {
@@ -53,11 +53,26 @@ public class CloseGameDialogButtonListener implements ActionListener, MouseListe
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    CloseGameDialogButton button = (CloseGameDialogButton) e.getSource();
+    EndMenuButton button = (EndMenuButton) e.getSource();
     SwingUtilities.getWindowAncestor(button).dispose();
 
-    if (this.positive) {
-      this.game.dispose();
+    switch (button.getType()) {
+      case PLAY:
+        this.game.dispose();
+        new Game(this.game.getSeed()).setVisible(true);
+        break;
+
+      case QUIT:
+        this.game.dispose();
+        break;
+
+      case MENU:
+        this.game.dispose();
+        new LandingMenu().setVisible(true);
+        break;
+
+      default:
+        break;
     }
   }
 }

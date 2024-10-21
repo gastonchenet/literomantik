@@ -1,28 +1,22 @@
 package fr.kanassoulier.dorfromantik.landing;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-import fr.kanassoulier.dorfromantik.Game;
 import fr.kanassoulier.dorfromantik.utils.FontLoader;
 
-public class SeedSelectorButton extends JButton implements MouseListener {
-  private LandingMenu menu;
+public class SeedSelectorButton extends JButton {
+  private SeedSelectorButtonListener listener;
   public long seed;
   public String text;
   public boolean mouseOver = false;
 
   public SeedSelectorButton(LandingMenu menu, String text, long seed) {
-    this.menu = menu;
     this.text = text;
     this.seed = seed;
 
@@ -31,36 +25,8 @@ public class SeedSelectorButton extends JButton implements MouseListener {
     this.setContentAreaFilled(false);
     this.setBorder(new EmptyBorder(25, 0, 25, 0));
 
-    this.addMouseListener(this);
-  }
-
-  @Override
-  public void mouseClicked(MouseEvent e) {
-    SwingUtilities.getWindowAncestor(this).dispose();
-    this.menu.dispose();
-    new Game(this.seed).setVisible(true);
-  }
-
-  @Override
-  public void mousePressed(MouseEvent e) {
-  }
-
-  @Override
-  public void mouseReleased(MouseEvent e) {
-  }
-
-  @Override
-  public void mouseEntered(MouseEvent e) {
-    this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-    this.mouseOver = true;
-    this.repaint();
-  }
-
-  @Override
-  public void mouseExited(MouseEvent e) {
-    this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-    this.mouseOver = false;
-    this.repaint();
+    this.listener = new SeedSelectorButtonListener(this, menu, seed);
+    this.addMouseListener(this.listener);
   }
 
   @Override
@@ -71,7 +37,7 @@ public class SeedSelectorButton extends JButton implements MouseListener {
     g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-    if (this.mouseOver) {
+    if (this.listener.isMouseOver()) {
       g2d.setColor(new Color(240, 240, 240));
     } else {
       g2d.setColor(Color.WHITE);

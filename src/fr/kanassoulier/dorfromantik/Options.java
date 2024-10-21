@@ -10,7 +10,7 @@ public class Options {
   /**
    * Le nombre de tours maximum
    */
-  public static final int TURNS = 50;
+  public static final int TURNS = 2;
 
   /**
    * Le rayon d'une cellule
@@ -25,7 +25,7 @@ public class Options {
   /**
    * Le volume de la musique
    */
-  public static final int MUSIC_VOLUME = 50;
+  public static final int MUSIC_VOLUME = 0;
 
   /**
    * Le volume des effets sonores

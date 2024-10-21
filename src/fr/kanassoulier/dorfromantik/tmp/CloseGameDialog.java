@@ -26,12 +26,15 @@ public class CloseGameDialog extends JDialog {
   public CloseGameDialog(Game game) {
     super(game, "Quitter Dorfromantik", true);
 
-    JPanel content = new JPanel();
-    content.setLayout(new GridBagLayout());
-    content.setBorder(new EmptyBorder(10, 10, 10, 10));
-
     this.setSize(350, 130);
     this.setLocationRelativeTo(game);
+    this.setResizable(false);
+
+    JPanel content = new JPanel();
+    this.setContentPane(content);
+
+    content.setLayout(new GridBagLayout());
+    content.setBorder(new EmptyBorder(10, 10, 10, 10));
 
     GridBagConstraints gbc = new GridBagConstraints();
 
@@ -58,7 +61,5 @@ public class CloseGameDialog extends JDialog {
     gbc.gridwidth = 1;
     gbc.weightx = 0.5f;
     content.add(new CloseGameDialogButton(game, "Non", false), gbc);
-
-    this.setContentPane(content);
   }
 }

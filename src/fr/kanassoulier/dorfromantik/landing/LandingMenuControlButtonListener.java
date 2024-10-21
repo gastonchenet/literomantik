@@ -4,7 +4,6 @@ import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 public class LandingMenuControlButtonListener implements MouseListener {
@@ -24,11 +23,11 @@ public class LandingMenuControlButtonListener implements MouseListener {
     LandingMenuControlButton button = (LandingMenuControlButton) e.getSource();
 
     switch (button.getType()) {
-      case START_GAME:
-        new SeedSelector((JFrame) SwingUtilities.getWindowAncestor(this.button)).setVisible(true);
+      case PLAY:
+        new SeedSelector((LandingMenu) SwingUtilities.getWindowAncestor(this.button)).setVisible(true);
         break;
 
-      case LEAVE_GAME:
+      case QUIT:
         SwingUtilities.getWindowAncestor(this.button).dispose();
         break;
 

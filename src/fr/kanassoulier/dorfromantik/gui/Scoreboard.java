@@ -27,7 +27,6 @@ public class Scoreboard extends JLabel {
     this.gui = gui;
 
     this.setBounds(0, 0, Game.WINDOW_WIDTH, Scoreboard.HEIGHT);
-
     this.setFont(FontLoader.LEXEND_BOLD);
   }
 
@@ -35,7 +34,7 @@ public class Scoreboard extends JLabel {
    * Mettre à jour le score du joueur.
    */
   public void updateScore() {
-    int score = ScoreLogic.startCounting(this.gui.getGame().getBoard());
+    int score = ScoreLogic.calculate(this.gui.getGame().getBoard());
     this.setText(Integer.toString(score));
   }
 }
