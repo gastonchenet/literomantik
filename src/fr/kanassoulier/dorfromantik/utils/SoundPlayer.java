@@ -1,4 +1,4 @@
-package fr.kanassoulier.dorfromantik;
+package fr.kanassoulier.dorfromantik.utils;
 
 import java.io.File;
 
@@ -7,6 +7,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
+import fr.kanassoulier.dorfromantik.Options;
 import fr.kanassoulier.dorfromantik.enums.SoundChannel;
 
 /**

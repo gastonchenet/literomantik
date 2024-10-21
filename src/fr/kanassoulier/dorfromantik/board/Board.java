@@ -7,9 +7,9 @@ import javax.swing.JLayeredPane;
 
 import fr.kanassoulier.dorfromantik.Game;
 import fr.kanassoulier.dorfromantik.Options;
-import fr.kanassoulier.dorfromantik.SoundPlayer;
 import fr.kanassoulier.dorfromantik.enums.SoundChannel;
 import fr.kanassoulier.dorfromantik.gui.Scoreboard;
+import fr.kanassoulier.dorfromantik.utils.SoundPlayer;
 
 /**
  * Le plateau de jeu.

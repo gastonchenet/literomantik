@@ -2,7 +2,7 @@ package fr.kanassoulier.dorfromantik.tmp;
 
 import java.sql.*;
 
-import fr.kanassoulier.dorfromantik.Environment;
+import fr.kanassoulier.dorfromantik.utils.Environment;
 
 /**
  * Classe qui permet d'interagir avec la base de donnée
@@ -21,7 +21,7 @@ public class Database {
   /**
    * Variable de passerelle entre le programme et la base de donnée
    */
-  private Connection dataBase;
+  private Connection database;
 
   /**
    * Ouvre la connexion avec la base de donnée
@@ -29,7 +29,7 @@ public class Database {
   public Database() {
     try {
       Class.forName("org.mariadb.jdbc.Driver");
-      this.dataBase = DriverManager.getConnection(url, login, password);
+      this.database = DriverManager.getConnection(url, login, password);
     } catch (ClassNotFoundException e) {
       System.err.println("Mauvais classpath");
     } catch (SQLException e) {
@@ -46,9 +46,9 @@ public class Database {
    * @param date     date de la partie
    */
 
-  public void insertDataBase(int score, String username, long seed, Date date) {
+  public void insertDatabase(int score, String username, long seed, Date date) {
     try {
-      PreparedStatement statement = this.dataBase
+      PreparedStatement statement = this.database
           .prepareStatement("INSERT INTO Score(value,username,seed,date) VALUES (?,?,?,?);");
 
       statement.setInt(1, score);
@@ -66,10 +66,10 @@ public class Database {
    * Fermer la base de donnée
    * 
    */
-  public void closeDataBase() {
+  public void closeDatabase() {
     try {
-      if (this.dataBase != null)
-        this.dataBase.close();
+      if (this.database != null)
+        this.database.close();
     } catch (SQLException e) {
       System.err.println(e.getMessage());
     }

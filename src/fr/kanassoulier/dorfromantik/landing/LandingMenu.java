@@ -34,10 +34,10 @@ public class LandingMenu extends JFrame {
 
     JLabel pageTitle = new JLabel("DORFROMANTIK", JLabel.CENTER);
     pageTitle.setFont(FontLoader.LILITA_ONE_REGULAR.deriveFont(55f));
-    pageTitle.setBounds(0, 50, Game.WINDOW_WIDTH - Sidebar.WIDTH, 50);
+    pageTitle.setBounds(0, 50, Game.WINDOW_WIDTH - LandingMenuSidebar.WIDTH, 50);
 
     this.add(pageTitle);
-    this.add(new Sidebar());
+    this.add(new LandingMenuSidebar());
   }
 
   /**

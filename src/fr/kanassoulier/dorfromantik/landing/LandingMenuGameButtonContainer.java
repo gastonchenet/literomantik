@@ -6,8 +6,10 @@ import java.awt.Insets;
 
 import javax.swing.JPanel;
 
-public class GameManagerButtons extends JPanel {
-  public GameManagerButtons() {
+import fr.kanassoulier.dorfromantik.enums.LandingMenuButton;
+
+public class LandingMenuGameButtonContainer extends JPanel {
+  public LandingMenuGameButtonContainer() {
     super();
 
     this.setLayout(new GridBagLayout());
@@ -20,16 +22,16 @@ public class GameManagerButtons extends JPanel {
     gbc.gridwidth = 2;
     gbc.gridx = 0;
     gbc.gridy = 1;
-    this.add(new StartGameButton(), gbc);
+    this.add(new LandingMenuControlButton("Commencer la partie", LandingMenuButton.START_GAME), gbc);
 
     gbc.gridwidth = 1;
     gbc.gridx = 0;
     gbc.gridy = 0;
-    this.add(new SettingsButton(), gbc);
+    this.add(new LandingMenuControlButton("Paramètres", LandingMenuButton.SETTINGS), gbc);
 
     gbc.gridx = 1;
     gbc.gridy = 0;
-    this.add(new LeaveGameButton(), gbc);
+    this.add(new LandingMenuControlButton("Quitter", LandingMenuButton.LEAVE_GAME), gbc);
 
     this.setOpaque(false);
   }

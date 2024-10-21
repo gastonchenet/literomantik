@@ -1,6 +1,7 @@
 package fr.kanassoulier.dorfromantik;
 
 import fr.kanassoulier.dorfromantik.landing.LandingMenu;
+import fr.kanassoulier.dorfromantik.utils.Environment;
 
 /**
  * Classe principale du jeu

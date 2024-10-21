@@ -10,8 +10,8 @@ import javax.swing.JPanel;
 
 import fr.kanassoulier.dorfromantik.utils.FontLoader;
 
-public class Leaderboard extends JPanel {
-  public Leaderboard() {
+public class LandingMenuLeaderboard extends JPanel {
+  public LandingMenuLeaderboard() {
     super();
 
     this.setOpaque(false);

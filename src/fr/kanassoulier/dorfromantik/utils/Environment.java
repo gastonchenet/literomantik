@@ -1,4 +1,4 @@
-package fr.kanassoulier.dorfromantik;
+package fr.kanassoulier.dorfromantik.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
