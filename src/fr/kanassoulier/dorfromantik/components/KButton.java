@@ -8,15 +8,15 @@ import java.awt.RenderingHints;
 import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
-import fr.kanassoulier.dorfromantik.enums.ButtonType;
+import fr.kanassoulier.dorfromantik.enums.KButtonType;
 import fr.kanassoulier.dorfromantik.utils.FontLoader;
 
 public class KButton extends JButton {
-  private ButtonType type;
+  private KButtonType type;
   private KButtonListener listener;
   private Color hoverBackground;
 
-  public KButton(String text, ButtonType type) {
+  public KButton(String text, KButtonType type) {
     super(text);
 
     this.type = type;
@@ -32,11 +32,11 @@ public class KButton extends JButton {
     this.addMouseListener(this.listener);
   }
 
-  public KButton(ButtonType type) {
+  public KButton(KButtonType type) {
     this("", type);
   }
 
-  public ButtonType getType() {
+  public KButtonType getType() {
     return this.type;
   }
 

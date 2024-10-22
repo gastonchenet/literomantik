@@ -1,4 +1,4 @@
-package fr.kanassoulier.dorfromantik.board;
+package fr.kanassoulier.dorfromantik.game;
 
 import java.awt.Color;
 import java.awt.Graphics;

@@ -10,8 +10,8 @@ import java.awt.RenderingHints;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
-import fr.kanassoulier.dorfromantik.Game;
 import fr.kanassoulier.dorfromantik.Options;
+import fr.kanassoulier.dorfromantik.game.Game;
 import fr.kanassoulier.dorfromantik.utils.FontLoader;
 
 /**

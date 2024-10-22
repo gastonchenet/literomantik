@@ -7,7 +7,7 @@ import java.io.File;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import fr.kanassoulier.dorfromantik.Game;
+import fr.kanassoulier.dorfromantik.game.Game;
 import fr.kanassoulier.dorfromantik.utils.FontLoader;
 
 import javax.imageio.ImageIO;

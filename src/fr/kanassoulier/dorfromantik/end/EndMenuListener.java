@@ -3,23 +3,16 @@ package fr.kanassoulier.dorfromantik.end;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import javax.swing.SwingUtilities;
-
-import fr.kanassoulier.dorfromantik.Game;
-
 public class EndMenuListener implements WindowListener {
   private EndMenu dialog;
-  private Game game;
 
-  public EndMenuListener(EndMenu dialog, Game game) {
+  public EndMenuListener(EndMenu dialog) {
     this.dialog = dialog;
-    this.game = game;
   }
 
   @Override
   public void windowClosing(WindowEvent e) {
-    SwingUtilities.getWindowAncestor(this.dialog).dispose();
-    this.game.dispose();
+    this.dialog.dispose();
   }
 
   @Override

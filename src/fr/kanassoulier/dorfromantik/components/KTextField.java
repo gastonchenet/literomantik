@@ -1,7 +1,6 @@
 package fr.kanassoulier.dorfromantik.components;
 
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -16,7 +15,7 @@ public class KTextField extends JPanel {
     this.submit = new KTextFieldSubmit();
 
     this.setLayout(new GridBagLayout());
-    this.setBorder(new EmptyBorder(4, 0, 0, 0));
+    this.setBorder(null);
     this.setOpaque(false);
 
     GridBagConstraints gbc = new GridBagConstraints();
@@ -34,5 +33,13 @@ public class KTextField extends JPanel {
 
   public KTextField() {
     this("");
+  }
+
+  public KTextFieldInput getInput() {
+    return this.input;
+  }
+
+  public KTextFieldSubmit getSubmit() {
+    return this.submit;
   }
 }

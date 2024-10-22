@@ -3,11 +3,11 @@ package fr.kanassoulier.dorfromantik.utils;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import fr.kanassoulier.dorfromantik.board.Board;
-import fr.kanassoulier.dorfromantik.board.Cell;
-import fr.kanassoulier.dorfromantik.board.PlaceableTile;
 import fr.kanassoulier.dorfromantik.enums.Biome;
 import fr.kanassoulier.dorfromantik.enums.TileSide;
+import fr.kanassoulier.dorfromantik.game.Board;
+import fr.kanassoulier.dorfromantik.game.Cell;
+import fr.kanassoulier.dorfromantik.game.PlaceableTile;
 
 /**
  * Classe permettant de calculer le score d'un plateau

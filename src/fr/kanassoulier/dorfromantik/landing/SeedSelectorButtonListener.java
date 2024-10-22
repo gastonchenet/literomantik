@@ -6,7 +6,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.SwingUtilities;
 
-import fr.kanassoulier.dorfromantik.Game;
+import fr.kanassoulier.dorfromantik.game.Game;
 
 public class SeedSelectorButtonListener implements MouseListener {
   private boolean mouseOver = false;

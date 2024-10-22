@@ -1,22 +1,24 @@
-package fr.kanassoulier.dorfromantik.tmp;
+package fr.kanassoulier.dorfromantik.game;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import javax.swing.JDialog;
+import fr.kanassoulier.dorfromantik.end.EndMenu;
 
 public class CloseGameDialogListener implements WindowListener {
-  private Database database;
-  private JDialog dialog;
+  private Game game;
 
-  public CloseGameDialogListener(JDialog dialog, Database database) {
-    this.dialog = dialog;
-    this.database = database;
+  public CloseGameDialogListener(Game game) {
+    this.game = game;
   }
 
   @Override
   public void windowClosing(WindowEvent e) {
-    this.dialog.setVisible(true);
+    if (this.game.isFinished()) {
+      new EndMenu(this.game).setVisible(true);
+    } else {
+      new CloseGameDialog(this.game).setVisible(true);
+    }
   }
 
   @Override
@@ -25,7 +27,7 @@ public class CloseGameDialogListener implements WindowListener {
 
   @Override
   public void windowClosed(WindowEvent e) {
-    this.database.closeDatabase();
+    this.game.getDatabase().closeDatabase();
   } // après fermeture
 
   @Override

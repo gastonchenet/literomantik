@@ -1,4 +1,4 @@
-package fr.kanassoulier.dorfromantik.board;
+package fr.kanassoulier.dorfromantik.game;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -9,7 +9,6 @@ import java.awt.RenderingHints;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import fr.kanassoulier.dorfromantik.Game;
 import fr.kanassoulier.dorfromantik.enums.Biome;
 import fr.kanassoulier.dorfromantik.enums.TileSide;
 import fr.kanassoulier.dorfromantik.utils.Hexagon;

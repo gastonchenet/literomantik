@@ -1,4 +1,4 @@
-package fr.kanassoulier.dorfromantik.tmp;
+package fr.kanassoulier.dorfromantik.game;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -9,9 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import fr.kanassoulier.dorfromantik.Game;
 import fr.kanassoulier.dorfromantik.components.KButton;
-import fr.kanassoulier.dorfromantik.enums.ButtonType;
+import fr.kanassoulier.dorfromantik.enums.KButtonType;
 import fr.kanassoulier.dorfromantik.utils.FontLoader;
 
 /**
@@ -39,10 +38,21 @@ public class CloseGameDialog extends JDialog {
     content.setLayout(new GridBagLayout());
     content.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-    GridBagConstraints gbc = new GridBagConstraints();
+    KButton yesButton = new KButton("Oui", KButtonType.YES);
+    yesButton.setBackground(new Color(220, 220, 220));
+    yesButton.setHoverBackground(new Color(210, 210, 210));
+    yesButton.addMouseListener(new CloseGameDialogButtonListener(yesButton, game));
+
+    KButton noButton = new KButton("Non", KButtonType.NO);
+    noButton.setForeground(Color.WHITE);
+    noButton.setBackground(new Color(71, 71, 252));
+    noButton.setHoverBackground(new Color(50, 50, 201));
+    noButton.addMouseListener(new CloseGameDialogButtonListener(noButton, game));
 
     JLabel txtLabel = new JLabel("Êtes-vous sûr de vouloir fermer le jeu ?");
     txtLabel.setFont(FontLoader.LEXEND_REGULAR.deriveFont(15f));
+
+    GridBagConstraints gbc = new GridBagConstraints();
 
     gbc.fill = GridBagConstraints.HORIZONTAL;
     gbc.insets = new Insets(5, 5, 5, 5);
@@ -57,20 +67,12 @@ public class CloseGameDialog extends JDialog {
     gbc.gridy = 1;
     gbc.gridwidth = 1;
     gbc.weightx = 0.5f;
-    KButton yesButton = new KButton(ButtonType.YES);
-    yesButton.setBackground(new Color(220, 220, 220));
-    yesButton.setHoverBackground(new Color(210, 210, 210));
-    yesButton.addMouseListener(new CloseGameDialogButtonListener(yesButton, game));
     content.add(yesButton, gbc);
 
     gbc.gridx = 1;
     gbc.gridy = 1;
     gbc.gridwidth = 1;
     gbc.weightx = 0.5f;
-    KButton noButton = new KButton(ButtonType.NO);
-    noButton.setBackground(new Color(220, 220, 220));
-    noButton.setHoverBackground(new Color(210, 210, 210));
-    noButton.addMouseListener(new CloseGameDialogButtonListener(noButton, game));
     content.add(noButton, gbc);
   }
 }

@@ -8,7 +8,7 @@ import java.awt.Insets;
 import javax.swing.JPanel;
 
 import fr.kanassoulier.dorfromantik.components.KButton;
-import fr.kanassoulier.dorfromantik.enums.ButtonType;
+import fr.kanassoulier.dorfromantik.enums.KButtonType;
 
 public class LandingMenuGameButtonContainer extends JPanel {
   public LandingMenuGameButtonContainer() {
@@ -16,20 +16,20 @@ public class LandingMenuGameButtonContainer extends JPanel {
 
     this.setLayout(new GridBagLayout());
 
-    KButton startButton = new KButton("Commencer la partie", ButtonType.PLAY);
+    KButton startButton = new KButton("Commencer la partie", KButtonType.PLAY);
     startButton.setBackground(Color.WHITE);
     startButton.setHoverBackground(new Color(255, 255, 255, 225));
-    startButton.addMouseListener(new LandingMenuControlButtonListener(startButton));
+    startButton.addActionListener(new LandingMenuControlButtonListener(startButton));
 
-    KButton settingsButton = new KButton("Paramètres", ButtonType.SETTINGS);
+    KButton settingsButton = new KButton("Paramètres", KButtonType.SETTINGS);
     settingsButton.setBackground(Color.WHITE);
     settingsButton.setHoverBackground(new Color(255, 255, 255, 225));
-    settingsButton.addMouseListener(new LandingMenuControlButtonListener(settingsButton));
+    settingsButton.addActionListener(new LandingMenuControlButtonListener(settingsButton));
 
-    KButton leaveButton = new KButton("Quitter", ButtonType.QUIT);
+    KButton leaveButton = new KButton("Quitter", KButtonType.QUIT);
     leaveButton.setBackground(Color.WHITE);
     leaveButton.setHoverBackground(new Color(255, 255, 255, 225));
-    leaveButton.addMouseListener(new LandingMenuControlButtonListener(leaveButton));
+    leaveButton.addActionListener(new LandingMenuControlButtonListener(leaveButton));
 
     GridBagConstraints gbc = new GridBagConstraints();
 

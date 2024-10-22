@@ -1,13 +1,13 @@
 package fr.kanassoulier.dorfromantik.landing;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.SwingUtilities;
 
 import fr.kanassoulier.dorfromantik.components.KButton;
 
-public class LandingMenuControlButtonListener implements MouseListener {
+public class LandingMenuControlButtonListener implements ActionListener {
   private KButton button;
 
   public LandingMenuControlButtonListener(KButton button) {
@@ -15,7 +15,7 @@ public class LandingMenuControlButtonListener implements MouseListener {
   }
 
   @Override
-  public void mouseClicked(MouseEvent e) {
+  public void actionPerformed(ActionEvent e) {
     KButton button = (KButton) e.getSource();
 
     switch (button.getType()) {
@@ -33,21 +33,5 @@ public class LandingMenuControlButtonListener implements MouseListener {
       default:
         throw new IllegalArgumentException("Invalid button type");
     }
-  }
-
-  @Override
-  public void mousePressed(MouseEvent e) {
-  }
-
-  @Override
-  public void mouseReleased(MouseEvent e) {
-  }
-
-  @Override
-  public void mouseEntered(MouseEvent e) {
-  }
-
-  @Override
-  public void mouseExited(MouseEvent e) {
   }
 }

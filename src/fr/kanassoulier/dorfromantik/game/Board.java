@@ -1,11 +1,10 @@
-package fr.kanassoulier.dorfromantik.board;
+package fr.kanassoulier.dorfromantik.game;
 
 import java.awt.Component;
 import java.awt.Point;
 
 import javax.swing.JLayeredPane;
 
-import fr.kanassoulier.dorfromantik.Game;
 import fr.kanassoulier.dorfromantik.Options;
 import fr.kanassoulier.dorfromantik.enums.SoundChannel;
 import fr.kanassoulier.dorfromantik.gui.Scoreboard;
@@ -107,6 +106,9 @@ public class Board extends JLayeredPane {
    * @param area La zone où placer la tuile.
    */
   public void placeTile(PlaceableArea area) {
+    if (this.game.isFinished())
+      return;
+
     this.remove(area);
 
     PreviewTile previewTile = this.game.getGui().getPreviewTile();
@@ -123,8 +125,14 @@ public class Board extends JLayeredPane {
     previewTile.refill();
     this.game.repaint();
 
-    if (this.countTiles() >= Options.TURNS)
-      this.game.end();
+    if (this.game.isFinished()) {
+      for (Component component : this.getComponents()) {
+        if (component instanceof PlaceableArea)
+          this.remove(component);
+      }
+
+      this.game.showEndMenu();
+    }
   }
 
   /**

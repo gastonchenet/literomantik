@@ -6,7 +6,7 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import fr.kanassoulier.dorfromantik.Game;
+import fr.kanassoulier.dorfromantik.game.Game;
 
 public class LandingMenuSidebar extends JPanel {
   public static final int WIDTH = 300;

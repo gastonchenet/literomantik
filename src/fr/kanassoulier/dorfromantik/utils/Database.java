@@ -1,8 +1,6 @@
-package fr.kanassoulier.dorfromantik.tmp;
+package fr.kanassoulier.dorfromantik.utils;
 
 import java.sql.*;
-
-import fr.kanassoulier.dorfromantik.utils.Environment;
 
 /**
  * Classe qui permet d'interagir avec la base de donnée

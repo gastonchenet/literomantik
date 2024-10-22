@@ -1,4 +1,4 @@
-package fr.kanassoulier.dorfromantik;
+package fr.kanassoulier.dorfromantik.game;
 
 import java.awt.Component;
 import java.awt.event.MouseEvent;
@@ -13,16 +13,12 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
-import fr.kanassoulier.dorfromantik.board.Board;
-import fr.kanassoulier.dorfromantik.board.PlaceableArea;
-import fr.kanassoulier.dorfromantik.board.Tile;
+import fr.kanassoulier.dorfromantik.Options;
 import fr.kanassoulier.dorfromantik.end.EndMenu;
 import fr.kanassoulier.dorfromantik.enums.SoundChannel;
 import fr.kanassoulier.dorfromantik.gui.Gui;
-import fr.kanassoulier.dorfromantik.tmp.Database;
+import fr.kanassoulier.dorfromantik.utils.Database;
 import fr.kanassoulier.dorfromantik.utils.SoundPlayer;
-import fr.kanassoulier.dorfromantik.tmp.CloseGameDialog;
-import fr.kanassoulier.dorfromantik.tmp.CloseGameDialogListener;
 
 /**
  * Classe contenant le jeu
@@ -49,6 +45,18 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
   private Database database;
   private long seed;
 
+  public static long toSeed(String seed) {
+    if (seed == null || seed.isEmpty()) {
+      return new Random().nextLong();
+    }
+
+    try {
+      return Long.parseLong(seed);
+    } catch (NumberFormatException e) {
+      return seed.hashCode();
+    }
+  }
+
   /**
    * Créer une instance du jeu
    */
@@ -70,8 +78,7 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
     this.add(this.gui, JLayeredPane.PALETTE_LAYER);
     this.add(this.board, JLayeredPane.DEFAULT_LAYER);
 
-    CloseGameDialog closeGameDialog = new CloseGameDialog(this);
-    this.addWindowListener(new CloseGameDialogListener(closeGameDialog, this.database));
+    this.addWindowListener(new CloseGameDialogListener(this));
 
     this.addMouseMotionListener(this);
     this.addMouseWheelListener(this);
@@ -99,6 +106,10 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
    */
   public Board getBoard() {
     return this.board;
+  }
+
+  public Database getDatabase() {
+    return this.database;
   }
 
   /**
@@ -133,6 +144,10 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
     return this.randomizer.nextInt(bound);
   }
 
+  public boolean isFinished() {
+    return this.board.countTiles() >= Options.TURNS;
+  }
+
   @Override
   public void mouseWheelMoved(MouseWheelEvent e) {
     int rotation = e.getWheelRotation();
@@ -157,7 +172,7 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
     }
   }
 
-  public void end() {
+  public void showEndMenu() {
     new EndMenu(this).setVisible(true);
   }
 

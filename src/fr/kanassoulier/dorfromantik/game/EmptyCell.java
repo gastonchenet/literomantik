@@ -1,4 +1,4 @@
-package fr.kanassoulier.dorfromantik.board;
+package fr.kanassoulier.dorfromantik.game;
 
 import fr.kanassoulier.dorfromantik.Options;
 

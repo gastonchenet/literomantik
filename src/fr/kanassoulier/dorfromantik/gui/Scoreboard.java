@@ -2,8 +2,8 @@ package fr.kanassoulier.dorfromantik.gui;
 
 import javax.swing.JLabel;
 
-import fr.kanassoulier.dorfromantik.Game;
 import fr.kanassoulier.dorfromantik.utils.ScoreLogic;
+import fr.kanassoulier.dorfromantik.game.Game;
 import fr.kanassoulier.dorfromantik.utils.FontLoader;
 
 /**

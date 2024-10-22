@@ -1,6 +1,6 @@
 package fr.kanassoulier.dorfromantik.enums;
 
-public enum ButtonType {
+public enum KButtonType {
   QUIT,
   MENU,
   PLAY,

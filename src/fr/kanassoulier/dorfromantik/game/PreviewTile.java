@@ -1,6 +1,5 @@
-package fr.kanassoulier.dorfromantik.board;
+package fr.kanassoulier.dorfromantik.game;
 
-import fr.kanassoulier.dorfromantik.Game;
 import fr.kanassoulier.dorfromantik.Options;
 import fr.kanassoulier.dorfromantik.enums.Biome;
 import fr.kanassoulier.dorfromantik.enums.TileSide;

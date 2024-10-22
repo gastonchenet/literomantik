@@ -2,9 +2,9 @@ package fr.kanassoulier.dorfromantik.gui;
 
 import javax.swing.JLayeredPane;
 
-import fr.kanassoulier.dorfromantik.Game;
-import fr.kanassoulier.dorfromantik.board.PreviewTile;
 import fr.kanassoulier.dorfromantik.enums.KeyboardKey;
+import fr.kanassoulier.dorfromantik.game.Game;
+import fr.kanassoulier.dorfromantik.game.PreviewTile;
 
 /**
  * La GUI du jeu
