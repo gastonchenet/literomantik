@@ -3,16 +3,67 @@ package fr.kanassoulier.dorfromantik.landing;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.RenderingHints;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JPanel;
+import javax.swing.JButton;
 
+import fr.kanassoulier.dorfromantik.components.KButton;
+import fr.kanassoulier.dorfromantik.end.EndGameInfos;
+import fr.kanassoulier.dorfromantik.enums.KButtonType;
+import fr.kanassoulier.dorfromantik.utils.Database;
 import fr.kanassoulier.dorfromantik.utils.FontLoader;
 
+/**
+ * Classe permettant la création et l'affichage du Leaderboard
+ * 
+ * @version 1.1
+ * @author Gaston Chenet
+ * @author Marco Orfao
+ */
 public class LandingMenuLeaderboard extends JPanel {
   public LandingMenuLeaderboard() {
     super();
+
+    this.setLayout(new GridBagLayout());
+
+    GridBagConstraints gbc = new GridBagConstraints();
+
+    KButton alphaButton = new KButton("alpha", KButtonType.SEED);
+    KButton betaButton = new KButton("beta", KButtonType.SEED);
+    KButton gammaButton = new KButton("gamma", KButtonType.SEED);
+    KButton deltaButton = new KButton("delta", KButtonType.SEED);
+
+    Database data = new Database();
+
+    alphaButton.addActionListener(new LandingMenuLeaderboardButtonsListener(154275265, data));
+    betaButton.addActionListener(new LandingMenuLeaderboardButtonsListener(534547947, data));
+    gammaButton.addActionListener(new LandingMenuLeaderboardButtonsListener(874245424, data));
+    deltaButton.addActionListener(new LandingMenuLeaderboardButtonsListener(951984768, data));
+
+    gbc.fill = GridBagConstraints.HORIZONTAL;
+    gbc.insets.set(4, 4, 4, 4);
+    gbc.weightx = 0.1f;
+    gbc.anchor = GridBagConstraints.SOUTH;
+
+    gbc.gridx = 0;
+    gbc.gridy = 0;
+    this.add(alphaButton, gbc);
+
+    gbc.gridx = 0;
+    gbc.gridy = 1;
+    this.add(betaButton, gbc);
+
+    gbc.gridx = 1;
+    gbc.gridy = 0;
+    this.add(gammaButton, gbc);
+
+    gbc.gridx = 1;
+    gbc.gridy = 1;
+    this.add(deltaButton, gbc);
 
     this.setOpaque(false);
   }

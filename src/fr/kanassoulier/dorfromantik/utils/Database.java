@@ -1,11 +1,17 @@
 package fr.kanassoulier.dorfromantik.utils;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import fr.kanassoulier.dorfromantik.end.EndGameInfos;
 
 /**
  * Classe qui permet d'interagir avec la base de donnée
  * 
- * @version 1.0
+ * @version 1.1
  * @author Marco Orfao
  */
 public class Database {
@@ -35,28 +41,79 @@ public class Database {
     }
   }
 
+  public Connection getDatabase() {
+    return this.database;
+  }
+
   /**
    * Insérer le résultat de la partie dans la base de donnée
    * 
-   * @param score    score de la partie
-   * @param username pseudonyme du joueur
-   * @param seed     graine de la partie
-   * @param date     date de la partie
+   * @param data information de fin de partie
    */
 
-  public void insertDatabase(int score, String username, long seed, Date date) {
+  public void insertDatabase(EndGameInfos data) {
     try {
       PreparedStatement statement = this.database
           .prepareStatement("INSERT INTO Score(value,username,seed,date) VALUES (?,?,?,?);");
 
-      statement.setInt(1, score);
-      statement.setString(2, username);
-      statement.setLong(3, seed);
-      statement.setDate(4, date);
+      statement.setInt(1, data.getScore());
+      statement.setString(2, data.getUsername());
+      statement.setLong(3, data.getSeed());
+      statement.setDate(4, data.getDate());
 
       statement.executeUpdate();
     } catch (SQLException ex) {
       System.err.println(ex.getMessage());
+    }
+  }
+
+  /**
+   * Méthode permettant de récupérer la liste des scores dans la base de données
+   * pour une seed donnée
+   * 
+   * @param seed
+   * @return un tableau de type EndGameInfos qui contient le résultat de la
+   *         requête SQL.
+   */
+  public EndGameInfos[] getInfoDatabase(long seed) {
+    try {
+
+      PreparedStatement arrayStatement = this.database
+          .prepareStatement("SELECT COUNT(Value) FROM Score WHERE seed = ?;");
+
+      arrayStatement.setLong(1, seed);
+      arrayStatement.executeUpdate();
+
+      ResultSet arrayResult = arrayStatement.executeQuery();
+
+      arrayResult.next();
+
+      EndGameInfos[] egiArray = new EndGameInfos[arrayResult.getInt(1)];
+
+      PreparedStatement infoStatement = this.database
+          .prepareStatement("SELECT value,username FROM Score WHERE seed = ?;");
+
+      infoStatement.setLong(1, seed);
+      infoStatement.executeUpdate();
+
+      ResultSet infoResult = infoStatement.executeQuery();
+
+      int score;
+      String username;
+
+      for (int i = 0; infoResult.next(); i++) {
+        score = infoResult.getInt(1);
+        username = infoResult.getString(2);
+        EndGameInfos infoLine = new EndGameInfos(score, username);
+        egiArray[i] = infoLine;
+      }
+
+      return egiArray;
+
+    } catch (SQLException ex) {
+      System.err.println(ex.getMessage());
+
+      return new EndGameInfos[0];
     }
   }
 
