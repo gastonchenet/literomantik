@@ -8,7 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import fr.kanassoulier.dorfromantik.components.InlineField;
+import fr.kanassoulier.dorfromantik.components.KTextField;
 
 public class SeedSelector extends JDialog {
   public SeedSelector(LandingMenu menu) {
@@ -29,7 +29,7 @@ public class SeedSelector extends JDialog {
     SeedSelectorButton betaSeed = new SeedSelectorButton(menu, "Beta", 534547947);
     SeedSelectorButton gammaSeed = new SeedSelectorButton(menu, "Gamma", 874245424);
     SeedSelectorButton deltaSeed = new SeedSelectorButton(menu, "Delta", 951984768);
-    InlineField seedArea = new InlineField();
+    KTextField seedArea = new KTextField();
 
     GridBagConstraints gbc = new GridBagConstraints();
     gbc.fill = GridBagConstraints.HORIZONTAL;

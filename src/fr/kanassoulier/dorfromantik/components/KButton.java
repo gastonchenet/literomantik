@@ -1,4 +1,4 @@
-package fr.kanassoulier.dorfromantik.tmp;
+package fr.kanassoulier.dorfromantik.components;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,26 +8,44 @@ import java.awt.RenderingHints;
 import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
-import fr.kanassoulier.dorfromantik.Game;
+import fr.kanassoulier.dorfromantik.enums.ButtonType;
 import fr.kanassoulier.dorfromantik.utils.FontLoader;
 
-public class CloseGameDialogButton extends JButton {
-  private CloseGameDialogButtonListener listener;
+public class KButton extends JButton {
+  private ButtonType type;
+  private KButtonListener listener;
+  private Color hoverBackground;
 
-  public CloseGameDialogButton(Game game, String text, boolean positive) {
+  public KButton(String text, ButtonType type) {
     super(text);
+
+    this.type = type;
 
     this.setBorderPainted(false);
     this.setFocusPainted(false);
     this.setContentAreaFilled(false);
 
     this.setBorder(new EmptyBorder(10, 0, 10, 0));
-    this.setForeground(Color.BLACK);
     this.setFont(FontLoader.LEXEND_REGULAR.deriveFont(14f));
 
-    this.listener = new CloseGameDialogButtonListener(this, game, positive);
-    this.addMouseListener(listener);
-    this.addActionListener(listener);
+    this.listener = new KButtonListener(this);
+    this.addMouseListener(this.listener);
+  }
+
+  public KButton(ButtonType type) {
+    this("", type);
+  }
+
+  public ButtonType getType() {
+    return this.type;
+  }
+
+  public void setHoverBackground(Color hoverBackground) {
+    this.hoverBackground = hoverBackground;
+  }
+
+  public Color getHoverBackground() {
+    return this.hoverBackground;
   }
 
   @Override
@@ -36,12 +54,7 @@ public class CloseGameDialogButton extends JButton {
 
     g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-    if (this.listener.isMouseOver()) {
-      g2d.setColor(new Color(210, 210, 210));
-    } else {
-      g2d.setColor(new Color(220, 220, 220));
-    }
-
+    g2d.setColor(this.listener.isMouseOver() ? this.getHoverBackground() : this.getBackground());
     g2d.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 10, 10);
 
     g2d.dispose();

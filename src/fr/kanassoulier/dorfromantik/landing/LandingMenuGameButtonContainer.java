@@ -1,11 +1,13 @@
 package fr.kanassoulier.dorfromantik.landing;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JPanel;
 
+import fr.kanassoulier.dorfromantik.components.KButton;
 import fr.kanassoulier.dorfromantik.enums.ButtonType;
 
 public class LandingMenuGameButtonContainer extends JPanel {
@@ -13,6 +15,22 @@ public class LandingMenuGameButtonContainer extends JPanel {
     super();
 
     this.setLayout(new GridBagLayout());
+
+    KButton startButton = new KButton("Commencer la partie", ButtonType.PLAY);
+    startButton.setBackground(Color.WHITE);
+    startButton.setHoverBackground(new Color(255, 255, 255, 225));
+    startButton.addMouseListener(new LandingMenuControlButtonListener(startButton));
+
+    KButton settingsButton = new KButton("Paramètres", ButtonType.SETTINGS);
+    settingsButton.setBackground(Color.WHITE);
+    settingsButton.setHoverBackground(new Color(255, 255, 255, 225));
+    settingsButton.addMouseListener(new LandingMenuControlButtonListener(settingsButton));
+
+    KButton leaveButton = new KButton("Quitter", ButtonType.QUIT);
+    leaveButton.setBackground(Color.WHITE);
+    leaveButton.setHoverBackground(new Color(255, 255, 255, 225));
+    leaveButton.addMouseListener(new LandingMenuControlButtonListener(leaveButton));
+
     GridBagConstraints gbc = new GridBagConstraints();
 
     gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -22,16 +40,16 @@ public class LandingMenuGameButtonContainer extends JPanel {
     gbc.gridwidth = 2;
     gbc.gridx = 0;
     gbc.gridy = 1;
-    this.add(new LandingMenuControlButton("Commencer la partie", ButtonType.PLAY), gbc);
+    this.add(startButton, gbc);
 
     gbc.gridwidth = 1;
     gbc.gridx = 0;
     gbc.gridy = 0;
-    this.add(new LandingMenuControlButton("Paramètres", ButtonType.SETTINGS), gbc);
+    this.add(settingsButton, gbc);
 
     gbc.gridx = 1;
     gbc.gridy = 0;
-    this.add(new LandingMenuControlButton("Quitter", ButtonType.QUIT), gbc);
+    this.add(leaveButton, gbc);
 
     this.setOpaque(false);
   }

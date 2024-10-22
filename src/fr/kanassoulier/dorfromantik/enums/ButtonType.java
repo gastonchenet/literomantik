@@ -5,4 +5,6 @@ public enum ButtonType {
   MENU,
   PLAY,
   SETTINGS,
+  YES,
+  NO
 }

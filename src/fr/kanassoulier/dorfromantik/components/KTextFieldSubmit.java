@@ -9,17 +9,17 @@ import java.awt.RenderingHints;
 import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
-public class InlineFieldSubmit extends JButton {
-  private InlineFieldSubmitListener listener;
+public class KTextFieldSubmit extends JButton {
+  private KTextFieldSubmitListener listener;
 
-  public InlineFieldSubmit() {
+  public KTextFieldSubmit() {
     super();
 
     this.setFocusPainted(false);
     this.setContentAreaFilled(false);
     this.setBorder(new EmptyBorder(14, 14, 14, 14));
 
-    this.listener = new InlineFieldSubmitListener(this);
+    this.listener = new KTextFieldSubmitListener(this);
     this.addMouseListener(this.listener);
   }
 

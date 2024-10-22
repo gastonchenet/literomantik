@@ -1,5 +1,6 @@
 package fr.kanassoulier.dorfromantik.tmp;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -9,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import fr.kanassoulier.dorfromantik.Game;
+import fr.kanassoulier.dorfromantik.components.KButton;
+import fr.kanassoulier.dorfromantik.enums.ButtonType;
 import fr.kanassoulier.dorfromantik.utils.FontLoader;
 
 /**
@@ -54,12 +57,20 @@ public class CloseGameDialog extends JDialog {
     gbc.gridy = 1;
     gbc.gridwidth = 1;
     gbc.weightx = 0.5f;
-    content.add(new CloseGameDialogButton(game, "Oui", true), gbc);
+    KButton yesButton = new KButton(ButtonType.YES);
+    yesButton.setBackground(new Color(220, 220, 220));
+    yesButton.setHoverBackground(new Color(210, 210, 210));
+    yesButton.addMouseListener(new CloseGameDialogButtonListener(yesButton, game));
+    content.add(yesButton, gbc);
 
     gbc.gridx = 1;
     gbc.gridy = 1;
     gbc.gridwidth = 1;
     gbc.weightx = 0.5f;
-    content.add(new CloseGameDialogButton(game, "Non", false), gbc);
+    KButton noButton = new KButton(ButtonType.NO);
+    noButton.setBackground(new Color(220, 220, 220));
+    noButton.setHoverBackground(new Color(210, 210, 210));
+    noButton.addMouseListener(new CloseGameDialogButtonListener(noButton, game));
+    content.add(noButton, gbc);
   }
 }

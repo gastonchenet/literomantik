@@ -9,16 +9,17 @@ import java.awt.event.MouseListener;
 import javax.swing.SwingUtilities;
 
 import fr.kanassoulier.dorfromantik.Game;
+import fr.kanassoulier.dorfromantik.components.KButton;
+import fr.kanassoulier.dorfromantik.enums.ButtonType;
 
 public class CloseGameDialogButtonListener implements ActionListener, MouseListener {
-  private boolean positive, mouseOver = false;
-  private CloseGameDialogButton button;
+  private boolean mouseOver = false;
+  private KButton button;
   private Game game;
 
-  public CloseGameDialogButtonListener(CloseGameDialogButton button, Game game, boolean positive) {
+  public CloseGameDialogButtonListener(KButton button, Game game) {
     this.button = button;
     this.game = game;
-    this.positive = positive;
   }
 
   public boolean isMouseOver() {
@@ -53,11 +54,10 @@ public class CloseGameDialogButtonListener implements ActionListener, MouseListe
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    CloseGameDialogButton button = (CloseGameDialogButton) e.getSource();
+    KButton button = (KButton) e.getSource();
     SwingUtilities.getWindowAncestor(button).dispose();
 
-    if (this.positive) {
+    if (this.button.getType() == ButtonType.YES)
       this.game.dispose();
-    }
   }
 }

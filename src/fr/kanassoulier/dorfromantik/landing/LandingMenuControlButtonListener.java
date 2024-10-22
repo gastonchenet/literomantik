@@ -1,26 +1,22 @@
 package fr.kanassoulier.dorfromantik.landing;
 
-import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.SwingUtilities;
 
+import fr.kanassoulier.dorfromantik.components.KButton;
+
 public class LandingMenuControlButtonListener implements MouseListener {
-  private LandingMenuControlButton button;
-  private boolean mouseOver = false;
+  private KButton button;
 
-  public LandingMenuControlButtonListener(LandingMenuControlButton button) {
+  public LandingMenuControlButtonListener(KButton button) {
     this.button = button;
-  }
-
-  public boolean isMouseOver() {
-    return this.mouseOver;
   }
 
   @Override
   public void mouseClicked(MouseEvent e) {
-    LandingMenuControlButton button = (LandingMenuControlButton) e.getSource();
+    KButton button = (KButton) e.getSource();
 
     switch (button.getType()) {
       case PLAY:
@@ -49,15 +45,9 @@ public class LandingMenuControlButtonListener implements MouseListener {
 
   @Override
   public void mouseEntered(MouseEvent e) {
-    this.button.setCursor(new Cursor(Cursor.HAND_CURSOR));
-    this.mouseOver = true;
-    this.button.repaint();
   }
 
   @Override
   public void mouseExited(MouseEvent e) {
-    this.button.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-    this.mouseOver = false;
-    this.button.repaint();
   }
 }

@@ -7,13 +7,13 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-public class InlineField extends JPanel {
-  private InlineFieldInput input;
-  private InlineFieldSubmit submit;
+public class KTextField extends JPanel {
+  private KTextFieldInput input;
+  private KTextFieldSubmit submit;
 
-  public InlineField(String text) {
-    this.input = new InlineFieldInput(text);
-    this.submit = new InlineFieldSubmit();
+  public KTextField(String text) {
+    this.input = new KTextFieldInput(text);
+    this.submit = new KTextFieldSubmit();
 
     this.setLayout(new GridBagLayout());
     this.setBorder(new EmptyBorder(4, 0, 0, 0));
@@ -32,7 +32,7 @@ public class InlineField extends JPanel {
     this.add(this.input, gbc);
   }
 
-  public InlineField() {
+  public KTextField() {
     this("");
   }
 }

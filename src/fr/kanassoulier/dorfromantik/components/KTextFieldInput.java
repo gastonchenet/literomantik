@@ -10,15 +10,15 @@ import javax.swing.border.EmptyBorder;
 
 import fr.kanassoulier.dorfromantik.utils.FontLoader;
 
-public class InlineFieldInput extends JTextField {
-  public InlineFieldInput(String text) {
+public class KTextFieldInput extends JTextField {
+  public KTextFieldInput(String text) {
     super(text);
 
     this.setBorder(new EmptyBorder(6, 12, 6, 12));
     this.setFont(FontLoader.LEXEND_REGULAR.deriveFont(14f));
   }
 
-  public InlineFieldInput() {
+  public KTextFieldInput() {
     this("");
   }
 

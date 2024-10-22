@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import fr.kanassoulier.dorfromantik.Game;
-import fr.kanassoulier.dorfromantik.components.InlineField;
+import fr.kanassoulier.dorfromantik.components.KTextField;
 import fr.kanassoulier.dorfromantik.utils.FontLoader;
 import fr.kanassoulier.dorfromantik.utils.ScoreLogic;
 
@@ -43,7 +43,7 @@ public class EndMenu extends JDialog {
     endUsername.setFont(FontLoader.LEXEND_REGULAR.deriveFont(14f));
     endUsername.setBorder(new EmptyBorder(15, 10, 0, 0));
 
-    InlineField usernameField = new InlineField();
+    KTextField usernameField = new KTextField();
     usernameField.setBorder(new EmptyBorder(0, 0, 5, 0));
 
     JLabel endStatus = new JLabel("Non enregistré", JLabel.CENTER);

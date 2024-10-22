@@ -4,11 +4,11 @@ import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class InlineFieldSubmitListener implements MouseListener {
+public class KButtonListener implements MouseListener {
+  private KButton button;
   private boolean mouseOver = false;
-  private InlineFieldSubmit button;
 
-  public InlineFieldSubmitListener(InlineFieldSubmit button) {
+  public KButtonListener(KButton button) {
     this.button = button;
   }
 
