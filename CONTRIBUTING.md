@@ -31,3 +31,6 @@ c. Enregistrez le fichier et fermez-le.
 - Utiliser la java doc pour commenter **chacunes** des classes et méthodes.
 - Utiliser le modèle **MVC** pour la structure du programme.
 - Penser à indiquer la `@version` de la classe et rajoutez vos noms lors de la modification d'une classe dans le `@author`.
+- Toujours utiliser `this` pour accéder aux variables de la classe et utiliser `super` pour accéder aux variables de la classe mère.
+- Toujours utiliser `@Override` pour les méthodes héritées.
+- Toujours utiliser le nom de la classe pour accéder aux variables et méthodes statiques.
