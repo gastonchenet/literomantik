@@ -10,7 +10,7 @@ public class Options {
   /**
    * Le nombre de tours maximum
    */
-  public static final int TURNS = 2;
+  public static final int TURNS = 12;
 
   /**
    * Le rayon d'une cellule

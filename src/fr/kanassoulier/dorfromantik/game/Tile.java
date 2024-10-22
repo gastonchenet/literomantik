@@ -19,7 +19,7 @@ import fr.kanassoulier.dorfromantik.utils.Hexagon;
  * @version 1.0
  * @author Gaston Chenet
  */
-public abstract class Tile extends Cell {
+public class Tile extends Cell {
   public static final int MIN_SCROLL_OFFSET = 40;
 
   private HashMap<TileSide, Biome> biomes = new HashMap<TileSide, Biome>();
@@ -160,6 +160,16 @@ public abstract class Tile extends Cell {
     }
 
     return null;
+  }
+
+  public Biome[] getBiomes() {
+    Biome[] biomes = new Biome[TileSide.values().length];
+
+    for (TileSide side : TileSide.values()) {
+      biomes[side.ordinal()] = this.getBiome(side);
+    }
+
+    return biomes;
   }
 
   /**

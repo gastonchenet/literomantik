@@ -10,34 +10,54 @@ import java.awt.event.*;
  * @see PlaceableArea
  */
 
-public class PlaceableAreaListener implements MouseListener {
+public class PlaceableAreaListener implements MouseListener, MouseMotionListener {
+  private boolean mouseOver = false;
+  private PlaceableArea area;
 
-    private PlaceableArea zone;
+  public PlaceableAreaListener(PlaceableArea area) {
+    this.area = area;
+  }
 
-    public PlaceableAreaListener(PlaceableArea zone) {
-        this.zone = zone;
+  public boolean isMouseOver() {
+    return this.mouseOver;
+  }
+
+  @Override
+  public void mouseEntered(MouseEvent e) {
+  }
+
+  @Override
+  public void mouseExited(MouseEvent e) {
+    boolean oldMouseOver = this.mouseOver;
+    this.mouseOver = false;
+    if (oldMouseOver != this.mouseOver) {
+      this.area.repaint();
     }
+  }
 
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        this.zone.setMouseOver(true);
-    }
+  @Override
+  public void mouseClicked(MouseEvent e) {
+    this.area.getBoard().placeTile(this.area);
+  }
 
-    @Override
-    public void mouseExited(MouseEvent e) {
-        this.zone.setMouseOver(false);
-    }
+  @Override
+  public void mousePressed(MouseEvent e) {
+  }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        this.zone.placeTile();
-    }
+  @Override
+  public void mouseReleased(MouseEvent e) {
+  }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
+  @Override
+  public void mouseDragged(MouseEvent e) {
+  }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
+  @Override
+  public void mouseMoved(MouseEvent e) {
+    boolean oldMouseOver = this.mouseOver;
+    this.mouseOver = this.area.getHexagon().contains(e.getPoint());
+    if (oldMouseOver != this.mouseOver) {
+      this.area.repaint();
     }
+  }
 }

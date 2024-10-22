@@ -19,7 +19,7 @@ import fr.kanassoulier.dorfromantik.utils.Hexagon;
 public class PlaceableArea extends Tile {
   private static final float RADIUS_MULTIPLIER = 0.4f, HOVER_RADIUS_MULTIPLIER = 0.6f;
 
-  private boolean mouseOver = false;
+  private PlaceableAreaListener listener;
 
   /**
    * Crée une zone où l'on peut placer une tuile
@@ -30,7 +30,10 @@ public class PlaceableArea extends Tile {
    */
   public PlaceableArea(Board board, int x, int y) {
     super(board, x, y, Options.CELL_RADIUS);
-    this.addMouseListener(new PlaceableAreaListener(this));
+
+    this.listener = new PlaceableAreaListener(this);
+    this.addMouseListener(this.listener);
+    this.addMouseMotionListener(this.listener);
   }
 
   /**
@@ -49,23 +52,18 @@ public class PlaceableArea extends Tile {
    * 
    * @return l'hexagone de la zone
    */
-  private Hexagon getHexagon() {
+  public Hexagon getHexagon() {
     int radius = this.getRadius();
 
     return new Hexagon(radius, radius,
         (int) Math.round(
             radius
-                * (this.mouseOver ? PlaceableArea.HOVER_RADIUS_MULTIPLIER * 1.1f : PlaceableArea.RADIUS_MULTIPLIER)));
+                * (this.listener.isMouseOver() ? PlaceableArea.HOVER_RADIUS_MULTIPLIER * 1.1f
+                    : PlaceableArea.RADIUS_MULTIPLIER)));
   }
 
-  /**
-   * Permet de modifier l'attribut quand la souris survole l'élément
-   * 
-   * @param entree la valeur modifiée
-   */
-  void setMouseOver(boolean entree) {
-    this.mouseOver = entree;
-    this.repaint();
+  public PlaceableAreaListener getListener() {
+    return this.listener;
   }
 
   /**
@@ -73,15 +71,6 @@ public class PlaceableArea extends Tile {
    */
   void placeTile() {
     this.getBoard().placeTile(this);
-  }
-
-  /**
-   * Savoir si la souris est sur la zone
-   * 
-   * @return Vrai si la souris est sur la zone, faux sinon
-   */
-  public boolean isMouseOver() {
-    return this.mouseOver;
   }
 
   @Override
@@ -92,7 +81,7 @@ public class PlaceableArea extends Tile {
 
     g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-    if (mouseOver) {
+    if (this.listener.isMouseOver()) {
       super.paintComponent(g, PlaceableArea.HOVER_RADIUS_MULTIPLIER);
       g2d.setColor(new Color(255, 255, 255, 100));
       g2d.fillPolygon(this.getHexagon());

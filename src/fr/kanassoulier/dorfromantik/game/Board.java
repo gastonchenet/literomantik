@@ -111,7 +111,7 @@ public class Board extends JLayeredPane {
 
     this.remove(area);
 
-    PreviewTile previewTile = this.game.getGui().getPreviewTile();
+    Tile previewTile = this.game.getGui().getPreviewTile();
     PlaceableTile tile = new PlaceableTile(previewTile, area.getCenter());
 
     this.add(tile);

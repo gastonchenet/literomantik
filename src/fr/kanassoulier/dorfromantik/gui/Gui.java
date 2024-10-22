@@ -2,9 +2,10 @@ package fr.kanassoulier.dorfromantik.gui;
 
 import javax.swing.JLayeredPane;
 
+import fr.kanassoulier.dorfromantik.Options;
 import fr.kanassoulier.dorfromantik.enums.KeyboardKey;
 import fr.kanassoulier.dorfromantik.game.Game;
-import fr.kanassoulier.dorfromantik.game.PreviewTile;
+import fr.kanassoulier.dorfromantik.game.Tile;
 
 /**
  * La GUI du jeu
@@ -15,7 +16,7 @@ import fr.kanassoulier.dorfromantik.game.PreviewTile;
 public class Gui extends JLayeredPane {
   private Scoreboard scoreboard;
   private TileStack tileStack;
-  private PreviewTile previewTile;
+  private Tile previewTile;
   private Game game;
 
   /**
@@ -33,7 +34,7 @@ public class Gui extends JLayeredPane {
     this.setLayout(null);
     this.setBounds(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 
-    this.previewTile = new PreviewTile(game.getBoard());
+    this.previewTile = new Tile(game.getBoard(), 140, Game.WINDOW_HEIGHT - 120, Options.PREVIEW_TILE_SIZE);
     this.add(this.previewTile);
     this.add(this.tileStack);
     this.add(this.scoreboard);
@@ -67,7 +68,7 @@ public class Gui extends JLayeredPane {
    * 
    * @return La tuile de prévisualisation.
    */
-  public PreviewTile getPreviewTile() {
+  public Tile getPreviewTile() {
     return this.previewTile;
   }
 }

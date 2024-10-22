@@ -17,9 +17,8 @@ public class EndMenu extends JDialog {
   public EndMenu(Game game) {
     super(game, "Fin de la partie", true);
 
-    this.setLocationRelativeTo(game);
     this.setSize(400, 330);
-    this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+    this.setLocationRelativeTo(game);
     this.setResizable(false);
 
     this.addWindowListener(new EndMenuListener(this));

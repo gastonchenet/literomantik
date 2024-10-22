@@ -65,7 +65,7 @@ public class PlaceableTile extends Tile {
    * @param previewTile La tuile de prévisualisation.
    * @param center      Le centre de la tuile.
    */
-  public PlaceableTile(PreviewTile previewTile, Point center) {
+  public PlaceableTile(Tile previewTile, Point center) {
     this(previewTile.getBoard(), center, previewTile.getBiomes());
   }
 

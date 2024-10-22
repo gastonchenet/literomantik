@@ -154,7 +154,7 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
     PlaceableArea area = null;
 
     for (Component component : this.board.getComponents()) {
-      if (component instanceof PlaceableArea && ((PlaceableArea) component).isMouseOver()) {
+      if (component instanceof PlaceableArea && ((PlaceableArea) component).getListener().isMouseOver()) {
         area = (PlaceableArea) component;
       }
     }
