@@ -7,6 +7,12 @@ import javax.swing.SwingUtilities;
 
 import fr.kanassoulier.dorfromantik.components.KButton;
 
+/**
+ * Class lacking javadoc by its first author
+ * 
+ * @author Maxence Raymond
+ * @version 1.1
+ */
 public class LandingMenuControlButtonListener implements ActionListener {
   private KButton button;
 
@@ -28,6 +34,7 @@ public class LandingMenuControlButtonListener implements ActionListener {
         break;
 
       case SETTINGS:
+        new Parameters(SwingUtilities.getWindowAncestor(this.button));
         break;
 
       default:

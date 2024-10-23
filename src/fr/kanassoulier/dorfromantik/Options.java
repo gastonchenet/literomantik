@@ -3,8 +3,9 @@ package fr.kanassoulier.dorfromantik;
 /**
  * Classe contenant les options du jeu
  * 
- * @version 1.0
+ * @version 1.1
  * @author Gaston Chenet
+ * @author Maxence Raymond
  */
 public class Options {
   /**
@@ -25,10 +26,10 @@ public class Options {
   /**
    * Le volume de la musique
    */
-  public static final int MUSIC_VOLUME = 0;
+  public static int MUSIC_VOLUME = 0;
 
   /**
    * Le volume des effets sonores
    */
-  public static final int SOUND_VOLUME = 50;
+  public static int SOUND_VOLUME = 50;
 }
