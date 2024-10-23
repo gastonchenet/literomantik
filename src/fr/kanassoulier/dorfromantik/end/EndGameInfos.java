@@ -43,6 +43,10 @@ public class EndGameInfos {
         this.date = null;
     }
 
+    public String toString(int integer) {
+        return integer + "";
+    }
+
     /**
      * méthoder pour récupérer le score
      * 

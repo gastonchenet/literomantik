@@ -3,6 +3,7 @@ package fr.kanassoulier.dorfromantik.components;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.RenderingHints;
 
 import javax.swing.JButton;
@@ -15,6 +16,7 @@ public class KButton extends JButton {
   private KButtonType type;
   private KButtonListener listener;
   private Color hoverBackground;
+  private Insets padding;
 
   public KButton(String text, KButtonType type) {
     super(text);
@@ -25,8 +27,10 @@ public class KButton extends JButton {
     this.setFocusPainted(false);
     this.setContentAreaFilled(false);
 
-    this.setBorder(new EmptyBorder(10, 0, 10, 0));
+    this.setPadding(10, 5, 10, 5);
+    this.setBorder(new EmptyBorder(this.getPadding()));
     this.setFont(FontLoader.LEXEND_REGULAR.deriveFont(14f));
+    this.setHoverBackground(this.getBackground());
 
     this.listener = new KButtonListener(this);
     this.addMouseListener(this.listener);
@@ -38,6 +42,18 @@ public class KButton extends JButton {
 
   public KButtonType getType() {
     return this.type;
+  }
+
+  public void setPadding(Insets padding) {
+    this.padding = padding;
+  }
+
+  public void setPadding(int top, int left, int bottom, int right) {
+    this.padding = new Insets(top, left, bottom, right);
+  }
+
+  public Insets getPadding() {
+    return this.padding;
   }
 
   public void setHoverBackground(Color hoverBackground) {

@@ -4,6 +4,7 @@ SOURCEDIR = ./src/fr/kanassoulier/dorfromantik/
 BUILDDIR = ./build/
 DOCDIR = ./doc/
 
+
 SOURCES := $(foreach dir, $(wildcard $(SOURCEDIR)**/), $(dir)*.java)
 
 all:
