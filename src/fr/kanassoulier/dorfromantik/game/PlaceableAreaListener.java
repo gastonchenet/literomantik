@@ -5,11 +5,10 @@ import java.awt.event.*;
 /**
  * L'implémentation des méthodes de Swing pour la classe PlaceableArea.
  * 
- * @version 1.0
- * @author Maxence Raymond
+ * @version 1.1
+ * @author Maxence Raymond, Gaston Chenet
  * @see PlaceableArea
  */
-
 public class PlaceableAreaListener implements MouseListener, MouseMotionListener {
   private boolean mouseOver = false;
   private PlaceableArea area;
