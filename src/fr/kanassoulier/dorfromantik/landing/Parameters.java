@@ -5,6 +5,7 @@ import java.awt.*;
 
 import fr.kanassoulier.dorfromantik.Options;
 import fr.kanassoulier.dorfromantik.utils.FontLoader;
+import fr.kanassoulier.dorfromantik.utils.SoundPlayer;
 
 /**
  * Interface graphique servant à modifier les paramètres pour la partie
@@ -28,6 +29,9 @@ public class Parameters extends JDialog {
         this.musicVolumeSlider = new JSlider(0, 100, Options.MUSIC_VOLUME);
         this.eventVolumeSlider = new JSlider(0, 100, Options.SOUND_VOLUME);
         this.muteButton = new JCheckBox("Couper tout les sons");
+        if (Options.MUTED) {
+            this.muteButton.setSelected(true);
+        }
 
         JPanel mainJPanel = new JPanel(new GridLayout(3, 1));
         JPanel top = new JPanel();
@@ -60,19 +64,27 @@ public class Parameters extends JDialog {
         this.setVisible(true);
     }
 
-    private void setValues() {
+    /**
+     * Extrait et met à jour les valeurs
+     */
+    protected final void setValues() {
         if (this.muteButton.isSelected()) {
-            Options.MUSIC_VOLUME = 0;
-            Options.SOUND_VOLUME = 0;
+            Options.MUTED = true;
+            SoundPlayer.deactivateSound(true);
         } else {
-            Options.MUSIC_VOLUME = this.musicVolumeSlider.getValue();
-            Options.SOUND_VOLUME = this.eventVolumeSlider.getValue();
+            Options.MUTED = false;
+            SoundPlayer.deactivateSound(false);
         }
+        Options.MUSIC_VOLUME = this.musicVolumeSlider.getValue();
+        Options.SOUND_VOLUME = this.eventVolumeSlider.getValue();
         this.exit();
     }
 
+    /**
+     * Demande confirmation avant de mettre à jour les valeurs
+     */
     public void confirm() {
-        int retour = JOptionPane.showConfirmDialog(this, new JLabel("Confirmation requise des changements"),
+        int retour = JOptionPane.showConfirmDialog(this, new JLabel("Valider les changements ?"),
                 "Confirmation requise", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (retour == JOptionPane.OK_OPTION) {
             this.setValues();
@@ -80,6 +92,9 @@ public class Parameters extends JDialog {
         this.exit();
     }
 
+    /**
+     * Ferme la fenêtre
+     */
     public void exit() {
         this.dispose();
     }

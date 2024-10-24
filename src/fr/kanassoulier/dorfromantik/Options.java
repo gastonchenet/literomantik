@@ -34,6 +34,11 @@ public class Options {
   public static int SOUND_VOLUME = 50;
 
   /**
+   * Savoir si le son principal est coupé lors de l'exécution
+   */
+  public static boolean MUTED = false;
+
+  /**
    * La sensibilité du deplacement sur le plateau
    */
   public static final double DRAG_MULTIPLIER = 0.75;
