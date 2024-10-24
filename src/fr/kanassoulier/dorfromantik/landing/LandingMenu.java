@@ -1,16 +1,13 @@
 package fr.kanassoulier.dorfromantik.landing;
 
-import java.io.IOException;
 import java.awt.Color;
-import java.io.File;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import fr.kanassoulier.dorfromantik.game.Game;
 import fr.kanassoulier.dorfromantik.utils.FontLoader;
-
-import javax.imageio.ImageIO;
+import fr.kanassoulier.dorfromantik.utils.ImageLoader;
 
 /**
  * Classe permettant la création de la fenêtre de menu
@@ -26,7 +23,7 @@ public class LandingMenu extends JFrame {
 	 */
 	public LandingMenu() {
 		this.setTitle(Game.WINDOW_TITLE);
-		this.setIconImage("./resources/images/favicon.png");
+		super.setIconImage(ImageLoader.IMAGE_LOGO);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 		this.setLocationRelativeTo(null);
@@ -40,18 +37,5 @@ public class LandingMenu extends JFrame {
 
 		this.add(pageTitle);
 		this.add(new LandingMenuSidebar());
-	}
-
-	/**
-	 * Définir l'icône de la fenêtre du jeu
-	 * 
-	 * @param path Le chemin de l'icône
-	 */
-	private void setIconImage(String path) {
-		try {
-			super.setIconImage(ImageIO.read(new File(path)));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 }

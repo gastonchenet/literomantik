@@ -1,10 +1,7 @@
 package fr.kanassoulier.dorfromantik.game;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Random;
 
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
@@ -13,6 +10,7 @@ import fr.kanassoulier.dorfromantik.end.EndMenu;
 import fr.kanassoulier.dorfromantik.enums.SoundChannel;
 import fr.kanassoulier.dorfromantik.gui.Gui;
 import fr.kanassoulier.dorfromantik.utils.Database;
+import fr.kanassoulier.dorfromantik.utils.ImageLoader;
 import fr.kanassoulier.dorfromantik.utils.SoundPlayer;
 
 /**
@@ -62,7 +60,7 @@ public class Game extends JFrame {
     this.database = new Database();
 
     this.setTitle(Game.WINDOW_TITLE);
-    this.setIconImage("./resources/images/favicon.png");
+    super.setIconImage(ImageLoader.IMAGE_LOGO);
     this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     this.setSize(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
     this.setLocationRelativeTo(null);
@@ -79,19 +77,6 @@ public class Game extends JFrame {
     this.addMouseWheelListener(handler);
 
     SoundPlayer.play("music", SoundChannel.MUSIC);
-  }
-
-  /**
-   * Définir l'icône de la fenêtre du jeu
-   * 
-   * @param path Le chemin de l'icône
-   */
-  private void setIconImage(String path) {
-    try {
-      super.setIconImage(ImageIO.read(new File(path)));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
   }
 
   /**

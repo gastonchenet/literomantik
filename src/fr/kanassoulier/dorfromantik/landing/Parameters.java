@@ -5,6 +5,7 @@ import java.awt.*;
 
 import fr.kanassoulier.dorfromantik.Options;
 import fr.kanassoulier.dorfromantik.utils.FontLoader;
+import fr.kanassoulier.dorfromantik.utils.ImageLoader;
 import fr.kanassoulier.dorfromantik.utils.SoundPlayer;
 
 /**
@@ -25,7 +26,9 @@ public class Parameters extends JDialog {
      */
     public Parameters(Window menu) {
         super(menu, "Parametres", Dialog.ModalityType.APPLICATION_MODAL);
-        this.setLayout(new BorderLayout());
+        super.setLocationRelativeTo(menu);
+        super.setIconImage(ImageLoader.IMAGE_LOGO);
+        super.setLayout(new BorderLayout());
         this.musicVolumeSlider = new JSlider(0, 100, Options.MUSIC_VOLUME);
         this.eventVolumeSlider = new JSlider(0, 100, Options.SOUND_VOLUME);
         this.muteButton = new JCheckBox("Couper tout les sons");
@@ -60,8 +63,8 @@ public class Parameters extends JDialog {
         this.add(mainJPanel, BorderLayout.CENTER);
         mainJPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        this.pack();
-        this.setVisible(true);
+        super.pack();
+        super.setVisible(true);
     }
 
     /**
