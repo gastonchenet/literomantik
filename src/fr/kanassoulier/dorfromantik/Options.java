@@ -32,4 +32,9 @@ public class Options {
    * Le volume des effets sonores
    */
   public static int SOUND_VOLUME = 50;
+
+  /**
+   * La sensibilité du deplacement sur le plateau
+   */
+  public static final double DRAG_MULTIPLIER = 0.75;
 }

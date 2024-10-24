@@ -1,10 +1,5 @@
 package fr.kanassoulier.dorfromantik.game;
 
-import java.awt.Component;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.Random;
@@ -23,10 +18,11 @@ import fr.kanassoulier.dorfromantik.utils.SoundPlayer;
 /**
  * Classe contenant le jeu
  * 
- * @version 1.0
+ * @version 1.1
  * @author Gaston Chenet
+ * @author Maxence Raymond
  */
-public class Game extends JFrame implements MouseMotionListener, MouseWheelListener {
+public class Game extends JFrame {
   /**
    * Titre de la fenêtre du jeu
    */
@@ -37,8 +33,6 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
    */
   public static final int WINDOW_WIDTH = 1080, WINDOW_HEIGHT = 720;
 
-  private int mouseX = Game.WINDOW_WIDTH / 2, mouseY = Game.WINDOW_HEIGHT / 2;
-  private long lastRotation = 0;
   private Board board;
   private Gui gui;
   private Random randomizer;
@@ -80,8 +74,9 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
 
     this.addWindowListener(new CloseGameDialogListener(this));
 
-    this.addMouseMotionListener(this);
-    this.addMouseWheelListener(this);
+    GameInteractionHandler handler = new GameInteractionHandler(this);
+    this.addMouseMotionListener(handler);
+    this.addMouseWheelListener(handler);
 
     SoundPlayer.play("music", SoundChannel.MUSIC);
   }
@@ -148,51 +143,7 @@ public class Game extends JFrame implements MouseMotionListener, MouseWheelListe
     return this.board.countTiles() >= Options.TURNS;
   }
 
-  @Override
-  public void mouseWheelMoved(MouseWheelEvent e) {
-    int rotation = e.getWheelRotation();
-    PlaceableArea area = null;
-
-    for (Component component : this.board.getComponents()) {
-      if (component instanceof PlaceableArea && ((PlaceableArea) component).getListener().isMouseOver()) {
-        area = (PlaceableArea) component;
-      }
-    }
-
-    if (area == null) {
-
-    } else {
-      if (System.currentTimeMillis() - this.lastRotation < Tile.MIN_SCROLL_OFFSET)
-        return; // Empecher de tourner trop vite la tuile de preview (pour les pavés tactiles
-                // qui scrollent trop vite)
-
-      this.gui.getPreviewTile().rotate(rotation > 0);
-      this.lastRotation = System.currentTimeMillis();
-      area.repaint();
-    }
-  }
-
   public void showEndMenu() {
     new EndMenu(this).setVisible(true);
-  }
-
-  @Override
-  public void mouseDragged(MouseEvent e) {
-    int newX = e.getX();
-    int newY = e.getY();
-
-    int deltaX = newX - this.mouseX;
-    int deltaY = newY - this.mouseY;
-
-    this.board.moveBoard(deltaX * 0.75, deltaY * 0.75);
-
-    this.mouseX = newX;
-    this.mouseY = newY;
-  }
-
-  @Override
-  public void mouseMoved(MouseEvent e) {
-    this.mouseX = e.getX();
-    this.mouseY = e.getY();
   }
 }
