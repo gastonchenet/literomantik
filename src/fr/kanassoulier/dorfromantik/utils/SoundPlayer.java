@@ -1,6 +1,5 @@
 package fr.kanassoulier.dorfromantik.utils;
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.sound.sampled.AudioInputStream;
@@ -15,7 +14,7 @@ import fr.kanassoulier.dorfromantik.enums.SoundChannel;
 /**
  * Permet de jouer des sons dans le jeu.
  * 
- * @version 1.1
+ * @version 1.2
  * @author Gaston Chenet
  * @author Maxence Raymond
  */
@@ -92,7 +91,8 @@ public class SoundPlayer {
    */
   private static AudioInputStream getInputStream(String soundPath) throws UnsupportedAudioFileException {
     try {
-      return AudioSystem.getAudioInputStream(new File("resources/sounds/" + soundPath + ".wav"));
+      return AudioSystem.getAudioInputStream(
+          Thread.currentThread().getContextClassLoader().getResourceAsStream("resources/sounds/" + soundPath + ".wav"));
     } catch (IOException e) {
       System.err.println("Fichier son inaccessible");
       e.printStackTrace();
