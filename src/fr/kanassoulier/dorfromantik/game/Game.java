@@ -21,114 +21,116 @@ import fr.kanassoulier.dorfromantik.utils.SoundPlayer;
  * @author Maxence Raymond
  */
 public class Game extends JFrame {
-  /**
-   * Titre de la fenêtre du jeu
-   */
-  public static final String WINDOW_TITLE = "Dorfromantik";
+	/**
+	 * Titre de la fenêtre du jeu
+	 */
+	public static final String WINDOW_TITLE = "Dorfromantik";
 
-  /**
-   * Dimensions de la fenêtre du jeu
-   */
-  public static final int WINDOW_WIDTH = 1080, WINDOW_HEIGHT = 720;
+	/**
+	 * Dimensions de la fenêtre du jeu
+	 */
+	public static final int WINDOW_WIDTH = 1080, WINDOW_HEIGHT = 720;
 
-  private Board board;
-  private Gui gui;
-  private Random randomizer;
-  private Database database;
-  private long seed;
+	private Board board;
+	private Gui gui;
+	private Random randomizer;
+	private Database database;
+	private long seed;
 
-  public static long toSeed(String seed) {
-    if (seed == null || seed.isEmpty()) {
-      return new Random().nextLong();
-    }
+	public static long toSeed(String seed) {
+		if (seed == null || seed.isEmpty()) {
+			return new Random().nextLong();
+		}
 
-    try {
-      return Long.parseLong(seed);
-    } catch (NumberFormatException e) {
-      return seed.hashCode();
-    }
-  }
+		try {
+			return Long.parseLong(seed);
+		} catch (NumberFormatException e) {
+			return seed.hashCode();
+		}
+	}
 
-  /**
-   * Créer une instance du jeu
-   */
-  public Game(long seed) {
-    this.seed = seed;
-    this.randomizer = new Random(seed);
-    this.board = new Board(this);
-    this.gui = new Gui(this);
-    this.database = new Database();
+	/**
+	 * Créer une instance du jeu
+	 */
+	public Game(long seed) {
+		this.seed = seed;
+		this.randomizer = new Random(seed);
+		this.board = new Board(this);
+		this.gui = new Gui(this);
+		this.database = new Database();
 
-    this.setTitle(Game.WINDOW_TITLE);
-    super.setIconImage(ImageLoader.IMAGE_LOGO);
-    this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-    this.setSize(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
-    this.setLocationRelativeTo(null);
-    this.setResizable(false);
-    this.setLayout(null);
+		this.setTitle(Game.WINDOW_TITLE);
+		super.setIconImage(ImageLoader.IMAGE_LOGO);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.setSize(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
+		this.setLocationRelativeTo(null);
+		this.setResizable(false);
+		this.setLayout(null);
 
-    this.add(this.gui, JLayeredPane.PALETTE_LAYER);
-    this.add(this.board, JLayeredPane.DEFAULT_LAYER);
+		this.addKeyListener(new EscapeKeyGameListener(this));
 
-    this.addWindowListener(new CloseGameDialogListener(this));
+		this.add(this.gui, JLayeredPane.PALETTE_LAYER);
+		this.add(this.board, JLayeredPane.DEFAULT_LAYER);
 
-    GameInteractionHandler handler = new GameInteractionHandler(this);
-    this.addMouseMotionListener(handler);
-    this.addMouseWheelListener(handler);
+		this.addWindowListener(new CloseGameDialogListener(this));
 
-    SoundPlayer.play("music", SoundChannel.MUSIC);
-  }
+		GameInteractionHandler handler = new GameInteractionHandler(this);
+		this.addMouseMotionListener(handler);
+		this.addMouseWheelListener(handler);
 
-  /**
-   * Obtenir le plateau de jeu
-   * 
-   * @return Le plateau de jeu
-   */
-  public Board getBoard() {
-    return this.board;
-  }
+		SoundPlayer.play("music", SoundChannel.MUSIC);
+	}
 
-  public Database getDatabase() {
-    return this.database;
-  }
+	/**
+	 * Obtenir le plateau de jeu
+	 * 
+	 * @return Le plateau de jeu
+	 */
+	public Board getBoard() {
+		return this.board;
+	}
 
-  /**
-   * Obtenir la GUI du jeu
-   * 
-   * @return La GUI du jeu
-   */
-  public Gui getGui() {
-    return this.gui;
-  }
+	public Database getDatabase() {
+		return this.database;
+	}
 
-  /**
-   * Obtenir un nombre aléatoire
-   * 
-   * @return Un nombre aléatoire
-   */
-  public int getRandomInt() {
-    return this.randomizer.nextInt();
-  }
+	/**
+	 * Obtenir la GUI du jeu
+	 * 
+	 * @return La GUI du jeu
+	 */
+	public Gui getGui() {
+		return this.gui;
+	}
 
-  public long getSeed() {
-    return this.seed;
-  }
+	/**
+	 * Obtenir un nombre aléatoire
+	 * 
+	 * @return Un nombre aléatoire
+	 */
+	public int getRandomInt() {
+		return this.randomizer.nextInt();
+	}
 
-  /**
-   * Obtenir un nombre aléatoire
-   * 
-   * @param bound La borne du nombre aléatoire
-   * @return Un nombre aléatoire
-   */
-  public int getRandomInt(int bound) {
-    return this.randomizer.nextInt(bound);
-  }
+	public long getSeed() {
+		return this.seed;
+	}
 
-  public boolean isFinished() {
-    return this.board.countTiles() >= Options.TURNS;
-  }
+	/**
+	 * Obtenir un nombre aléatoire
+	 * 
+	 * @param bound La borne du nombre aléatoire
+	 * @return Un nombre aléatoire
+	 */
+	public int getRandomInt(int bound) {
+		return this.randomizer.nextInt(bound);
+	}
 
-  public void showEndMenu() {
-    new EndMenu(this).setVisible(true);
-  }
+	public boolean isFinished() {
+		return this.board.countTiles() >= Options.TURNS;
+	}
+
+	public void showEndMenu() {
+		new EndMenu(this).setVisible(true);
+	}
 }
