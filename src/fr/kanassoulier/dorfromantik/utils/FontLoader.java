@@ -7,7 +7,7 @@ import java.io.*;
  * Classe mettant à disposition les fonts
  * 
  * @author Maxence Raymond
- * @version 1.0
+ * @version 1.2
  */
 public class FontLoader {
   /**

@@ -11,7 +11,7 @@ import fr.kanassoulier.dorfromantik.utils.SoundPlayer;
 /**
  * Interface graphique servant à modifier les paramètres pour la partie
  * 
- * @version 1.0
+ * @version 1.2
  * @author Maxence Raymond
  */
 public class Parameters extends JDialog {

@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
  * Classe statique mettant à disposition les images nécessaires
  * 
  * @author Maxence Raymond
- * @version 1.0
+ * @version 1.1
  */
 public class ImageLoader {
     /**
