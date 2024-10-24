@@ -19,18 +19,17 @@ public class FontLoader {
    */
   protected static final Font loadFont(String ressource) {
     try {
-      Font font = Font.createFont(Font.TRUETYPE_FONT, new File(ressource)).deriveFont(20f);
+      Font font = Font.createFont(Font.TRUETYPE_FONT, Thread.currentThread().getContextClassLoader().getResourceAsStream(ressource)).deriveFont(20f);
       GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
       ge.registerFont(font);
       return font;
     } catch (IOException | FontFormatException e) {
-      (new File(".")).listFiles();
       e.printStackTrace();
       return Font.getFont(Font.SANS_SERIF);
     }
   }
 
-  public static final Font LEXEND_BOLD = FontLoader.loadFont("./resources/fonts/Lexend-Bold.ttf");
-  public static final Font LEXEND_REGULAR = FontLoader.loadFont("./resources/fonts/Lexend-Regular.ttf");
-  public static final Font LILITA_ONE_REGULAR = FontLoader.loadFont("./resources/fonts/LilitaOne-Regular.ttf");
+  public static final Font LEXEND_BOLD = FontLoader.loadFont("resources/fonts/Lexend-Bold.ttf");
+  public static final Font LEXEND_REGULAR = FontLoader.loadFont("resources/fonts/Lexend-Regular.ttf");
+  public static final Font LILITA_ONE_REGULAR = FontLoader.loadFont("resources/fonts/LilitaOne-Regular.ttf");
 }

@@ -2,7 +2,6 @@ package fr.kanassoulier.dorfromantik.utils;
 
 import java.awt.Image;
 import java.io.IOException;
-import java.io.File;
 
 import javax.imageio.ImageIO;
 
@@ -21,7 +20,7 @@ public class ImageLoader {
      */
     protected static final Image loadImage(String path) {
         try {
-            return ImageIO.read(new File(path));
+            return ImageIO.read(Thread.currentThread().getContextClassLoader().getResource(path));
         } catch (IOException e) {
             System.err.println("Unable to read the image");
             e.printStackTrace();
@@ -32,5 +31,5 @@ public class ImageLoader {
     /**
      * Logo de l'application
      */
-    public static final Image IMAGE_LOGO = ImageLoader.loadImage("./resources/images/favicon.png");
+    public static final Image IMAGE_LOGO = ImageLoader.loadImage("resources/images/favicon.png");
 }
