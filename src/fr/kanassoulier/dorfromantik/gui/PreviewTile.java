@@ -51,7 +51,7 @@ public class PreviewTile extends Tile {
       this.animationTimer.stop();
     }
 
-    this.animationTimer = new Timer(1, new PreviewTileTimerListener(this, target));
+    this.animationTimer = new Timer(10, new PreviewTileTimerListener(this, target));
     this.animationTimer.start();
   }
 }

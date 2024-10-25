@@ -49,7 +49,7 @@ public class ScoreUpdate extends JLabel {
   public void setText(String text) {
     super.setText(text);
 
-    this.timer = new Timer(1, new ScoreUpdateTimerListener(this));
+    this.timer = new Timer(10, new ScoreUpdateTimerListener(this));
     timer.start();
   }
 }
