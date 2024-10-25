@@ -5,6 +5,7 @@ import java.awt.Point;
 import fr.kanassoulier.dorfromantik.Options;
 import fr.kanassoulier.dorfromantik.enums.Biome;
 import fr.kanassoulier.dorfromantik.enums.TileSide;
+import fr.kanassoulier.dorfromantik.gui.PreviewTile;
 
 /**
  * Une tuile qui peut être placée sur le plateau.
@@ -65,7 +66,7 @@ public class PlaceableTile extends Tile {
    * @param previewTile La tuile de prévisualisation.
    * @param center      Le centre de la tuile.
    */
-  public PlaceableTile(Tile previewTile, Point center) {
+  public PlaceableTile(PreviewTile previewTile, Point center) {
     this(previewTile.getBoard(), center, previewTile.getBiomes());
   }
 

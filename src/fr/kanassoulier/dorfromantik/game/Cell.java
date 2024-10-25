@@ -80,6 +80,12 @@ public abstract class Cell extends JComponent {
     return new Point(this.x, this.y);
   }
 
+  public Point getViewportCenter() {
+    return new Point(
+        this.board.getCenter().x + (this.x - this.board.getWidth() / 2),
+        this.board.getCenter().y + (this.y - this.board.getHeight() / 2));
+  }
+
   /**
    * Récupérer le rayon de la cellule.
    * 

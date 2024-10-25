@@ -11,10 +11,10 @@ import java.awt.Component;
 /**
  * Classe servant à gérer les interactions de l'utilisateur envers le jeu
  * 
- * @author Maxence Raymond
- * @version 1.0
+ * @author Maxence Raymond, Gaston Chenet
+ * @version 1.1
  */
-public class GameInteractionHandler implements MouseMotionListener, MouseWheelListener {
+public class GameInteractionListener implements MouseMotionListener, MouseWheelListener {
   private Game instance;
 
   private int mouseX;
@@ -26,7 +26,7 @@ public class GameInteractionHandler implements MouseMotionListener, MouseWheelLi
    * 
    * @param instance L'instance du jeu
    */
-  public GameInteractionHandler(Game instance) {
+  public GameInteractionListener(Game instance) {
     this.instance = instance;
     this.mouseX = this.instance.getWidth() / 2;
     this.mouseY = this.instance.getHeight() / 2;

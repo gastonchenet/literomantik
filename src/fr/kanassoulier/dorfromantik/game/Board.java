@@ -7,6 +7,7 @@ import javax.swing.JLayeredPane;
 
 import fr.kanassoulier.dorfromantik.Options;
 import fr.kanassoulier.dorfromantik.enums.SoundChannel;
+import fr.kanassoulier.dorfromantik.gui.PreviewTile;
 import fr.kanassoulier.dorfromantik.gui.Scoreboard;
 import fr.kanassoulier.dorfromantik.utils.SoundPlayer;
 
@@ -111,7 +112,9 @@ public class Board extends JLayeredPane {
 
 		this.remove(area);
 
-		Tile previewTile = this.game.getGui().getPreviewTile();
+		System.out.println(area.getViewportCenter());
+
+		PreviewTile previewTile = this.game.getGui().getPreviewTile();
 		PlaceableTile tile = new PlaceableTile(previewTile, area.getCenter());
 
 		this.add(tile);
@@ -150,5 +153,9 @@ public class Board extends JLayeredPane {
 				this.y - Board.BOARD_RADIUS,
 				Board.BOARD_RADIUS * 2,
 				Board.BOARD_RADIUS * 2);
+	}
+
+	public Point getCenter() {
+		return new Point(this.x, this.y);
 	}
 }

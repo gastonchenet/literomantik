@@ -54,8 +54,6 @@ public class Game extends JFrame {
 	public Game(long seed) {
 		this.seed = seed;
 		this.randomizer = new Random(seed);
-		this.board = new Board(this);
-		this.gui = new Gui(this);
 		this.database = new Database();
 
 		this.setTitle(Game.WINDOW_TITLE);
@@ -66,16 +64,18 @@ public class Game extends JFrame {
 		this.setResizable(false);
 		this.setLayout(null);
 
-		this.addKeyListener(new GameKeyListener(this));
+		this.board = new Board(this);
+		this.gui = new Gui(this);
 
 		this.add(this.gui, JLayeredPane.PALETTE_LAYER);
 		this.add(this.board, JLayeredPane.DEFAULT_LAYER);
 
+		this.addKeyListener(new GameKeyListener(this));
 		this.addWindowListener(new CloseGameDialogListener(this));
 
-		GameInteractionHandler handler = new GameInteractionHandler(this);
-		this.addMouseMotionListener(handler);
-		this.addMouseWheelListener(handler);
+		GameInteractionListener listener = new GameInteractionListener(this);
+		this.addMouseMotionListener(listener);
+		this.addMouseWheelListener(listener);
 
 		SoundPlayer.play("music", SoundChannel.MUSIC);
 	}
