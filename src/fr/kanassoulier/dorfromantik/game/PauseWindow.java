@@ -1,6 +1,5 @@
 package fr.kanassoulier.dorfromantik.game;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -47,7 +46,7 @@ public class PauseWindow extends JDialog {
 		continueButton.setHoverBackground(new Color(255, 255, 255, 225));
 		continueButton.setOpaque(false);
 		continueButton.setPadding(5, 15, 5, 15);
-		continueButton.addKeyListener(new EscapeKeyPauseMenuListener(this));
+		continueButton.addKeyListener(new PauseKeyListener(this));
 		continueButton.addActionListener(new PauseWindowButtonsListener(this, continueButton.getType(), this.window));
 
 		gbc.gridx = 0;

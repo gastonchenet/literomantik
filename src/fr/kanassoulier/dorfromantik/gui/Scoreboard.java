@@ -10,8 +10,7 @@ import fr.kanassoulier.dorfromantik.utils.FontLoader;
  * L'affichage du scoreboard du jeu
  * 
  * @version 1.1
- * @author Gaston Chenet
- * @author Maxence Raymond
+ * @author Gaston Chenet, Maxence Raymond
  */
 public class Scoreboard extends JLabel {
   /**

@@ -15,5 +15,7 @@ public enum KButtonType {
 	YES,
 	NO,
 	SEED,
-	CONTINUE
+	CONTINUE,
+	SAVE,
+	CANCEL
 }

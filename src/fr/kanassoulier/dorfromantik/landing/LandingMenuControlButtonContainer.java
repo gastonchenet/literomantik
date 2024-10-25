@@ -54,7 +54,7 @@ public class LandingMenuControlButtonContainer extends JPanel {
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.insets.set(3, 6, 3, 6);
+		gbc.insets.set(3, 3, 24, 3);
 		gbc.weightx = 0.1f;
 
 		gbc.gridx = 0;
@@ -73,6 +73,7 @@ public class LandingMenuControlButtonContainer extends JPanel {
 		gbc.gridy = 0;
 		this.add(deltaButton, gbc);
 
+		gbc.insets.set(3, 3, 3, 3);
 		gbc.weightx = 0.1f;
 		gbc.gridwidth = 4;
 		gbc.gridx = 0;

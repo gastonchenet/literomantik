@@ -17,8 +17,7 @@ import fr.kanassoulier.dorfromantik.utils.SoundPlayer;
  * Classe contenant le jeu
  * 
  * @version 1.1
- * @author Gaston Chenet
- * @author Maxence Raymond
+ * @author Gaston Chenet, Maxence Raymond
  */
 public class Game extends JFrame {
 	/**
@@ -67,7 +66,7 @@ public class Game extends JFrame {
 		this.setResizable(false);
 		this.setLayout(null);
 
-		this.addKeyListener(new EscapeKeyGameListener(this));
+		this.addKeyListener(new GameKeyListener(this));
 
 		this.add(this.gui, JLayeredPane.PALETTE_LAYER);
 		this.add(this.board, JLayeredPane.DEFAULT_LAYER);

@@ -4,8 +4,7 @@ package fr.kanassoulier.dorfromantik;
  * Classe contenant les options du jeu
  * 
  * @version 1.2
- * @author Gaston Chenet
- * @author Maxence Raymond
+ * @author Gaston Chenet, Maxence Raymond
  */
 public class Options {
   /**

@@ -13,8 +13,7 @@ import fr.kanassoulier.dorfromantik.utils.Hexagon;
  * Une zone où l'on peut placer une tuile
  * 
  * @version 1.1
- * @author Gaston Chenet
- * @author Maxence Raymond
+ * @author Gaston Chenet, Maxence Raymond
  */
 public class PlaceableArea extends Tile {
   private static final float RADIUS_MULTIPLIER = 0.4f, HOVER_RADIUS_MULTIPLIER = 0.6f;

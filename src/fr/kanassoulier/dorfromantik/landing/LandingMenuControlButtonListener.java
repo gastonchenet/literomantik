@@ -60,7 +60,7 @@ public class LandingMenuControlButtonListener implements ActionListener {
 				break;
 
 			case SETTINGS:
-				new Parameters(SwingUtilities.getWindowAncestor(this.button));
+				new Settings((LandingMenu) SwingUtilities.getWindowAncestor(this.button));
 				break;
 
 			case SEED:

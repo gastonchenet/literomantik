@@ -15,7 +15,6 @@ import fr.kanassoulier.dorfromantik.game.Game;
  * @author Gaston Chenet, Marco Orfao
  */
 public class LandingMenuSidebar extends JPanel {
-
 	/**
 	 * variable globale qui contient la taille prédéfinie de la partie droite du
 	 * menu

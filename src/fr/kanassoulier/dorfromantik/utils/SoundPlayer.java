@@ -16,8 +16,7 @@ import fr.kanassoulier.dorfromantik.enums.SoundChannel;
  * Permet de jouer des sons dans le jeu.
  * 
  * @version 1.2
- * @author Gaston Chenet
- * @author Maxence Raymond
+ * @author Gaston Chenet, Maxence Raymond
  */
 public class SoundPlayer {
 	private static FloatControl musicControl;

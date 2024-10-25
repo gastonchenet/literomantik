@@ -12,9 +12,8 @@ import fr.kanassoulier.dorfromantik.game.PlaceableTile;
 /**
  * Classe permettant de calculer le score d'un plateau
  * 
- * @author Maxence Raymond
- * @author Gaston Chenet
- * @version 1.0
+ * @version 1.1
+ * @author Maxence Raymond, Gaston Chenet
  */
 public final class ScoreLogic {
   /**

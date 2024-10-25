@@ -3,8 +3,6 @@ package fr.kanassoulier.dorfromantik.game;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import fr.kanassoulier.dorfromantik.end.EndMenu;
-
 public class CloseGameDialogListener implements WindowListener {
 	private Game game;
 
