@@ -11,26 +11,23 @@ import fr.kanassoulier.dorfromantik.game.Tile;
 
 public class PreviewTile extends Tile {
   private Timer animationTimer;
+  private Point boardPosition;
 
   public PreviewTile(Board board) {
     super(board, 140, Game.WINDOW_HEIGHT - 120, Options.PREVIEW_TILE_SIZE);
-  }
-
-  public void stopAnimation() {
-    this.animationTimer.stop();
-    this.animationTimer = null;
     this.setCenter(140, Game.WINDOW_HEIGHT - 120);
   }
 
-  public void setCenter(Point center) {
-    this.setBounds(center.x - this.getRadius(),
-        center.y - this.getRadius(),
-        this.getRadius() * 2,
-        this.getRadius() * 2);
-  }
+  public void stopAnimation() {
+    this.getBoard().displayTile(this, this.boardPosition);
 
-  public void setCenter(int x, int y) {
-    this.setCenter(new Point(x, y));
+    this.animationTimer.stop();
+    this.animationTimer = null;
+
+    this.setRadius(Options.PREVIEW_TILE_SIZE);
+    this.setCenter(140, Game.WINDOW_HEIGHT - 120);
+
+    this.repaint();
   }
 
   public void setAnimationDelay(int delay) {
@@ -41,12 +38,14 @@ public class PreviewTile extends Tile {
     return this.animationTimer.getDelay();
   }
 
-  public void animateTo(Point target) {
+  public void animateTo(Point boardPosition, Point target) {
+    this.boardPosition = boardPosition;
+
+    if (this.animationTimer != null && this.animationTimer.isRunning()) {
+      this.animationTimer.stop();
+    }
+
     this.animationTimer = new Timer(1, new PreviewTileTimerListener(this, target));
     this.animationTimer.start();
-  }
-
-  public void animateTo(int x, int y) {
-    this.animateTo(new Point(x, y));
   }
 }

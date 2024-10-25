@@ -4,17 +4,18 @@ SOURCEDIR = ./src/fr/kanassoulier/dorfromantik/
 BUILDDIR = ./build/
 DOCDIR = ./doc/
 JARNAME = dorfromantik.jar
-CLASSP = .:/libs/mariadb-client.jar
+CLASSP = ./libs/mariadb-client.jar
 
 SOURCES := $(foreach dir, $(wildcard $(SOURCEDIR)**/), $(dir)*.java)
 
 all:
+	@make compile
 	@make jar
 	@make run
 
 compile:
 	@echo "Compiling..."
-	@javac -d $(BUILDDIR) $(SOURCEDIR)*.java $(SOURCES) -Xlint:unchecked -Xlint:deprecation
+	@javac -cp $(CLASSP) -d $(BUILDDIR) $(SOURCEDIR)*.java $(SOURCES) -Xlint:unchecked -Xlint:deprecation
 	@echo "Done."
 
 run:

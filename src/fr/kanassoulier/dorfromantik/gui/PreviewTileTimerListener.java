@@ -1,52 +1,42 @@
 package fr.kanassoulier.dorfromantik.gui;
 
 import java.awt.event.ActionListener;
+
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 
 public class PreviewTileTimerListener implements ActionListener {
-  private PreviewTile previewTile;
-  private Point target;
+  private static int END_TILE_RADIUS = 24;
+  private static double SPEED = 2d;
+  private static double EASING_FACTOR = 0.2d;
 
-  public PreviewTileTimerListener(PreviewTile previewTile, Point target) {
+  private PreviewTile previewTile;
+  private Point targetPosition;
+
+  public PreviewTileTimerListener(PreviewTile previewTile, Point targetPosition) {
     this.previewTile = previewTile;
-    this.target = target;
+    this.targetPosition = targetPosition;
   }
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    Point center = this.previewTile.getCenter();
-    float velocity = 2.0f;
+    Point currentPos = this.previewTile.getCenter();
+    int radius = this.previewTile.getRadius();
 
-    int x = center.x;
-    int y = center.y;
+    double dx = this.targetPosition.x - currentPos.x;
+    double dy = this.targetPosition.y - currentPos.y;
+    double distance = Math.sqrt(dx * dx + dy * dy);
 
-    if (center.x < this.target.x) {
-      x += velocity;
-    } else if (center.x > this.target.x) {
-      x -= velocity;
-    }
-
-    if (center.y < this.target.y) {
-      y += velocity;
-    } else if (center.y > this.target.y) {
-      y -= velocity;
-    }
-
-    if (Math.abs(center.x - this.target.x) <= velocity) {
-      x = this.target.x;
-    }
-
-    if (Math.abs(center.y - this.target.y) <= velocity) {
-      y = this.target.y;
-    }
-
-    this.previewTile.setCenter(new Point(x, y));
-
-    if (x == this.target.x && y == this.target.y) {
+    if (distance <= 5) {
       this.previewTile.stopAnimation();
+      return;
     }
 
-    this.previewTile.repaint();
+    double newX = currentPos.x + dx * SPEED * EASING_FACTOR;
+    double newY = currentPos.y + dy * SPEED * EASING_FACTOR;
+    double newRadius = radius + (END_TILE_RADIUS - radius) * EASING_FACTOR;
+
+    this.previewTile.setRadius((int) newRadius);
+    this.previewTile.setCenter(new Point((int) newX, (int) newY));
   }
 }

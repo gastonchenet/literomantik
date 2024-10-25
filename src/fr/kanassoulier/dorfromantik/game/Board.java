@@ -113,11 +113,14 @@ public class Board extends JLayeredPane {
 		this.remove(area);
 
 		PreviewTile previewTile = this.game.getGui().getPreviewTile();
-		previewTile.animateTo(area.getViewportCenter());
+		previewTile.animateTo(area.getCenter(), area.getViewportCenter());
+	}
 
-		PlaceableTile tile = new PlaceableTile(previewTile, area.getCenter());
-
+	public void displayTile(PreviewTile previewTile, Point center) {
+		PlaceableTile tile = new PlaceableTile(previewTile, center);
 		this.add(tile);
+
+		tile.repaint();
 
 		Scoreboard scoreboard = this.game.getGui().getScoreboard();
 		scoreboard.updateScore();
@@ -126,7 +129,7 @@ public class Board extends JLayeredPane {
 		SoundPlayer.play("tiles/linked-" + matches, SoundChannel.SOUND);
 
 		previewTile.refill();
-		this.game.repaint();
+		// this.game.repaint();
 
 		if (this.game.isFinished()) {
 			for (Component component : this.getComponents()) {
