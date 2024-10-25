@@ -3,6 +3,7 @@ ENTRY = Main
 SOURCEDIR = ./src/fr/kanassoulier/dorfromantik/
 BUILDDIR = ./build/
 DOCDIR = ./doc/
+JARNAME = dorfromantik.jar
 
 
 SOURCES := $(foreach dir, $(wildcard $(SOURCEDIR)**/), $(dir)*.java)
@@ -16,9 +17,9 @@ compile:
 	@javac -d $(BUILDDIR) $(SOURCEDIR)*.java $(SOURCES) -Xlint:unchecked -Xlint:deprecation
 	@echo "Done."
 
-run:
+run: jar
 	@echo "Running..."
-	@java -cp $(BUILDDIR) $(PACKAGE).$(ENTRY)
+	@java -jar $(JARNAME)
 	@echo "Done."
 
 clean:
@@ -33,5 +34,5 @@ javadoc:
 
 jar: compile
 	@echo "Creating jar..."
-	@jar cvfe dorfromantik.jar $(PACKAGE).$(ENTRY) -C $(BUILDDIR) fr/kanassoulier/dorfromantik resources
+	@jar cvfe $(JARNAME) $(PACKAGE).$(ENTRY) -C $(BUILDDIR) fr/kanassoulier/dorfromantik resources .env
 	@echo "Done."

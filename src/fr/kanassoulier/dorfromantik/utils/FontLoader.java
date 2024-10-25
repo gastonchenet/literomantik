@@ -1,7 +1,9 @@
 package fr.kanassoulier.dorfromantik.utils;
 
-import java.awt.*;
-import java.io.*;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.io.IOException;
 
 /**
  * Classe mettant à disposition les fonts
@@ -19,7 +21,10 @@ public class FontLoader {
 	 */
 	protected static final Font loadFont(String ressource) {
 		try {
-			Font font = Font.createFont(Font.TRUETYPE_FONT, new File(ressource)).deriveFont(20f);
+			Font font = Font
+					.createFont(Font.TRUETYPE_FONT,
+							Thread.currentThread().getContextClassLoader().getResourceAsStream(ressource))
+					.deriveFont(20f);
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			ge.registerFont(font);
 			return font;
