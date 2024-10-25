@@ -9,4 +9,5 @@ package fr.kanassoulier.dorfromantik.enums;
 public enum KeyboardKey {
   MOUSE_LEFT_CLICK,
   MOUSE_WHEEL,
+  ESCAPE
 }

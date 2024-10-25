@@ -106,6 +106,19 @@ public class KeyInfo extends JPanel {
         g2d.drawString("Molette", 38, 14);
         break;
 
+      case ESCAPE:
+        g2d.setColor(new Color(40, 40, 40));
+        g2d.fillRoundRect(0, 0, 30, 36, 10, 10);
+
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(12f));
+        g2d.drawString("ESC", 4, 23);
+
+        g2d.setFont(g2d.getFont().deriveFont(14f));
+        g2d.setColor(new Color(40, 40, 40));
+        g2d.drawString("Touche echap", 38, 14);
+        break;
+
       default:
         break;
     }

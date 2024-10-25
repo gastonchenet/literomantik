@@ -40,8 +40,9 @@ public class Gui extends JLayeredPane {
     this.add(this.scoreboard);
     this.add(this.scoreUpdate);
 
-    this.add(new KeyInfo(KeyboardKey.MOUSE_LEFT_CLICK, "Placer la tuile", Game.WINDOW_WIDTH - 250, 20));
-    this.add(new KeyInfo(KeyboardKey.MOUSE_WHEEL, "Tourner la tuile", Game.WINDOW_WIDTH - 250, 64));
+    this.add(new KeyInfo(KeyboardKey.ESCAPE, "Mettre en pause", Game.WINDOW_WIDTH - 250, 20));
+    this.add(new KeyInfo(KeyboardKey.MOUSE_LEFT_CLICK, "Placer la tuile", Game.WINDOW_WIDTH - 250, 64));
+    this.add(new KeyInfo(KeyboardKey.MOUSE_WHEEL, "Tourner la tuile", Game.WINDOW_WIDTH - 250, 108));
 
     this.setOpaque(false);
   }
