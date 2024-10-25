@@ -1,7 +1,6 @@
 package fr.kanassoulier.dorfromantik.game;
 
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
@@ -10,74 +9,58 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.GridBagConstraints;
 
-import fr.kanassoulier.dorfromantik.components.KButton;
 import fr.kanassoulier.dorfromantik.enums.KButtonType;
 import fr.kanassoulier.dorfromantik.utils.FontLoader;
 
 public class PauseWindow extends JDialog {
+	public PauseWindow(Game game, String title, Boolean modal) {
+		super(game, title, modal);
 
-	private JFrame window;
-
-	public PauseWindow(JFrame window, String title, Boolean modal) {
-		super(window, title, modal);
-
-		this.window = window;
-
-		this.setLayout(new GridBagLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
-
-		this.setSize(400, 330);
-		this.setLocationRelativeTo(window);
+		this.setSize(270, 285);
+		this.setLocationRelativeTo(game);
 		this.setResizable(false);
 
+		this.setLayout(new GridBagLayout());
+
+		GridBagConstraints gbc = new GridBagConstraints();
+
 		JLabel pauseTitle = new JLabel("Pause", JLabel.CENTER);
-		pauseTitle.setFont(FontLoader.LEXEND_REGULAR.deriveFont(45f));
+		pauseTitle.setFont(FontLoader.LEXEND_BOLD.deriveFont(36f));
 		pauseTitle.setForeground(Color.BLACK);
 		pauseTitle.setBorder(new EmptyBorder(15, 0, 0, 0));
 
+		PauseWindowButton continueButton = new PauseWindowButton("Continuer", KButtonType.CONTINUE, this, game);
+		PauseWindowButton menuButton = new PauseWindowButton("Menu", KButtonType.MENU, this, game);
+		PauseWindowButton quitButton = new PauseWindowButton("Quitter", KButtonType.QUIT, this, game);
+
+		quitButton.setForeground(Color.WHITE);
+		quitButton.setBackground(new Color(224, 31, 41));
+		quitButton.setHoverBackground(new Color(224, 31, 41, 225));
+
+		continueButton.addKeyListener(new PauseWindowKeyListener(this));
+
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.insets = new Insets(5, 5, 5, 5);
+
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.gridwidth = 3;
-		gbc.insets = new Insets(5, 5, 5, 5);
 		this.add(pauseTitle, gbc);
 
-		KButton continueButton = new KButton("Continuer", KButtonType.CONTINUE);
-		continueButton.setBackground(Color.WHITE);
-		continueButton.setHoverBackground(new Color(255, 255, 255, 225));
-		continueButton.setOpaque(false);
-		continueButton.setPadding(5, 15, 5, 15);
-		continueButton.addKeyListener(new PauseKeyListener(this));
-		continueButton.addActionListener(new PauseWindowButtonsListener(this, continueButton.getType(), this.window));
+		gbc.insets = new Insets(20, 5, 5, 5);
 
 		gbc.gridx = 0;
-		gbc.gridy = 4;
-		gbc.gridwidth = 1;
-		gbc.insets = new Insets(75, 5, 5, 5);
+		gbc.gridy = 1;
 		this.add(continueButton, gbc);
 
-		KButton menuButton = new KButton("Menu", KButtonType.MENU);
-		menuButton.setBackground(Color.WHITE);
-		menuButton.setHoverBackground(new Color(255, 255, 255, 225));
-		menuButton.setOpaque(false);
-		menuButton.setPadding(5, 15, 5, 15);
-		menuButton.addActionListener(new PauseWindowButtonsListener(this, menuButton.getType(), this.window));
-
-		gbc.gridx = 1;
-		gbc.gridy = 4;
+		gbc.insets = new Insets(5, 5, 5, 5);
+		gbc.gridx = 0;
+		gbc.gridy = 2;
 		this.add(menuButton, gbc);
 
-		KButton quitButton = new KButton("Quitter", KButtonType.QUIT);
-		quitButton.setBackground(Color.WHITE);
-		quitButton.setHoverBackground(new Color(255, 255, 255, 225));
-		quitButton.setOpaque(false);
-		quitButton.setPadding(5, 15, 5, 15);
-		quitButton.addActionListener(new PauseWindowButtonsListener(this, quitButton.getType(), this.window));
-
-		gbc.gridx = 2;
-		gbc.gridy = 4;
+		gbc.gridx = 0;
+		gbc.gridy = 3;
 		this.add(quitButton, gbc);
 
 		this.setVisible(true);
-
 	}
 }

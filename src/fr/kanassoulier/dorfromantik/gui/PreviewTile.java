@@ -12,22 +12,28 @@ import fr.kanassoulier.dorfromantik.game.Tile;
 public class PreviewTile extends Tile {
   private Timer animationTimer;
   private Point boardPosition;
+  private Gui gui;
 
-  public PreviewTile(Board board) {
+  public PreviewTile(Gui gui, Board board) {
     super(board, 140, Game.WINDOW_HEIGHT - 120, Options.PREVIEW_TILE_SIZE);
+
+    this.gui = gui;
+
     this.setCenter(140, Game.WINDOW_HEIGHT - 120);
   }
 
-  public void stopAnimation() {
-    this.getBoard().displayTile(this, this.boardPosition);
+  public Gui getGui() {
+    return this.gui;
+  }
 
+  public void stopAnimation() {
     this.animationTimer.stop();
     this.animationTimer = null;
 
     this.setRadius(Options.PREVIEW_TILE_SIZE);
     this.setCenter(140, Game.WINDOW_HEIGHT - 120);
 
-    this.repaint();
+    this.getBoard().displayTile(this, this.boardPosition);
   }
 
   public void setAnimationDelay(int delay) {

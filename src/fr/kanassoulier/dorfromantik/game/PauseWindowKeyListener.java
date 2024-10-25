@@ -3,10 +3,10 @@ package fr.kanassoulier.dorfromantik.game;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 
-public class PauseKeyListener extends KeyAdapter {
+public class PauseWindowKeyListener extends KeyAdapter {
 	private PauseWindow pauseMenu;
 
-	public PauseKeyListener(PauseWindow pauseMenu) {
+	public PauseWindowKeyListener(PauseWindow pauseMenu) {
 		this.pauseMenu = pauseMenu;
 	}
 

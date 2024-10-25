@@ -19,6 +19,7 @@ public class Scoreboard extends JLabel {
   private static final int HEIGHT = 50;
 
   private Gui gui;
+  private int score = 0;
 
   public Scoreboard(Gui gui) {
     super("0", JLabel.CENTER);
@@ -27,13 +28,21 @@ public class Scoreboard extends JLabel {
 
     this.setBounds(0, 0, Game.WINDOW_WIDTH, Scoreboard.HEIGHT);
     this.setFont(FontLoader.LEXEND_BOLD);
+
+    this.updateScore(false);
   }
 
   /**
    * Mettre à jour le score du joueur.
    */
-  public void updateScore() {
-    int score = ScoreLogic.calculate(this.gui.getGame().getBoard());
-    this.setText(Integer.toString(score));
+  public void updateScore(Boolean showScoreUpdate) {
+    int oldScore = this.score;
+
+    this.score = ScoreLogic.calculate(this.gui.getGame().getBoard());
+    this.setText(Integer.toString(this.score));
+
+    if (showScoreUpdate) {
+      this.gui.getScoreUpdate().setText("+" + (this.score - oldScore));
+    }
   }
 }

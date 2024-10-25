@@ -1,6 +1,8 @@
 package fr.kanassoulier.dorfromantik.game;
 
-import java.awt.event.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 /**
  * L'implémentation des méthodes de Swing pour la classe PlaceableArea.
@@ -29,6 +31,7 @@ public class PlaceableAreaListener implements MouseListener, MouseMotionListener
   public void mouseExited(MouseEvent e) {
     boolean oldMouseOver = this.mouseOver;
     this.mouseOver = false;
+
     if (oldMouseOver != this.mouseOver) {
       this.area.repaint();
     }
@@ -55,6 +58,7 @@ public class PlaceableAreaListener implements MouseListener, MouseMotionListener
   public void mouseMoved(MouseEvent e) {
     boolean oldMouseOver = this.mouseOver;
     this.mouseOver = this.area.getHexagon().contains(e.getPoint());
+
     if (oldMouseOver != this.mouseOver) {
       this.area.repaint();
     }

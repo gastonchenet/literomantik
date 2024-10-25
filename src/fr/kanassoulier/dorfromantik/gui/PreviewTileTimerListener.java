@@ -2,12 +2,15 @@ package fr.kanassoulier.dorfromantik.gui;
 
 import java.awt.event.ActionListener;
 
+import fr.kanassoulier.dorfromantik.Options;
+
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 
 public class PreviewTileTimerListener implements ActionListener {
-  private static int END_TILE_RADIUS = 24;
-  private static double SPEED = 2d;
+  private static int HANDLE_DISTANCE = 3;
+  private static int END_TILE_RADIUS = Options.CELL_RADIUS;
+  private static double SPEED = 1.4d;
   private static double EASING_FACTOR = 0.2d;
 
   private PreviewTile previewTile;
@@ -27,7 +30,7 @@ public class PreviewTileTimerListener implements ActionListener {
     double dy = this.targetPosition.y - currentPos.y;
     double distance = Math.sqrt(dx * dx + dy * dy);
 
-    if (distance <= 5) {
+    if (distance <= PreviewTileTimerListener.HANDLE_DISTANCE) {
       this.previewTile.stopAnimation();
       return;
     }
@@ -38,5 +41,6 @@ public class PreviewTileTimerListener implements ActionListener {
 
     this.previewTile.setRadius((int) newRadius);
     this.previewTile.setCenter(new Point((int) newX, (int) newY));
+    this.previewTile.getGui().repaint();
   }
 }

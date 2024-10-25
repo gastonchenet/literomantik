@@ -123,13 +123,12 @@ public class Board extends JLayeredPane {
 		tile.repaint();
 
 		Scoreboard scoreboard = this.game.getGui().getScoreboard();
-		scoreboard.updateScore();
+		scoreboard.updateScore(true);
 
 		int matches = tile.matchCount();
 		SoundPlayer.play("tiles/linked-" + matches, SoundChannel.SOUND);
 
 		previewTile.refill();
-		// this.game.repaint();
 
 		if (this.game.isFinished()) {
 			for (Component component : this.getComponents()) {

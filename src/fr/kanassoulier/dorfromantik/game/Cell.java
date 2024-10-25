@@ -14,8 +14,6 @@ import fr.kanassoulier.dorfromantik.utils.Hexagon;
  * @author Gaston Chenet
  */
 public abstract class Cell extends JComponent {
-  protected static final int MARGIN = 10;
-
   private Board board;
   private int x, y, radius;
 
@@ -47,14 +45,13 @@ public abstract class Cell extends JComponent {
     this.x = x;
     this.y = y;
 
-    this.setBounds(x - (radius + Cell.MARGIN),
-        y - (radius + Cell.MARGIN),
-        (radius + Cell.MARGIN) * 2,
-        (radius + Cell.MARGIN) * 2);
+    this.setBounds(x - radius,
+        y - radius,
+        radius * 2,
+        radius * 2);
 
     // On veut que le JPanel soit transparent pour ne pas cacher les autres éléments
     this.setOpaque(false);
-    this.setDoubleBuffered(true);
   }
 
   /**
@@ -90,7 +87,7 @@ public abstract class Cell extends JComponent {
     this.x = center.x;
     this.y = center.y;
 
-    int radius = this.getRadius() + Cell.MARGIN;
+    int radius = this.getRadius();
 
     this.setBounds(center.x - radius,
         center.y - radius,

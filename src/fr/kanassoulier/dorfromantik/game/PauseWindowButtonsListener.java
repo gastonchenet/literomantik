@@ -3,8 +3,6 @@ package fr.kanassoulier.dorfromantik.game;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import javax.swing.JFrame;
-
 import fr.kanassoulier.dorfromantik.enums.KButtonType;
 import fr.kanassoulier.dorfromantik.landing.LandingMenu;
 
@@ -12,9 +10,9 @@ public class PauseWindowButtonsListener implements ActionListener {
 
 	private PauseWindow pauseMenu;
 	private KButtonType type;
-	private JFrame gameWindow;
+	private Game gameWindow;
 
-	public PauseWindowButtonsListener(PauseWindow pauseMenu, KButtonType type, JFrame gameWindow) {
+	public PauseWindowButtonsListener(PauseWindow pauseMenu, KButtonType type, Game gameWindow) {
 		this.type = type;
 		this.pauseMenu = pauseMenu;
 		this.gameWindow = gameWindow;
