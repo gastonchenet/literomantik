@@ -57,7 +57,7 @@ public class Game extends JFrame {
 		this.database = new Database();
 
 		this.setTitle(Game.WINDOW_TITLE);
-		super.setIconImage(ImageLoader.IMAGE_LOGO);
+		super.setIconImage(ImageLoader.APP_ICON);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.setSize(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 		this.setLocationRelativeTo(null);

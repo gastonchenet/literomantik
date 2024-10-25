@@ -1,7 +1,6 @@
 package fr.kanassoulier.dorfromantik.utils;
 
 import java.io.IOException;
-import java.io.File;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -63,7 +62,7 @@ public class SoundPlayer {
 					gainControl.setValue(SoundPlayer.normalizeVolume(Options.MUTED ? 0 : Options.MUSIC_VOLUME, 0, 80));
 					SoundPlayer.musicControl = gainControl;
 					if (SoundPlayer.musicClip != null) {
-						// smooth rollover between them
+						// ensuring a smooth rollover between them
 						clip.setFramePosition(SoundPlayer.musicClip.getFramePosition());
 						SoundPlayer.musicClip.stop();
 					}
@@ -91,7 +90,8 @@ public class SoundPlayer {
 	 */
 	private static AudioInputStream getInputStream(String soundPath) throws UnsupportedAudioFileException {
 		try {
-			return AudioSystem.getAudioInputStream(new File("resources/sounds/" + soundPath + ".wav"));
+			return AudioSystem.getAudioInputStream(Thread.currentThread().getContextClassLoader()
+					.getResource("resources/sounds/" + soundPath + ".wav"));
 		} catch (IOException e) {
 			System.err.println("Fichier son inaccessible");
 			e.printStackTrace();
