@@ -31,5 +31,5 @@ public class ImageLoader {
 	/**
 	 * Logo de l'application
 	 */
-	public static final Image IMAGE_LOGO = ImageLoader.loadImage("resources/images/favicon.png");
+	public static final Image APP_ICON = ImageLoader.loadImage("resources/images/favicon.png");
 }

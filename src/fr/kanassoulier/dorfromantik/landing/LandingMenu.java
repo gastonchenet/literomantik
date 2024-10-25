@@ -23,7 +23,7 @@ public class LandingMenu extends JFrame {
 	 */
 	public LandingMenu() {
 		this.setTitle(Game.WINDOW_TITLE);
-		super.setIconImage(ImageLoader.IMAGE_LOGO);
+		super.setIconImage(ImageLoader.APP_ICON);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 		this.setLocationRelativeTo(null);
