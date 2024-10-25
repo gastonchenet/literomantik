@@ -31,7 +31,7 @@ javadoc:
 	@javadoc -d $(DOCDIR) -sourcepath src -subpackages $(PACKAGE)
 	@echo "Done."
 
-jar:
+jar: compile
 	@echo "Creating jar..."
-	@jar cvfe $(PACKAGE).jar $(PACKAGE).$(ENTRY) -C $(BUILDDIR) $(PACKAGE)
+	@jar cvfe dorfromantik.jar $(PACKAGE).$(ENTRY) -C $(BUILDDIR) fr/kanassoulier/dorfromantik resources
 	@echo "Done."
