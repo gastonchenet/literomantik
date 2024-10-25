@@ -18,6 +18,19 @@ public class PreviewTile extends Tile {
 
   public void stopAnimation() {
     this.animationTimer.stop();
+    this.animationTimer = null;
+    this.setCenter(140, Game.WINDOW_HEIGHT - 120);
+  }
+
+  public void setCenter(Point center) {
+    this.setBounds(center.x - this.getRadius(),
+        center.y - this.getRadius(),
+        this.getRadius() * 2,
+        this.getRadius() * 2);
+  }
+
+  public void setCenter(int x, int y) {
+    this.setCenter(new Point(x, y));
   }
 
   public void setAnimationDelay(int delay) {

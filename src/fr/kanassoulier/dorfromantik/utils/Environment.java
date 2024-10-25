@@ -15,10 +15,12 @@ public class Environment {
 
   public static void load() {
     InputStream envFileStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(".env");
+
     if (envFileStream == null) {
       System.err.println("Variables d'environnement inaccessibles.");
       System.exit(1);
     }
+
     Scanner scanner = new Scanner(envFileStream);
 
     while (scanner.hasNextLine()) {

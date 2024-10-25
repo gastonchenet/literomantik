@@ -13,27 +13,38 @@ public class PreviewTileTimerListener implements ActionListener {
     this.target = target;
   }
 
-  private int easeOut(int start, int end, int current, int max) {
-    return (int) (end - (end - start) * Math.pow(1 - (double) current / max, 2));
-  }
-
   @Override
   public void actionPerformed(ActionEvent e) {
-    int x = this.previewTile.getX();
-    int y = this.previewTile.getY();
-    int targetX = this.target.x;
-    int targetY = this.target.y;
-    int dx = targetX - x;
-    int dy = targetY - y;
-    int max = 100;
-    int current = this.previewTile.getAnimationDelay();
-    if (current >= max) {
+    Point center = this.previewTile.getCenter();
+    float velocity = 2.0f;
+
+    int x = center.x;
+    int y = center.y;
+
+    if (center.x < this.target.x) {
+      x += velocity;
+    } else if (center.x > this.target.x) {
+      x -= velocity;
+    }
+
+    if (center.y < this.target.y) {
+      y += velocity;
+    } else if (center.y > this.target.y) {
+      y -= velocity;
+    }
+
+    if (Math.abs(center.x - this.target.x) <= velocity) {
+      x = this.target.x;
+    }
+
+    if (Math.abs(center.y - this.target.y) <= velocity) {
+      y = this.target.y;
+    }
+
+    this.previewTile.setCenter(new Point(x, y));
+
+    if (x == this.target.x && y == this.target.y) {
       this.previewTile.stopAnimation();
-    } else {
-      this.previewTile.setLocation(
-          this.easeOut(x, targetX, current, max),
-          this.easeOut(y, targetY, current, max));
-      this.previewTile.setAnimationDelay(current + 1);
     }
 
     this.previewTile.repaint();
