@@ -7,11 +7,9 @@ import javax.swing.JLayeredPane;
 
 import fr.kanassoulier.dorfromantik.Options;
 import fr.kanassoulier.dorfromantik.end.EndMenu;
-import fr.kanassoulier.dorfromantik.enums.SoundChannel;
 import fr.kanassoulier.dorfromantik.gui.Gui;
 import fr.kanassoulier.dorfromantik.utils.Database;
 import fr.kanassoulier.dorfromantik.utils.ImageLoader;
-import fr.kanassoulier.dorfromantik.utils.SoundPlayer;
 
 /**
  * Classe contenant le jeu
@@ -76,8 +74,6 @@ public class Game extends JFrame {
 		GameInteractionListener listener = new GameInteractionListener(this);
 		this.addMouseMotionListener(listener);
 		this.addMouseWheelListener(listener);
-
-		SoundPlayer.play("music", SoundChannel.MUSIC);
 	}
 
 	/**

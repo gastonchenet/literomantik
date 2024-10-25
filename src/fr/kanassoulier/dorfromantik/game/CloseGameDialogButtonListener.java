@@ -8,6 +8,7 @@ import javax.swing.SwingUtilities;
 
 import fr.kanassoulier.dorfromantik.components.KButton;
 import fr.kanassoulier.dorfromantik.enums.KButtonType;
+import fr.kanassoulier.dorfromantik.utils.SoundPlayer;
 
 public class CloseGameDialogButtonListener implements MouseListener {
   private boolean mouseOver = false;
@@ -28,8 +29,10 @@ public class CloseGameDialogButtonListener implements MouseListener {
     KButton button = (KButton) e.getSource();
     SwingUtilities.getWindowAncestor(button).dispose();
 
-    if (this.button.getType() == KButtonType.YES)
+    if (this.button.getType() == KButtonType.YES) {
       this.game.dispose();
+      SoundPlayer.kill();
+    }
   }
 
   @Override

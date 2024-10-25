@@ -16,6 +16,7 @@ import java.awt.Dialog;
 import fr.kanassoulier.dorfromantik.Options;
 import fr.kanassoulier.dorfromantik.components.KButton;
 import fr.kanassoulier.dorfromantik.enums.KButtonType;
+import fr.kanassoulier.dorfromantik.enums.SoundChannel;
 import fr.kanassoulier.dorfromantik.utils.FontLoader;
 import fr.kanassoulier.dorfromantik.utils.ImageLoader;
 import fr.kanassoulier.dorfromantik.utils.SoundPlayer;
@@ -100,8 +101,14 @@ public class Settings extends JDialog {
 			SoundPlayer.deactivateSound(false);
 		}
 
-		Options.MUSIC_VOLUME = this.musicVolumeSlider.getValue();
-		Options.SOUND_VOLUME = this.eventVolumeSlider.getValue();
+		int musicVolume = this.musicVolumeSlider.getValue();
+		int eventVolume = this.eventVolumeSlider.getValue();
+
+		Options.MUSIC_VOLUME = musicVolume;
+		Options.SOUND_VOLUME = eventVolume;
+
+		SoundPlayer.changeVolume(SoundChannel.MUSIC, musicVolume);
+		SoundPlayer.changeVolume(SoundChannel.SOUND, eventVolume);
 
 		this.exit();
 	}

@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 
 import fr.kanassoulier.dorfromantik.enums.KButtonType;
 import fr.kanassoulier.dorfromantik.landing.LandingMenu;
+import fr.kanassoulier.dorfromantik.utils.SoundPlayer;
 
 public class PauseWindowButtonsListener implements ActionListener {
 
@@ -19,13 +20,23 @@ public class PauseWindowButtonsListener implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (this.type == KButtonType.QUIT) {
-			this.gameWindow.dispose();
-		} else if (this.type == KButtonType.MENU) {
-			new LandingMenu().setVisible(true);
-			this.gameWindow.dispose();
-		} else if (this.type == KButtonType.CONTINUE) {
-			this.pauseMenu.dispose();
+		switch (this.type) {
+			case QUIT:
+				this.gameWindow.dispose();
+				SoundPlayer.kill();
+				break;
+
+			case MENU:
+				new LandingMenu().setVisible(true);
+				this.gameWindow.dispose();
+				break;
+
+			case CONTINUE:
+				this.pauseMenu.dispose();
+				break;
+
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + this.type);
 		}
 	}
 }

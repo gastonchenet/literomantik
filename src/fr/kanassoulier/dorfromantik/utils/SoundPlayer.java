@@ -1,6 +1,7 @@
 package fr.kanassoulier.dorfromantik.utils;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -14,12 +15,12 @@ import fr.kanassoulier.dorfromantik.enums.SoundChannel;
 /**
  * Permet de jouer des sons dans le jeu.
  * 
- * @version 1.2
+ * @version 1.3
  * @author Gaston Chenet, Maxence Raymond
  */
 public class SoundPlayer {
 	private static FloatControl musicControl;
-	private static Clip musicClip;
+	private static HashMap<SoundChannel, Clip> channels = new HashMap<>();
 
 	/**
 	 * Normalise le volume entre 0 et 100 en dBFS.
@@ -44,6 +45,17 @@ public class SoundPlayer {
 		return SoundPlayer.normalizeVolume(volume, 0, 100);
 	}
 
+	public static void changeVolume(SoundChannel channel, int volume) {
+		Clip clip = SoundPlayer.channels.get(channel);
+
+		if (clip == null) {
+			return;
+		}
+
+		FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+		gainControl.setValue(SoundPlayer.normalizeVolume(volume));
+	}
+
 	/**
 	 * Joue un son.
 	 * 
@@ -55,18 +67,14 @@ public class SoundPlayer {
 			AudioInputStream sound = SoundPlayer.getInputStream(soundPath);
 			Clip clip = AudioSystem.getClip();
 			clip.open(sound);
+
+			SoundPlayer.channels.put(channel, clip);
 			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 
 			switch (channel) {
 				case MUSIC:
 					gainControl.setValue(SoundPlayer.normalizeVolume(Options.MUTED ? 0 : Options.MUSIC_VOLUME, 0, 80));
 					SoundPlayer.musicControl = gainControl;
-					if (SoundPlayer.musicClip != null) {
-						// ensuring a smooth rollover between them
-						clip.setFramePosition(SoundPlayer.musicClip.getFramePosition());
-						SoundPlayer.musicClip.stop();
-					}
-					SoundPlayer.musicClip = clip;
 					clip.loop(Clip.LOOP_CONTINUOUSLY);
 					break;
 
@@ -102,9 +110,13 @@ public class SoundPlayer {
 	/**
 	 * Coupe ou réactive le son de la musique
 	 * 
-	 * @param state yes to mute the program, no to reactivate the sound
+	 * @param state L'état du son
 	 */
 	public static void deactivateSound(boolean state) {
+		if (SoundPlayer.musicControl == null) {
+			return;
+		}
+
 		try {
 			if (state) {
 				SoundPlayer.musicControl.setValue(SoundPlayer.normalizeVolume(0));
@@ -112,7 +124,15 @@ public class SoundPlayer {
 				SoundPlayer.musicControl.setValue(SoundPlayer.normalizeVolume(Options.MUSIC_VOLUME, 0, 80));
 			}
 		} catch (NullPointerException e) {
-			// It's okay, it means the music player wasn't launched yet
+			System.err.println("Erreur lors de la désactivation du son");
+			e.printStackTrace();
+		}
+	}
+
+	public static void kill() {
+		for (Clip clip : SoundPlayer.channels.values()) {
+			clip.stop();
+			clip.close();
 		}
 	}
 }
