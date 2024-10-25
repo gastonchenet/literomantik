@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: fr.kanassoulier.dorfromantik.Main
+Class-Path: libs/mariadb-client.jar

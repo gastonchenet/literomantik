@@ -4,7 +4,7 @@ SOURCEDIR = ./src/fr/kanassoulier/dorfromantik/
 BUILDDIR = ./build/
 DOCDIR = ./doc/
 JARNAME = dorfromantik.jar
-CLASSP = .:/libs/mariadb-client.jar
+MANIFESTPATH = Manifest.txt
 
 SOURCES := $(foreach dir, $(wildcard $(SOURCEDIR)**/), $(dir)*.java)
 
@@ -19,7 +19,7 @@ compile:
 
 run:
 	@echo "Running..."
-	@java -cp $(CLASSP) -jar $(BUILDDIR)$(JARNAME)
+	@java -jar $(JARNAME)
 	@echo "Done."
 
 clean:
@@ -34,5 +34,5 @@ javadoc:
 
 jar:
 	@echo "Creating jar..."
-	@jar cvfe $(BUILDDIR)$(JARNAME) $(PACKAGE).$(ENTRY) -C $(BUILDDIR) fr/kanassoulier/dorfromantik resources .env
+	@jar cfm $(JARNAME) $(MANIFESTPATH) -C $(BUILDDIR) fr/kanassoulier/dorfromantik resources .env
 	@echo "Done."
