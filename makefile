@@ -4,6 +4,7 @@ SOURCEDIR = ./src/fr/kanassoulier/dorfromantik/
 BUILDDIR = ./build/
 DOCDIR = ./doc/
 JARNAME = dorfromantik.jar
+CLASSP = libs/mariadb-client.jar
 MANIFESTPATH = Manifest.txt
 
 SOURCES := $(foreach dir, $(wildcard $(SOURCEDIR)**/), $(dir)*.java)
