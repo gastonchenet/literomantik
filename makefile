@@ -3,7 +3,7 @@ ENTRY = Main
 SOURCEDIR = ./src/fr/kanassoulier/dorfromantik/
 BUILDDIR = ./build/
 DOCDIR = ./doc/
-JARNAME = dorfromantik.jar
+JARNAME = literomantik.jar
 CLASSP = libs/mariadb-client.jar
 MANIFESTPATH = Manifest.txt
 
