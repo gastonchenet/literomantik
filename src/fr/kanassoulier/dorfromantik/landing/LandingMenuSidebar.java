@@ -22,15 +22,11 @@ public class LandingMenuSidebar extends JPanel {
 	 */
 	public static final int WIDTH = 300;
 
-	private JFrame menuWindow;
-
 	/**
 	 * Constructeur de la classe qui instancie les différents composants
 	 */
-	public LandingMenuSidebar(JFrame menuWindow) {
+	public LandingMenuSidebar(LandingMenu landingMenu) {
 		super();
-
-		this.menuWindow = menuWindow;
 
 		this.setBackground(new Color(71, 71, 252));
 		this.setBounds(Game.WINDOW_WIDTH - LandingMenuSidebar.WIDTH, 0, LandingMenuSidebar.WIDTH, Game.WINDOW_HEIGHT - 35);
@@ -38,8 +34,9 @@ public class LandingMenuSidebar extends JPanel {
 		this.setBorder(new EmptyBorder(15, 15, 15, 30));
 
 		LandingMenuLeaderboard leaderboard = new LandingMenuLeaderboard();
+		leaderboard.makeLeaderboard(154275265L, landingMenu);
 
-		this.add(new LandingMenuControlButtonContainer(this.menuWindow, leaderboard), BorderLayout.SOUTH);
+		this.add(new LandingMenuControlButtonContainer(landingMenu, this, leaderboard), BorderLayout.SOUTH);
 
 		this.add(leaderboard, BorderLayout.CENTER);
 	}

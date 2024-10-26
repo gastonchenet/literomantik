@@ -80,7 +80,7 @@ public class Database {
 			EndGameInfos[] egiArray = new EndGameInfos[getSize(seed)];
 
 			PreparedStatement infoStatement = this.database
-					.prepareStatement("SELECT value,username FROM Score WHERE seed = ?;");
+					.prepareStatement("SELECT value,username FROM Score WHERE seed = ? ORDER BY value DESC;");
 
 			infoStatement.setLong(1, seed);
 			infoStatement.executeUpdate();
@@ -90,7 +90,8 @@ public class Database {
 			int score;
 			String username;
 
-			for (int i = 0; infoResult.next(); i++) {
+			for (int i = 0; i < getSize(seed); i++) {
+				infoResult.next();
 				score = infoResult.getInt(1);
 				username = infoResult.getString(2);
 				EndGameInfos infoLine = new EndGameInfos(score, username);

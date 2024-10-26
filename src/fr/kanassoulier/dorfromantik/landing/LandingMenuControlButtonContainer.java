@@ -17,28 +17,38 @@ import fr.kanassoulier.dorfromantik.enums.KButtonType;
  * @author Gaston Chenet & Marco Orfao
  */
 public class LandingMenuControlButtonContainer extends JPanel {
-	public LandingMenuLeaderboard leaderboard;
+	public LandingMenuSidebar sidebar;
 
 	/**
 	 * constructeur de la classe, instancie les boutons et les affiches dans le menu
 	 */
-	public LandingMenuControlButtonContainer(JFrame menuWindow, LandingMenuLeaderboard leaderboard) {
+	public LandingMenuControlButtonContainer(LandingMenu landingMenu,
+			LandingMenuSidebar sidebar, LandingMenuLeaderboard leaderboard) {
 		super();
 
-		this.leaderboard = leaderboard;
+		this.sidebar = sidebar;
 		this.setLayout(new GridBagLayout());
 
-		KButton startButton = new LandingMenuControlButton("Commencer la partie", KButtonType.PLAY);
-		KButton settingsButton = new LandingMenuControlButton("Paramètres", KButtonType.SETTINGS);
-		KButton leaveButton = new LandingMenuControlButton("Quitter", KButtonType.QUIT);
+		KButton startButton = new LandingMenuControlButton(landingMenu, leaderboard, "Commencer la partie",
+				KButtonType.PLAY,
+				this.sidebar);
+		KButton settingsButton = new LandingMenuControlButton(landingMenu, leaderboard, "Paramètres",
+				KButtonType.SETTINGS,
+				this.sidebar);
+		KButton leaveButton = new LandingMenuControlButton(landingMenu, leaderboard, "Quitter",
+				KButtonType.QUIT, this.sidebar);
 
-		KButton alphaButton = new LandingMenuControlButton(menuWindow, "alpha", KButtonType.SEED, this.leaderboard,
+		KButton alphaButton = new LandingMenuControlButton(landingMenu, leaderboard, "alpha", KButtonType.SEED,
+				this.sidebar,
 				154275265);
-		KButton betaButton = new LandingMenuControlButton(menuWindow, "beta", KButtonType.SEED, this.leaderboard,
+		KButton betaButton = new LandingMenuControlButton(landingMenu, leaderboard, "beta", KButtonType.SEED,
+				this.sidebar,
 				534547947);
-		KButton gammaButton = new LandingMenuControlButton(menuWindow, "gamma", KButtonType.SEED, this.leaderboard,
+		KButton gammaButton = new LandingMenuControlButton(landingMenu, leaderboard, "gamma", KButtonType.SEED,
+				this.sidebar,
 				874245424);
-		KButton deltaButton = new LandingMenuControlButton(menuWindow, "delta", KButtonType.SEED, this.leaderboard,
+		KButton deltaButton = new LandingMenuControlButton(landingMenu, leaderboard, "delta", KButtonType.SEED,
+				this.sidebar,
 				951984768);
 
 		GridBagConstraints gbc = new GridBagConstraints();

@@ -8,11 +8,14 @@ import fr.kanassoulier.dorfromantik.enums.KButtonType;
 
 public class LandingMenuControlButton extends KButton {
 	public long seed;
-	public LandingMenuLeaderboard leaderboard;
-	private JFrame menuWindow;
+	public LandingMenuSidebar sidebar;
 
-	public LandingMenuControlButton(String text, KButtonType type) {
+	public LandingMenuControlButton(LandingMenu landingMenu, LandingMenuLeaderboard leaderboard, String text,
+			KButtonType type,
+			LandingMenuSidebar sidebar) {
 		super(text, type);
+
+		this.sidebar = sidebar;
 
 		switch (type) {
 			case SEED:
@@ -28,16 +31,18 @@ public class LandingMenuControlButton extends KButton {
 				this.setHoverBackground(new Color(255, 255, 255, 225));
 				break;
 		}
-
-		this.addActionListener(new LandingMenuControlButtonListener(this.menuWindow, this, this.leaderboard, this.seed));
+		this.addActionListener(
+				new LandingMenuControlButtonListener(landingMenu, leaderboard, this, this.sidebar, this.seed));
 	}
 
-	public LandingMenuControlButton(JFrame menuWindow, String text, KButtonType type, LandingMenuLeaderboard leaderboard,
+	public LandingMenuControlButton(LandingMenu landingMenu, LandingMenuLeaderboard leaderboard, String text,
+			KButtonType type,
+			LandingMenuSidebar sidebar,
 			long seed) {
-		this(text, type);
-
-		this.leaderboard = leaderboard;
+		this(landingMenu, leaderboard, text, type, sidebar);
+		this.sidebar = sidebar;
 		this.seed = seed;
-		this.menuWindow = menuWindow;
+		this.addActionListener(
+				new LandingMenuControlButtonListener(landingMenu, leaderboard, this, this.sidebar, this.seed));
 	}
 }
