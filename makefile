@@ -36,5 +36,5 @@ javadoc:
 
 jar:
 	@echo "Creating jar..."
-	@jar cfm $(JARNAME) $(MANIFESTPATH) -C $(BUILDDIR) fr/kanassoulier/dorfromantik resources .env
+	@jar cfm $(JARNAME) $(MANIFESTPATH) -C $(BUILDDIR) fr/kanassoulier/literomantik resources .env
 	@echo "Done."
