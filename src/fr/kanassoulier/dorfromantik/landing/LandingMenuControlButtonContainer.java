@@ -3,6 +3,7 @@ package fr.kanassoulier.dorfromantik.landing;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import fr.kanassoulier.dorfromantik.components.KButton;
@@ -21,7 +22,7 @@ public class LandingMenuControlButtonContainer extends JPanel {
 	/**
 	 * constructeur de la classe, instancie les boutons et les affiches dans le menu
 	 */
-	public LandingMenuControlButtonContainer(LandingMenuLeaderboard leaderboard) {
+	public LandingMenuControlButtonContainer(JFrame menuWindow, LandingMenuLeaderboard leaderboard) {
 		super();
 
 		this.leaderboard = leaderboard;
@@ -31,10 +32,14 @@ public class LandingMenuControlButtonContainer extends JPanel {
 		KButton settingsButton = new LandingMenuControlButton("Paramètres", KButtonType.SETTINGS);
 		KButton leaveButton = new LandingMenuControlButton("Quitter", KButtonType.QUIT);
 
-		KButton alphaButton = new LandingMenuControlButton("alpha", KButtonType.SEED, this.leaderboard, 154275265);
-		KButton betaButton = new LandingMenuControlButton("beta", KButtonType.SEED, this.leaderboard, 534547947);
-		KButton gammaButton = new LandingMenuControlButton("gamma", KButtonType.SEED, this.leaderboard, 874245424);
-		KButton deltaButton = new LandingMenuControlButton("delta", KButtonType.SEED, this.leaderboard, 951984768);
+		KButton alphaButton = new LandingMenuControlButton(menuWindow, "alpha", KButtonType.SEED, this.leaderboard,
+				154275265);
+		KButton betaButton = new LandingMenuControlButton(menuWindow, "beta", KButtonType.SEED, this.leaderboard,
+				534547947);
+		KButton gammaButton = new LandingMenuControlButton(menuWindow, "gamma", KButtonType.SEED, this.leaderboard,
+				874245424);
+		KButton deltaButton = new LandingMenuControlButton(menuWindow, "delta", KButtonType.SEED, this.leaderboard,
+				951984768);
 
 		GridBagConstraints gbc = new GridBagConstraints();
 

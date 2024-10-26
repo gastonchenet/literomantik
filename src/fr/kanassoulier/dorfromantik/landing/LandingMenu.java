@@ -36,6 +36,6 @@ public class LandingMenu extends JFrame {
 		pageTitle.setBounds(0, 50, Game.WINDOW_WIDTH - LandingMenuSidebar.WIDTH, 50);
 
 		this.add(pageTitle);
-		this.add(new LandingMenuSidebar());
+		this.add(new LandingMenuSidebar(this));
 	}
 }
