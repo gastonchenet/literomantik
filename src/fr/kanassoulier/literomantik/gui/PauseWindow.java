@@ -1,10 +1,11 @@
-package fr.kanassoulier.literomantik.game;
+package fr.kanassoulier.literomantik.gui;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
 import fr.kanassoulier.literomantik.enums.KButtonType;
+import fr.kanassoulier.literomantik.game.Game;
 import fr.kanassoulier.literomantik.utils.FontLoader;
 
 import java.awt.Color;

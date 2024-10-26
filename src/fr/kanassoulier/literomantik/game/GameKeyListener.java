@@ -3,6 +3,7 @@ package fr.kanassoulier.literomantik.game;
 import java.awt.event.KeyEvent;
 
 import fr.kanassoulier.literomantik.end.EndMenu;
+import fr.kanassoulier.literomantik.gui.PauseWindow;
 
 import java.awt.event.KeyAdapter;
 

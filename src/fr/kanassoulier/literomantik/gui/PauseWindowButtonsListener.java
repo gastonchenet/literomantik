@@ -1,8 +1,9 @@
-package fr.kanassoulier.literomantik.game;
+package fr.kanassoulier.literomantik.gui;
 
 import java.awt.event.ActionListener;
 
 import fr.kanassoulier.literomantik.enums.KButtonType;
+import fr.kanassoulier.literomantik.game.Game;
 import fr.kanassoulier.literomantik.landing.LandingMenu;
 import fr.kanassoulier.literomantik.utils.SoundPlayer;
 

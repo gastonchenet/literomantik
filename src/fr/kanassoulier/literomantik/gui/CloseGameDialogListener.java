@@ -1,7 +1,9 @@
-package fr.kanassoulier.literomantik.game;
+package fr.kanassoulier.literomantik.gui;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+
+import fr.kanassoulier.literomantik.game.Game;
 
 public class CloseGameDialogListener implements WindowListener {
 	private Game game;

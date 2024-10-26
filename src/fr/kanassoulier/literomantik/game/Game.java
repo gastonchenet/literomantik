@@ -7,6 +7,7 @@ import javax.swing.JLayeredPane;
 
 import fr.kanassoulier.literomantik.Options;
 import fr.kanassoulier.literomantik.end.EndMenu;
+import fr.kanassoulier.literomantik.gui.CloseGameDialogListener;
 import fr.kanassoulier.literomantik.gui.Gui;
 import fr.kanassoulier.literomantik.utils.Database;
 import fr.kanassoulier.literomantik.utils.ImageLoader;

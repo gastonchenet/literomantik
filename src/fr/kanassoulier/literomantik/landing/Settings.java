@@ -74,9 +74,9 @@ public class Settings extends JDialog {
 		this.add(title, BorderLayout.NORTH);
 
 		KButton validateButton = new KButton("Valider", KButtonType.SAVE);
-		validateButton.addActionListener(new SettingsButtonListener(SettingsButtonListener.VALIDATE, this));
+		validateButton.addActionListener(new SettingsButtonListener(KButtonType.YES, this));
 		KButton cancelButton = new KButton("Annuler", KButtonType.CANCEL);
-		cancelButton.addActionListener(new SettingsButtonListener(SettingsButtonListener.CANCEL, this));
+		cancelButton.addActionListener(new SettingsButtonListener(KButtonType.CANCEL, this));
 		JPanel finalButtons = new JPanel(new FlowLayout(FlowLayout.LEADING));
 
 		finalButtons.add(validateButton);

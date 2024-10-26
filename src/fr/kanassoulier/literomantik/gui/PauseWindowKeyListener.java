@@ -1,4 +1,4 @@
-package fr.kanassoulier.literomantik.game;
+package fr.kanassoulier.literomantik.gui;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
