@@ -14,7 +14,7 @@ import fr.kanassoulier.dorfromantik.utils.SoundPlayer;
 /**
  * Le plateau de jeu.
  * 
- * @version 1.0
+ * @version 1.1
  * @author Gaston Chenet
  */
 public class Board extends JLayeredPane {
@@ -22,6 +22,7 @@ public class Board extends JLayeredPane {
 
 	private Game game;
 	private int x = Game.WINDOW_WIDTH / 2, y = Game.WINDOW_HEIGHT / 2;
+	private boolean animating = false;
 
 	/**
 	 * Constructeur du plateau de jeu.
@@ -107,16 +108,18 @@ public class Board extends JLayeredPane {
 	 * @param area La zone où placer la tuile.
 	 */
 	public void placeTile(PlaceableArea area) {
-		if (this.game.isFinished())
+		if (this.game.isFinished() || this.animating)
 			return;
 
 		this.remove(area);
 
 		PreviewTile previewTile = this.game.getGui().getPreviewTile();
 		previewTile.animateTo(area.getCenter(), area.getViewportCenter());
+		this.animating = true;
 	}
 
 	public void displayTile(PreviewTile previewTile, Point center) {
+		this.animating = false;
 		PlaceableTile tile = new PlaceableTile(previewTile, center);
 		this.add(tile);
 
