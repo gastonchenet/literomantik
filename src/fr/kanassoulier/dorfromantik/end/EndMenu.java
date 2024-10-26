@@ -55,7 +55,9 @@ public class EndMenu extends JDialog {
 
 		KTextField usernameField = new KTextField();
 		usernameField.setBorder(new EmptyBorder(0, 0, 5, 0));
-		usernameField.getSubmit().addActionListener(new EndGameTextFieldListener(usernameField, score, game.getSeed()));
+		boolean status = false;
+		usernameField.getSubmit()
+				.addActionListener(new EndGameTextFieldListener(this, usernameField, score, game.getSeed(), status, endStatus));
 
 		EndMenuButtonsRow buttons = new EndMenuButtonsRow(game);
 

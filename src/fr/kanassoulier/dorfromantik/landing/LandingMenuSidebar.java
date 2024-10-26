@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.JPanel;
+import javax.swing.JFrame;
 import javax.swing.border.EmptyBorder;
 
 import fr.kanassoulier.dorfromantik.game.Game;
@@ -21,11 +22,15 @@ public class LandingMenuSidebar extends JPanel {
 	 */
 	public static final int WIDTH = 300;
 
+	private JFrame menuWindow;
+
 	/**
 	 * Constructeur de la classe qui instancie les différents composants
 	 */
-	public LandingMenuSidebar() {
+	public LandingMenuSidebar(JFrame menuWindow) {
 		super();
+
+		this.menuWindow = menuWindow;
 
 		this.setBackground(new Color(71, 71, 252));
 		this.setBounds(Game.WINDOW_WIDTH - LandingMenuSidebar.WIDTH, 0, LandingMenuSidebar.WIDTH, Game.WINDOW_HEIGHT - 35);
@@ -34,7 +39,7 @@ public class LandingMenuSidebar extends JPanel {
 
 		LandingMenuLeaderboard leaderboard = new LandingMenuLeaderboard();
 
-		this.add(new LandingMenuControlButtonContainer(leaderboard), BorderLayout.SOUTH);
+		this.add(new LandingMenuControlButtonContainer(this.menuWindow, leaderboard), BorderLayout.SOUTH);
 
 		this.add(leaderboard, BorderLayout.CENTER);
 	}
