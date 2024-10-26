@@ -1,6 +1,6 @@
-PACKAGE = fr.kanassoulier.dorfromantik
+PACKAGE = fr.kanassoulier.literomantik
 ENTRY = Main
-SOURCEDIR = ./src/fr/kanassoulier/dorfromantik/
+SOURCEDIR = ./src/fr/kanassoulier/literomantik/
 BUILDDIR = ./build/
 DOCDIR = ./doc/
 JARNAME = literomantik.jar
