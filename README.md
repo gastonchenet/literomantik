@@ -8,7 +8,7 @@ Diagramme de classes UML pour le jeu Dorfromantik : [lien](./resources/Diagrams.
 
 ## Utilisation
 
-Utiliser la `commande` make crée un jar et le lance automatiquement
+Utiliser la `commande` make crée un jar et le lance automatiquement  
 La librairie mariadb-client.jar doit se trouver dans un dossier ressources situé dans le même répertoire que le jar.
 **Il est possible de modificier cet emplacement en modifiant le champ : `Class-Path:` dans le fichier Manifest.txt. Cela est réservé aux utilisateurs avancés.**
 
@@ -24,7 +24,7 @@ make javadoc
 
 # Documentation
 
-Une documentation javadoc est disponible via la commande : `make javadoc`
-Un diagramme de classes simplifié est disponible : [lien](./resources/Diagrams.mdj)
-Un rapport d'avancement est disponible : [lien](./resources/Rapport.pdf)
+Une documentation javadoc est disponible via la commande : `make javadoc`  
+Un diagramme de classes simplifié est disponible : [lien](./resources/Diagrams.mdj)  
+Un rapport d'avancement est disponible : [lien](./resources/Rapport.pdf)  
 

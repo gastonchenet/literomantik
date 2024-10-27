@@ -10,11 +10,11 @@ MANIFESTPATH = Manifest.txt
 SOURCES := $(foreach dir, $(wildcard $(SOURCEDIR)**/), $(dir)*.java)
 
 all:
-	@make compile
+	@make build
 	@make jar
 	@make run
 
-compile:
+build:
 	@echo "Compiling..."
 	@javac -cp $(CLASSP) -d $(BUILDDIR) $(SOURCEDIR)*.java $(SOURCES) -Xlint:unchecked -Xlint:deprecation
 	@echo "Done."
