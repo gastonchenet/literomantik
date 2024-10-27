@@ -17,7 +17,6 @@ import java.awt.Component;
  */
 public class GameInteractionListener implements MouseMotionListener, MouseWheelListener {
   private Game instance;
-
   private int mouseX;
   private int mouseY;
   private long lastRotation;

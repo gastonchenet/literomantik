@@ -9,18 +9,36 @@ import javax.swing.SwingUtilities;
 import fr.kanassoulier.literomantik.game.Game;
 import fr.kanassoulier.literomantik.utils.Seed;
 
+/**
+ * Classe permettant de gérer les événements de souris sur un SeedSelectorButton
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class SeedSelectorButtonListener implements MouseListener {
   private boolean mouseOver = false;
   private SeedSelectorButton button;
   private LandingMenu menu;
   private Seed seed;
 
+  /**
+   * Constructeur de SeedSelectorButtonListener
+   * 
+   * @param button Le bouton à écouter
+   * @param menu   Le menu de landing
+   * @param seed   La graine du bouton
+   */
   public SeedSelectorButtonListener(SeedSelectorButton button, LandingMenu menu, Seed seed) {
     this.button = button;
     this.menu = menu;
     this.seed = seed;
   }
 
+  /**
+   * Permet de savoir si la souris est sur le bouton
+   * 
+   * @return true si la souris est sur le bouton, false sinon
+   */
   public boolean isMouseOver() {
     return this.mouseOver;
   }

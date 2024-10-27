@@ -20,6 +20,9 @@ import fr.kanassoulier.literomantik.utils.Hexagon;
  * @author Gaston Chenet
  */
 public class Tile extends Cell {
+  /**
+   * Nombre de milisecondes entre chaque déclanchement du scroll event
+   */
   public static final int MIN_SCROLL_OFFSET = 40;
 
   private HashMap<TileSide, Biome> biomes = new HashMap<TileSide, Biome>();
@@ -162,6 +165,11 @@ public class Tile extends Cell {
     return null;
   }
 
+  /**
+   * Récupère les biomes de la tuile
+   * 
+   * @return Les biomes de la tuile
+   */
   public Biome[] getBiomes() {
     Biome[] biomes = new Biome[TileSide.values().length];
 

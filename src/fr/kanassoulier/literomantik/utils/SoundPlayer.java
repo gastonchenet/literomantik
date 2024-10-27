@@ -19,7 +19,14 @@ import fr.kanassoulier.literomantik.enums.SoundChannel;
  * @author Gaston Chenet, Maxence Raymond
  */
 public class SoundPlayer {
+	/**
+	 * Les canaux de son disponibles.
+	 */
 	private static HashMap<SoundChannel, SoundPlayer> channels = new HashMap<>();
+
+	private SoundChannel channel;
+	private Clip clip;
+	private FloatControl control;
 
 	/**
 	 * Normalise le volume entre 0 et 100 en dBFS.
@@ -130,20 +137,37 @@ public class SoundPlayer {
 		}
 	}
 
+	/**
+	 * Arrête tous les sons
+	 * 
+	 * @param channel Le canal de son
+	 */
 	public static void kill() {
 		for (SoundPlayer player : SoundPlayer.channels.values()) {
-			player.clip.stop();
-			player.clip.close();
+			player.close();
 		}
 	}
 
-	private SoundChannel channel;
-	private Clip clip;
-	private FloatControl control;
-
-	public SoundPlayer(SoundChannel channel, Clip clip, FloatControl control) {
+	/**
+	 * Constructeur de la classe
+	 * 
+	 * @param channel Le canal de son
+	 * @param clip    Le clip audio
+	 * @param control Le contrôle de volume
+	 */
+	private SoundPlayer(SoundChannel channel, Clip clip, FloatControl control) {
 		this.channel = channel;
 		this.clip = clip;
 		this.control = control;
+	}
+
+	/**
+	 * Arrête le son et le ferme
+	 */
+	private void close() {
+		this.clip.stop();
+		this.clip.close();
+
+		SoundPlayer.channels.remove(this.channel);
 	}
 }

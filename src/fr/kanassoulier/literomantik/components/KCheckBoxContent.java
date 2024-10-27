@@ -8,10 +8,19 @@ import java.awt.RenderingHints;
 
 import javax.swing.JButton;
 
+/**
+ * Classe permettant de créer le contenu d'une case à cocher stylisée
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class KCheckBoxContent extends JButton {
   private boolean checked = false;
   private KCheckBoxContentListener listener;
 
+  /**
+   * Constructeur de KCheckBoxContent
+   */
   public KCheckBoxContent() {
     this.setContentAreaFilled(false);
     this.setBorderPainted(false);
@@ -22,10 +31,20 @@ public class KCheckBoxContent extends JButton {
     this.addMouseListener(this.listener);
   }
 
+  /**
+   * Permet de savoir si la case à cocher est cochée
+   * 
+   * @return true si la case à cocher est cochée, false sinon
+   */
   public boolean isChecked() {
     return this.checked;
   }
 
+  /**
+   * Permet de cocher ou décocher la case à cocher
+   * 
+   * @param checked true pour cocher la case à cocher, false pour la décocher
+   */
   public void setChecked(boolean checked) {
     this.checked = checked;
     this.repaint();

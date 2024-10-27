@@ -18,6 +18,9 @@ import fr.kanassoulier.literomantik.utils.SoundPlayer;
  * @author Gaston Chenet
  */
 public class Board extends JLayeredPane {
+	/**
+	 * Le rayon du plateau.
+	 */
 	private static final int BOARD_RADIUS = Options.TURNS * Options.CELL_RADIUS * 2;
 
 	private Game game;
@@ -57,6 +60,15 @@ public class Board extends JLayeredPane {
 	 */
 	public Game getGame() {
 		return this.game;
+	}
+
+	/**
+	 * Récupérer le centre du plateau.
+	 * 
+	 * @return Le centre du plateau.
+	 */
+	public Point getCenter() {
+		return new Point(this.x, this.y);
 	}
 
 	/**
@@ -119,6 +131,12 @@ public class Board extends JLayeredPane {
 		this.animating = true;
 	}
 
+	/**
+	 * Afficher une tuile sur le plateau.
+	 * 
+	 * @param previewTile La tuile à afficher.
+	 * @param center      Le centre de la tuile.
+	 */
 	public void displayTile(PreviewTile previewTile, Point center) {
 		this.animating = false;
 		PlaceableTile tile = new PlaceableTile(previewTile, center);
@@ -159,9 +177,5 @@ public class Board extends JLayeredPane {
 				this.y - Board.BOARD_RADIUS,
 				Board.BOARD_RADIUS * 2,
 				Board.BOARD_RADIUS * 2);
-	}
-
-	public Point getCenter() {
-		return new Point(this.x, this.y);
 	}
 }

@@ -16,6 +16,9 @@ import fr.kanassoulier.literomantik.utils.Hexagon;
  * @author Gaston Chenet, Maxence Raymond
  */
 public class PlaceableArea extends Tile {
+  /**
+   * Multiplieur du rayon de la zone
+   */
   private static final float RADIUS_MULTIPLIER = 0.4f, HOVER_RADIUS_MULTIPLIER = 0.6f;
 
   private PlaceableAreaListener listener;
@@ -61,15 +64,13 @@ public class PlaceableArea extends Tile {
                     : PlaceableArea.RADIUS_MULTIPLIER)));
   }
 
+  /**
+   * Récupérer le listener de la zone
+   * 
+   * @return le listener de la zone
+   */
   public PlaceableAreaListener getListener() {
     return this.listener;
-  }
-
-  /**
-   * Indique au gestionnaire de placer la tuile
-   */
-  void placeTile() {
-    this.getBoard().placeTile(this);
   }
 
   @Override

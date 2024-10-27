@@ -9,9 +9,18 @@ import java.awt.RenderingHints;
 import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * Classe permettant de créer un bouton de soumission stylisé
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class KTextFieldSubmit extends JButton {
   private KTextFieldSubmitListener listener;
 
+  /**
+   * Constructeur de KTextFieldSubmit
+   */
   public KTextFieldSubmit() {
     super();
 

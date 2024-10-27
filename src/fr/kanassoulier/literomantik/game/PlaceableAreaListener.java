@@ -15,10 +15,20 @@ public class PlaceableAreaListener implements MouseListener, MouseMotionListener
   private boolean mouseOver = false;
   private PlaceableArea area;
 
+  /**
+   * Constructeur de PlaceableAreaListener
+   * 
+   * @param area La zone de placement à écouter
+   */
   public PlaceableAreaListener(PlaceableArea area) {
     this.area = area;
   }
 
+  /**
+   * Permet de savoir si la souris est sur la zone de placement
+   * 
+   * @return true si la souris est sur la zone de placement, false sinon
+   */
   public boolean isMouseOver() {
     return this.mouseOver;
   }

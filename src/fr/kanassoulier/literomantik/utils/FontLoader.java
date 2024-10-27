@@ -34,7 +34,18 @@ public class FontLoader {
 		}
 	}
 
+	/**
+	 * Police Lexend-Bold
+	 */
 	public static final Font LEXEND_BOLD = FontLoader.loadFont("resources/fonts/Lexend-Bold.ttf");
+
+	/**
+	 * Police Lexend-Regular
+	 */
 	public static final Font LEXEND_REGULAR = FontLoader.loadFont("resources/fonts/Lexend-Regular.ttf");
+
+	/**
+	 * Police LilitaOne-Regular
+	 */
 	public static final Font LILITA_ONE_REGULAR = FontLoader.loadFont("resources/fonts/LilitaOne-Regular.ttf");
 }

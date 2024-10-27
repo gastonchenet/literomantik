@@ -13,6 +13,12 @@ import fr.kanassoulier.literomantik.utils.Database;
 import java.sql.Date;
 import java.time.LocalDate;
 
+/**
+ * Classe permettant de gérer l'écouteur du champ de texte de fin de partie
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class EndGameTextFieldListener implements ActionListener {
 	private KTextField textField;
 	private int score;
@@ -20,6 +26,15 @@ public class EndGameTextFieldListener implements ActionListener {
 	private boolean status;
 	private JLabel statusTxt;
 
+	/**
+	 * Constructeur de EndGameTextFieldListener
+	 * 
+	 * @param textField Le champ de texte à écouter
+	 * @param score     Le score de la partie
+	 * @param seed      La graine de la partie
+	 * @param status    Le statut de la partie
+	 * @param statusTxt Le texte de statut de la partie
+	 */
 	public EndGameTextFieldListener(KTextField textField, int score, long seed, boolean status, JLabel statusTxt) {
 		this.textField = textField;
 		this.score = score;
@@ -28,6 +43,7 @@ public class EndGameTextFieldListener implements ActionListener {
 		this.statusTxt = statusTxt;
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		EndMenu window = (EndMenu) SwingUtilities.getWindowAncestor(this.textField);
 

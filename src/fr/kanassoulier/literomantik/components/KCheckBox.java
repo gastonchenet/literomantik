@@ -7,12 +7,25 @@ import javax.swing.JPanel;
 
 import fr.kanassoulier.literomantik.utils.FontLoader;
 
+/**
+ * Classe permettant de créer une case à cocher stylisée
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class KCheckBox extends JPanel {
-  private static final int WIDTH = 200;
-  private static final int HEIGHT = 20;
+  /**
+   * La largeur de la case à cocher
+   */
+  private static final int WIDTH = 200, HEIGHT = 20;
 
   private KCheckBoxContent content;
 
+  /**
+   * Constructeur de KCheckBox
+   * 
+   * @param text Le texte de la case à cocher
+   */
   public KCheckBox(String text) {
     this.setOpaque(false);
     this.setLayout(null);
@@ -27,10 +40,20 @@ public class KCheckBox extends JPanel {
     this.add(label);
   }
 
+  /**
+   * Permet de savoir si la case à cocher est cochée
+   * 
+   * @param checked
+   */
   public void setChecked(boolean checked) {
     this.content.setChecked(checked);
   }
 
+  /**
+   * Permet de savoir si la case à cocher est cochée
+   * 
+   * @return true si la case à cocher est cochée, false sinon
+   */
   public boolean isChecked() {
     return this.content.isChecked();
   }

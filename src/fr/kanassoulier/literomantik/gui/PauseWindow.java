@@ -14,6 +14,12 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.GridBagConstraints;
 
+/**
+ * Classe permettant de créer une fenêtre de pause
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class PauseWindow extends JDialog {
 	public PauseWindow(Game game) {
 		super(game, "Pause", true);

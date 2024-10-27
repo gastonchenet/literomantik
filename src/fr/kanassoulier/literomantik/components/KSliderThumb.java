@@ -7,11 +7,25 @@ import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
 
+/**
+ * Classe permettant de créer un curseur stylisé pour un slider
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class KSliderThumb extends JPanel {
+  /**
+   * La largeur du curseur
+   */
   public static final int WIDTH = 4;
 
   private KSlider slider;
 
+  /**
+   * Constructeur de KSliderThumb
+   * 
+   * @param slider Le slider auquel le curseur est associé
+   */
   public KSliderThumb(KSlider slider) {
     this.setSize(KSliderThumb.WIDTH, KSlider.HEIGHT);
     this.setBackground(new Color(71, 71, 252));
@@ -21,6 +35,11 @@ public class KSliderThumb extends JPanel {
     this.setOpaque(false);
   }
 
+  /**
+   * Permet de récupérer le slider associé au curseur
+   * 
+   * @return Le slider associé au curseur
+   */
   public KSlider getSlider() {
     return this.slider;
   }

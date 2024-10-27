@@ -5,9 +5,20 @@ import java.awt.event.WindowListener;
 
 import fr.kanassoulier.literomantik.game.Game;
 
+/**
+ * Classe permettant de gérer les événements de fermeture de la fenêtre de jeu
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class CloseGameDialogListener implements WindowListener {
 	private Game game;
 
+	/**
+	 * Constructeur de CloseGameDialogListener
+	 * 
+	 * @param game La partie en cours
+	 */
 	public CloseGameDialogListener(Game game) {
 		this.game = game;
 	}
@@ -19,26 +30,26 @@ public class CloseGameDialogListener implements WindowListener {
 
 	@Override
 	public void windowActivated(WindowEvent e) {
-	} // premier plan
+	}
 
 	@Override
 	public void windowClosed(WindowEvent e) {
 		this.game.getDatabase().close();
-	} // après fermeture
+	}
 
 	@Override
 	public void windowDeactivated(WindowEvent e) {
-	} // arrière-plan
+	}
 
 	@Override
 	public void windowDeiconified(WindowEvent e) {
-	} // restauration
+	}
 
 	@Override
 	public void windowIconified(WindowEvent e) {
-	} // minimisation
+	}
 
 	@Override
 	public void windowOpened(WindowEvent e) {
-	} // après ouverture
+	}
 }

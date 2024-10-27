@@ -7,15 +7,28 @@ import fr.kanassoulier.literomantik.Options;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 
+/**
+ * Classe permettant de gérer l'animation de la tuile de prévisualisation
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class PreviewTileTimerListener implements ActionListener {
-  private static int HANDLE_DISTANCE = 5;
-  private static int END_TILE_RADIUS = Options.CELL_RADIUS;
-  private static double SPEED = 1.4d;
-  private static double EASING_FACTOR = 0.2d;
+  /**
+   * Constantes de la classe PreviewTileTimerListener
+   */
+  private static int HANDLE_DISTANCE = 5, END_TILE_RADIUS = Options.CELL_RADIUS;
+  private static double SPEED = 1.4d, EASING_FACTOR = 0.2d;
 
   private PreviewTile previewTile;
   private Point targetPosition;
 
+  /**
+   * Constructeur de PreviewTileTimerListener
+   * 
+   * @param previewTile    La tuile à animer
+   * @param targetPosition La position cible de la tuile
+   */
   public PreviewTileTimerListener(PreviewTile previewTile, Point targetPosition) {
     this.previewTile = previewTile;
     this.targetPosition = targetPosition;

@@ -88,6 +88,11 @@ public class Game extends JFrame {
 		return this.board;
 	}
 
+	/**
+	 * Obtenir la base de données
+	 * 
+	 * @return La base de données
+	 */
 	public Database getDatabase() {
 		return this.database;
 	}
@@ -110,6 +115,11 @@ public class Game extends JFrame {
 		return this.randomizer.nextInt();
 	}
 
+	/**
+	 * Obtenir la graine du générateur de nombres aléatoires
+	 * 
+	 * @return La graine du générateur de nombres aléatoires
+	 */
 	public long getSeed() {
 		return this.seed;
 	}
@@ -124,10 +134,18 @@ public class Game extends JFrame {
 		return this.randomizer.nextInt(bound);
 	}
 
+	/**
+	 * Savoir si la partie est terminée
+	 * 
+	 * @return true si la partie est terminée, false sinon
+	 */
 	public boolean isFinished() {
 		return this.board.countTiles() >= Options.TURNS;
 	}
 
+	/**
+	 * Afficher le menu de fin de partie
+	 */
 	public void showEndMenu() {
 		new EndMenu(this).setVisible(true);
 	}

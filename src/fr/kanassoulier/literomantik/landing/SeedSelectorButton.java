@@ -11,11 +11,23 @@ import javax.swing.border.EmptyBorder;
 import fr.kanassoulier.literomantik.utils.FontLoader;
 import fr.kanassoulier.literomantik.utils.Seed;
 
+/**
+ * Classe permettant de créer un bouton de sélection de seed
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class SeedSelectorButton extends JButton {
   private SeedSelectorButtonListener listener;
   public Seed seed;
   public boolean mouseOver = false;
 
+  /**
+   * Constructeur de SeedSelectorButton
+   * 
+   * @param menu Le menu de landing
+   * @param seed La graine du bouton
+   */
   public SeedSelectorButton(LandingMenu menu, Seed seed) {
     this.seed = seed;
 

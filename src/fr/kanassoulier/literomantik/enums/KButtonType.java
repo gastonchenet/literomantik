@@ -4,8 +4,7 @@ package fr.kanassoulier.literomantik.enums;
  * Énumère les différents types de KButton
  * 
  * @version 1.1
- * @author Gaston Chenet
- * @author Marco Orfao
+ * @author Gaston Chenet, Marco Orfao
  */
 public enum KButtonType {
 	QUIT,

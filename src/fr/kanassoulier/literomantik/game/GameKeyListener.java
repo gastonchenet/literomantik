@@ -7,9 +7,20 @@ import fr.kanassoulier.literomantik.gui.PauseWindow;
 
 import java.awt.event.KeyAdapter;
 
+/**
+ * Classe permettant de gérer les événements de clavier du jeu
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class GameKeyListener extends KeyAdapter {
 	private Game game;
 
+	/**
+	 * Constructeur de GameKeyListener
+	 * 
+	 * @param game La partie en cours
+	 */
 	public GameKeyListener(Game game) {
 		this.game = game;
 	}

@@ -9,14 +9,27 @@ import fr.kanassoulier.literomantik.utils.FontLoader;
 
 import javax.swing.JLabel;
 
+/**
+ * Classe permettant de mettre à jour le score
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class ScoreUpdate extends JLabel {
-  private static final int GAP = 10;
-  private static final int HEIGHT = 50;
+  /**
+   * Les dimensions de l'objet
+   */
+  private static final int GAP = 10, HEIGHT = 50;
 
   private Gui gui;
   private Timer timer;
   private int opacity = 0;
 
+  /**
+   * Constructeur de ScoreUpdate
+   * 
+   * @param gui Le GUI
+   */
   public ScoreUpdate(Gui gui) {
     super("", JLabel.LEFT);
 
@@ -27,15 +40,28 @@ public class ScoreUpdate extends JLabel {
     this.setForeground(new Color(190, 190, 190, this.opacity));
   }
 
+  /**
+   * Permet de récupérer le GUI
+   * 
+   * @param opacity L'opacité
+   */
   public void setOpacity(int opacity) {
     this.opacity = opacity;
     this.setForeground(new Color(190, 190, 190, this.opacity));
   }
 
+  /**
+   * Permet de récupérer le GUI
+   */
   public Timer getTimer() {
     return this.timer;
   }
 
+  /**
+   * Permet de récupérer le GUI
+   * 
+   * @param deltaY La valeur de déplacement verticale
+   */
   public void setVerticalAxis(int deltaY) {
     Scoreboard scoreboard = this.gui.getScoreboard();
     int scoreTextWidth = this.getFontMetrics(scoreboard.getFont()).stringWidth(scoreboard.getText());

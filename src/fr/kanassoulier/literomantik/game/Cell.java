@@ -83,6 +83,11 @@ public abstract class Cell extends JComponent {
     return new Point(this.x, this.y);
   }
 
+  /**
+   * Définir le centre de la cellule.
+   * 
+   * @param center Le centre de la cellule
+   */
   public void setCenter(Point center) {
     this.x = center.x;
     this.y = center.y;
@@ -95,10 +100,21 @@ public abstract class Cell extends JComponent {
         radius * 2);
   }
 
+  /**
+   * Définir le centre de la cellule.
+   * 
+   * @param x Axe x
+   * @param y Axe y
+   */
   public void setCenter(int x, int y) {
     this.setCenter(new Point(x, y));
   }
 
+  /**
+   * Récupérer le centre de la cellule dans le viewport.
+   * 
+   * @return le centre de la cellule dans le viewport
+   */
   public Point getViewportCenter() {
     return new Point(
         this.board.getCenter().x + (this.x - this.board.getWidth() / 2),
@@ -114,6 +130,11 @@ public abstract class Cell extends JComponent {
     return this.radius;
   }
 
+  /**
+   * Définir le rayon de la cellule.
+   * 
+   * @param radius Rayon de la cellule
+   */
   public void setRadius(int radius) {
     this.radius = radius;
   }

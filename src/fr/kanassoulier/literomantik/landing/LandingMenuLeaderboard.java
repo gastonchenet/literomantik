@@ -20,7 +20,11 @@ import fr.kanassoulier.literomantik.utils.FontLoader;
  * @author Gaston Chenet, Marco Orfao
  */
 public class LandingMenuLeaderboard extends JPanel {
+	/**
+	 * Taille du tableau des scores
+	 */
 	public static final int LEADERBOARD_SIZE = 15;
+
 	private boolean statement = false;
 
 	/**
@@ -33,6 +37,12 @@ public class LandingMenuLeaderboard extends JPanel {
 		this.setOpaque(false);
 	}
 
+	/**
+	 * Méthode permettant de créer le tableau des scores
+	 * 
+	 * @param seed la seed à partir de laquelle on veut afficher le tableau des
+	 *             scores
+	 */
 	public void makeLeaderboard(long seed) {
 		this.removeAll();
 
@@ -80,18 +90,28 @@ public class LandingMenuLeaderboard extends JPanel {
 		this.repaint();
 	}
 
+	/**
+	 * Méthode permettant de définir si le tableau des scores doit être affiché ou
+	 * 
+	 * @param statement true si le tableau des scores doit être affiché, false sinon
+	 */
 	public void setLeaderboardStatement(boolean statement) {
 		this.statement = statement;
 		this.revalidate();
 		this.repaint();
 	}
 
+	/**
+	 * Méthode permettant de récupérer l'état du tableau des scores
+	 * 
+	 * @return true si le tableau des scores doit être affiché, false sinon
+	 */
 	public boolean getLeaderboardStatement() {
 		return this.statement;
 	}
 
 	/**
-	 * réécriture de la méthode paintComponent pour dessiner le tableau des scores
+	 * Réécriture de la méthode paintComponent pour dessiner le tableau des scores
 	 * 
 	 * @param g objet de type Graphics
 	 */

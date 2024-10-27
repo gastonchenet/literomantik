@@ -13,6 +13,9 @@ import java.util.Scanner;
 public class Environment {
   private static HashMap<String, String> values = new HashMap<String, String>();
 
+  /**
+   * Charge les variables d'environnement
+   */
   public static void load() {
     InputStream envFileStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(".env");
 
@@ -43,6 +46,12 @@ public class Environment {
     scanner.close();
   }
 
+  /**
+   * Récupère la valeur d'une variable d'environnement
+   * 
+   * @param key Le nom de la variable
+   * @return La valeur de la variable
+   */
   public static String getValue(String key) {
     String value = Environment.values.get(key);
 

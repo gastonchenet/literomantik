@@ -40,6 +40,11 @@ public class LandingMenuSidebar extends JPanel {
 		this.add(this.leaderboard, BorderLayout.CENTER);
 	}
 
+	/**
+	 * Récupérer le leaderboard
+	 * 
+	 * @return Le leaderboard
+	 */
 	public LandingMenuLeaderboard getLeaderboard() {
 		return this.leaderboard;
 	}

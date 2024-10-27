@@ -3,9 +3,20 @@ package fr.kanassoulier.literomantik.components;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
+/**
+ * Classe permettant de gérer les événements de souris sur un KSliderThumb
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class KSliderThumbListener implements MouseMotionListener {
   private KSliderThumb thumb;
 
+  /**
+   * Constructeur de KSliderThumbListener
+   * 
+   * @param thumb Le curseur à écouter
+   */
   public KSliderThumbListener(KSliderThumb thumb) {
     this.thumb = thumb;
   }

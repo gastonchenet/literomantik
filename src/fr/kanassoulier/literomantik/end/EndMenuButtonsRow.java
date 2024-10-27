@@ -11,7 +11,18 @@ import fr.kanassoulier.literomantik.components.KButton;
 import fr.kanassoulier.literomantik.enums.KButtonType;
 import fr.kanassoulier.literomantik.game.Game;
 
+/**
+ * Classe permettant de créer une ligne de boutons pour le menu de fin de partie
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class EndMenuButtonsRow extends JPanel {
+  /**
+   * Constructeur de EndMenuButtonsRow
+   * 
+   * @param game La partie en cours
+   */
   public EndMenuButtonsRow(Game game) {
     super();
 

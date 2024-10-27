@@ -18,11 +18,22 @@ public class LandingMenuControlButtonListener implements ActionListener {
 	private LandingMenuControlButton button;
 	private long seed;
 
+	/**
+	 * Le constructeur de LandingMenuControlButtonListener
+	 * 
+	 * @param button Le bouton à écouter
+	 * @param seed   La graine du bouton
+	 */
 	public LandingMenuControlButtonListener(LandingMenuControlButton button, long seed) {
 		this.button = button;
 		this.seed = seed;
 	}
 
+	/**
+	 * Le constructeur de LandingMenuControlButtonListener
+	 * 
+	 * @param button Le bouton à écouter
+	 */
 	public LandingMenuControlButtonListener(LandingMenuControlButton button) {
 		this(button, 0);
 	}

@@ -12,12 +12,24 @@ import javax.swing.border.EmptyBorder;
 import fr.kanassoulier.literomantik.enums.KButtonType;
 import fr.kanassoulier.literomantik.utils.FontLoader;
 
+/**
+ * Classe permettant de créer un bouton stylisé
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class KButton extends JButton {
 	private KButtonType type;
 	private KButtonListener listener;
 	private Color hoverBackground;
 	private Insets padding;
 
+	/**
+	 * Constructeur de KButton
+	 * 
+	 * @param text Le texte du bouton
+	 * @param type Le type du bouton
+	 */
 	public KButton(String text, KButtonType type) {
 		super(text);
 
@@ -36,32 +48,65 @@ public class KButton extends JButton {
 		this.addMouseListener(this.listener);
 	}
 
+	/**
+	 * Constructeur de KButton
+	 * 
+	 * @param text Le texte du bouton
+	 */
 	public KButton(KButtonType type) {
 		this("", type);
 	}
 
+	/**
+	 * Constructeur de KButton
+	 */
 	public KButtonType getType() {
 		return this.type;
 	}
 
+	/**
+	 * Permet de changer le type du bouton
+	 * 
+	 * @param padding
+	 */
 	public void setPadding(Insets padding) {
 		this.padding = padding;
 		this.setBorder(new EmptyBorder(this.padding));
 	}
 
+	/**
+	 * Permet de changer le padding du bouton
+	 * 
+	 * @return padding
+	 */
 	public void setPadding(int top, int left, int bottom, int right) {
 		this.padding = new Insets(top, left, bottom, right);
 		this.setBorder(new EmptyBorder(this.padding));
 	}
 
+	/**
+	 * Permet de récupérer le padding du bouton
+	 * 
+	 * @return padding
+	 */
 	public Insets getPadding() {
 		return this.padding;
 	}
 
+	/**
+	 * Permet de changer la couleur de fond du bouton au survol
+	 * 
+	 * @param hoverBackground
+	 */
 	public void setHoverBackground(Color hoverBackground) {
 		this.hoverBackground = hoverBackground;
 	}
 
+	/**
+	 * Permet de récupérer la couleur de fond du bouton au survol
+	 * 
+	 * @return hoverBackground
+	 */
 	public Color getHoverBackground() {
 		return this.hoverBackground;
 	}

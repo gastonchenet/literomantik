@@ -6,10 +6,21 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+/**
+ * Classe permettant de créer un champ de texte stylisé
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class KTextField extends JPanel {
   private KTextFieldInput input;
   private KTextFieldSubmit submit;
 
+  /**
+   * Constructeur de KTextField
+   * 
+   * @param text Le texte du champ de texte
+   */
   public KTextField(String text) {
     this.input = new KTextFieldInput(text);
     this.submit = new KTextFieldSubmit();
@@ -31,14 +42,27 @@ public class KTextField extends JPanel {
     this.add(this.input, gbc);
   }
 
+  /**
+   * Constructeur de KTextField
+   */
   public KTextField() {
     this("");
   }
 
+  /**
+   * Permet de récupérer le champ de texte
+   * 
+   * @return Le champ de texte
+   */
   public KTextFieldInput getInput() {
     return this.input;
   }
 
+  /**
+   * Permet de récupérer le bouton de validation
+   * 
+   * @return Le bouton de validation
+   */
   public KTextFieldSubmit getSubmit() {
     return this.submit;
   }

@@ -3,10 +3,21 @@ package fr.kanassoulier.literomantik.gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Classe permettant de gérer l'animation de la mise à jour du score
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class ScoreUpdateTimerListener implements ActionListener {
   private ScoreUpdate scoreUpdate;
   private double deltaY = 0;
 
+  /**
+   * Constructeur de ScoreUpdateTimerListener
+   * 
+   * @param scoreUpdate La mise à jour du score
+   */
   public ScoreUpdateTimerListener(ScoreUpdate scoreUpdate) {
     this.scoreUpdate = scoreUpdate;
   }

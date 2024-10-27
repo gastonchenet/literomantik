@@ -9,14 +9,30 @@ import fr.kanassoulier.literomantik.components.KButton;
 import fr.kanassoulier.literomantik.game.Game;
 import fr.kanassoulier.literomantik.landing.LandingMenu;
 
+/**
+ * Classe permettant de gérer l'écouteur des boutons du menu de fin de partie
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class EndMenuButtonListener implements ActionListener {
   private boolean mouseOver = false;
   private Game game;
 
+  /**
+   * Constructeur de EndMenuButtonListener
+   * 
+   * @param game La partie en cours
+   */
   public EndMenuButtonListener(Game game) {
     this.game = game;
   }
 
+  /**
+   * Permet de savoir si la souris est sur le bouton
+   * 
+   * @return true si la souris est sur le bouton, false sinon
+   */
   public boolean isMouseOver() {
     return this.mouseOver;
   }

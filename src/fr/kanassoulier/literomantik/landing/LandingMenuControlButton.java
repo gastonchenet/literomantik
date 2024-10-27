@@ -6,9 +6,23 @@ import fr.kanassoulier.literomantik.components.KButton;
 import fr.kanassoulier.literomantik.enums.KButtonType;
 import fr.kanassoulier.literomantik.utils.Seed;
 
+/**
+ * Classe permettant de créer un bouton de contrôle pour le menu de landing
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class LandingMenuControlButton extends KButton {
 	private LandingMenuSidebar sidebar;
 
+	/**
+	 * Constructeur de LandingMenuControlButton
+	 * 
+	 * @param text    Le texte du bouton
+	 * @param type    Le type du bouton
+	 * @param sidebar Le sidebar sur laquelle est le boutotn
+	 * @param seed    La graine du bouton
+	 */
 	private LandingMenuControlButton(String text, KButtonType type, LandingMenuSidebar sidebar, long seed) {
 		super(text, type);
 
@@ -32,14 +46,33 @@ public class LandingMenuControlButton extends KButton {
 		this.addActionListener(new LandingMenuControlButtonListener(this, seed));
 	}
 
+	/**
+	 * Constructeur de LandingMenuControlButton
+	 * 
+	 * @param text    Le texte du bouton
+	 * @param type    Le type du bouton
+	 * @param sidebar Le sidebar sur laquelle est le bouton
+	 */
 	public LandingMenuControlButton(String text, KButtonType type, LandingMenuSidebar sidebar) {
 		this(text, type, sidebar, 0);
 	}
 
+	/**
+	 * Constructeur de LandingMenuControlButton
+	 * 
+	 * @param seed    La graine du bouton
+	 * @param type    Le type du bouton
+	 * @param sidebar Le sidebar sur laquelle est le bouton
+	 */
 	public LandingMenuControlButton(Seed seed, KButtonType type, LandingMenuSidebar sidebar) {
 		this(seed.name, type, sidebar, seed.value);
 	}
 
+	/**
+	 * Permet de récupérer la sidebar
+	 * 
+	 * @return La sidebar
+	 */
 	public LandingMenuSidebar getSidebar() {
 		return this.sidebar;
 	}

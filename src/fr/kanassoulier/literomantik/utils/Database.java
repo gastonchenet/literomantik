@@ -45,6 +45,11 @@ public class Database {
 		}
 	}
 
+	/**
+	 * Récupérer la connexion à la base de donnée
+	 * 
+	 * @return la connexion à la base de donnée
+	 */
 	public Connection getDatabase() {
 		return this.database;
 	}

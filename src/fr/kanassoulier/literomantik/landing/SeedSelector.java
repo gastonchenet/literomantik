@@ -14,7 +14,18 @@ import fr.kanassoulier.literomantik.utils.Database;
 import fr.kanassoulier.literomantik.utils.FontLoader;
 import fr.kanassoulier.literomantik.utils.Seed;
 
+/**
+ * Classe permettant de sélectionner une graine pour la partie
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class SeedSelector extends JDialog {
+  /**
+   * Constructeur de SeedSelector
+   * 
+   * @param menu Le menu de landing
+   */
   public SeedSelector(LandingMenu menu) {
     super(menu, "Choix de la graine", true);
 

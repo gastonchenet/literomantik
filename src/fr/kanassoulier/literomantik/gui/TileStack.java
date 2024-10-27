@@ -21,8 +21,10 @@ import fr.kanassoulier.literomantik.utils.FontLoader;
  * @author Gaston Chenet
  */
 public class TileStack extends JComponent {
-  private static final int STACK_WIDTH = 70;
-  private static final int TILE_HEIGHT = 6;
+  /**
+   * Les dimensions de l'objet
+   */
+  private static final int STACK_WIDTH = 70, TILE_HEIGHT = 6;
 
   private Gui gui;
   private JLabel remaining;
@@ -48,10 +50,18 @@ public class TileStack extends JComponent {
     this.add(this.remaining);
   }
 
+  /**
+   * Permet de récupérer le nombre de tuiles restantes
+   * 
+   * @return Le nombre de tuiles restantes
+   */
   private int getTilesLeft() {
     return Options.TURNS - this.gui.getGame().getBoard().countTiles();
   }
 
+  /**
+   * Met à jour le nombre de tuiles restantes
+   */
   private void updateTilesLeft() {
     int tilesLeft = this.getTilesLeft();
 

@@ -8,14 +8,29 @@ import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
 
+/**
+ * Classe permettant de créer un slider stylisé
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class KSlider extends JPanel {
-  public static final int WIDTH = 200;
-  public static final int HEIGHT = 14;
-  public static final int TRACK_HEIGHT = 4;
+  /**
+   * Dimensions du slider
+   */
+  public static final int WIDTH = 200, HEIGHT = 14, TRACK_HEIGHT = 4;
 
   private KSliderThumb thumb;
   private int min, max, value, step;
 
+  /**
+   * Constructeur de KSlider
+   * 
+   * @param min   Valeur minimale
+   * @param max   Valeur maximale
+   * @param value Valeur actuelle
+   * @param step  Pas de la valeur
+   */
   public KSlider(int min, int max, int value, int step) {
     this.min = min;
     this.max = max;
@@ -31,30 +46,69 @@ public class KSlider extends JPanel {
     this.add(this.thumb);
   }
 
+  /**
+   * Constructeur de KSlider
+   * 
+   * @param min   Valeur minimale
+   * @param max   Valeur maximale
+   * @param value Valeur actuelle
+   */
   public KSlider(int min, int max, int value) {
     this(min, max, value, 1);
   }
 
+  /**
+   * Constructeur de KSlider
+   * 
+   * @param min Valeur minimale
+   * @param max Valeur maximale
+   */
   public KSlider(int min, int max) {
     this(min, max, min + (max - min) / 2);
   }
 
+  /**
+   * Permet de récupérer la valeur minimale
+   * 
+   * @return La valeur minimale
+   */
   public int getMin() {
     return this.min;
   }
 
+  /**
+   * Permet de récupérer la valeur maximale
+   * 
+   * @return La valeur maximale
+   */
   public int getMax() {
     return this.max;
   }
 
+  /**
+   * Permet de récupérer la valeur actuelle
+   * 
+   * @return La valeur actuelle
+   */
   public int getValue() {
     return this.value;
   }
 
+  /**
+   * Permet de récupérer le pas de la valeur
+   * 
+   * @return Le pas de la valeur
+   */
   public int getStep() {
     return this.step;
   }
 
+  /**
+   * Permet de changer la valeur actuelle
+   * 
+   * @param value     La nouvelle valeur
+   * @param moveValue Si la valeur doit être déplacée
+   */
   public void setValue(int value, boolean moveValue) {
     this.value = value;
 
@@ -68,10 +122,20 @@ public class KSlider extends JPanel {
     }
   }
 
+  /**
+   * Permet de changer la valeur actuelle
+   * 
+   * @param value La nouvelle valeur
+   */
   public void setValue(int value) {
     this.value = value;
   }
 
+  /**
+   * Permet de changer la couleur du slider
+   * 
+   * @param color La nouvelle couleur
+   */
   public void setThumb(Color color) {
     this.thumb.setBackground(color);
   }

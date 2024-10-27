@@ -14,12 +14,22 @@ import fr.kanassoulier.literomantik.utils.Database;
 import fr.kanassoulier.literomantik.utils.FontLoader;
 import fr.kanassoulier.literomantik.utils.ScoreLogic;
 
+/**
+ * Classe permettant de créer un menu de fin de partie
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class EndMenu extends JDialog {
-
 	private int score;
 	private long seed;
 	private JLabel endBestScore;
 
+	/**
+	 * Constructeur de EndMenu
+	 * 
+	 * @param game La partie en cours
+	 */
 	public EndMenu(Game game) {
 		super(game, "Fin de la partie", true);
 
@@ -85,6 +95,11 @@ public class EndMenu extends JDialog {
 		content.add(buttons);
 	}
 
+	/**
+	 * Permet de comparer le score de la partie avec le meilleur score
+	 * 
+	 * @param score Le score de la partie
+	 */
 	public void endScoreCompare(int score) {
 		Database db = new Database();
 		int bestScore = db.getBestScore(this.seed);

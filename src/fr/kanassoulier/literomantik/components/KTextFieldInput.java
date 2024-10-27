@@ -10,7 +10,18 @@ import javax.swing.border.EmptyBorder;
 
 import fr.kanassoulier.literomantik.utils.FontLoader;
 
+/**
+ * Classe permettant de créer un champ de texte stylisé
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
+ */
 public class KTextFieldInput extends JTextField {
+  /**
+   * Constructeur de KTextFieldInput
+   * 
+   * @param text Le texte du champ de texte
+   */
   public KTextFieldInput(String text) {
     super(text);
 
@@ -18,6 +29,9 @@ public class KTextFieldInput extends JTextField {
     this.setFont(FontLoader.LEXEND_REGULAR.deriveFont(14f));
   }
 
+  /**
+   * Constructeur de KTextFieldInput
+   */
   public KTextFieldInput() {
     this("");
   }

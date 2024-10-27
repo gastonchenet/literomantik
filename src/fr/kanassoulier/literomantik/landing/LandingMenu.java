@@ -17,7 +17,6 @@ import fr.kanassoulier.literomantik.utils.ImageLoader;
  * @author Marco Orfao, Gaston Chenet
  */
 public class LandingMenu extends JFrame {
-
 	/**
 	 * constructeur de la classe LandingMenu, elle instancie une fenêtre JFrame
 	 * contenant le menu
