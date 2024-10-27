@@ -32,4 +32,5 @@ public class ImageLoader {
 	 * Logo de l'application
 	 */
 	public static final Image APP_ICON = ImageLoader.loadImage("resources/images/favicon.png");
+	public static final Image LANDING_MENU_IMAGE = ImageLoader.loadImage("resources/images/LandingMenu_img_short.png");
 }

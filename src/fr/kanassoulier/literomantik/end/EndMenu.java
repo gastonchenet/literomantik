@@ -10,12 +10,21 @@ import javax.swing.border.EmptyBorder;
 
 import fr.kanassoulier.literomantik.components.KTextField;
 import fr.kanassoulier.literomantik.game.Game;
+import fr.kanassoulier.literomantik.utils.Database;
 import fr.kanassoulier.literomantik.utils.FontLoader;
 import fr.kanassoulier.literomantik.utils.ScoreLogic;
 
 public class EndMenu extends JDialog {
+
+	private int score;
+	private long seed;
+	private JLabel endBestScore;
+
 	public EndMenu(Game game) {
 		super(game, "Fin de la partie", true);
+
+		this.score = ScoreLogic.calculate(game.getBoard());
+		this.seed = game.getSeed();
 
 		this.setSize(400, 330);
 		this.setLocationRelativeTo(game);
@@ -33,10 +42,15 @@ public class EndMenu extends JDialog {
 		JLabel endTitle = new JLabel("Fin de la partie", JLabel.CENTER);
 		endTitle.setFont(FontLoader.LEXEND_BOLD.deriveFont(30f));
 
-		int score = ScoreLogic.calculate(game.getBoard());
-		JLabel endScore = new JLabel("Score : " + score, JLabel.CENTER);
+		JLabel endScore = new JLabel("Score : " + this.score, JLabel.CENTER);
 		endScore.setFont(FontLoader.LEXEND_REGULAR.deriveFont(18f));
 		endScore.setBorder(new EmptyBorder(24, 0, 14, 0));
+
+		this.endBestScore = new JLabel("", JLabel.CENTER);
+		endBestScore.setForeground(Color.GRAY);
+		endBestScore.setFont(FontLoader.LEXEND_REGULAR.deriveFont(16f));
+		endBestScore.setBorder(new EmptyBorder(24, 0, 14, 0));
+		endScoreCompare(this.score);
 
 		JLabel endSeed = new JLabel("Seed : " + game.getSeed(), JLabel.CENTER);
 		endSeed.setForeground(Color.GRAY);
@@ -65,9 +79,21 @@ public class EndMenu extends JDialog {
 		content.add(endTitle);
 		content.add(endSeed);
 		content.add(endScore);
+		content.add(endBestScore);
 		content.add(endUsername);
 		content.add(usernameField);
 		content.add(endStatus);
 		content.add(buttons);
+	}
+
+	public void endScoreCompare(int score) {
+		Database db = new Database();
+		int bestScore = db.getBestScore(this.seed);
+		if (this.score > bestScore) {
+			this.endBestScore.setText("Nouveau record !");
+			endBestScore.setForeground(Color.GREEN);
+		} else {
+			this.endBestScore.setText("Meilleur score : " + bestScore);
+		}
 	}
 }

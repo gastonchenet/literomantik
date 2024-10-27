@@ -64,6 +64,8 @@ public class Database {
 			statement.setDate(4, endGameInfo.getDate());
 
 			statement.executeUpdate();
+
+			statement.close();
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
 		}
@@ -103,10 +105,41 @@ public class Database {
 				leaderboardRows[i] = infoLine;
 			}
 
+			infoStatement.close();
+			infoResult.close();
 			return leaderboardRows;
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
 			return new EndGameInfo[0];
+		}
+	}
+
+	/**
+	 * Méthode permettant de récupérer le meilleur score pour une seed donnée
+	 * 
+	 * @param seed la seed pour laquelle on veut le meilleur score
+	 * @return le meilleur score pour la seed donnée
+	 */
+	public int getBestScore(long seed) {
+		try {
+			PreparedStatement statement = this.database
+					.prepareStatement("SELECT MAX(value) FROM Score WHERE seed = ?;");
+
+			statement.setLong(1, seed);
+			statement.executeUpdate();
+
+			ResultSet result = statement.executeQuery();
+			result.next();
+
+			int bestScore = result.getInt(1);
+
+			statement.close();
+			result.close();
+
+			return bestScore;
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+			return 0;
 		}
 	}
 

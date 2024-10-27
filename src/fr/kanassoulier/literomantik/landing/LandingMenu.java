@@ -1,7 +1,9 @@
 package fr.kanassoulier.literomantik.landing;
 
 import java.awt.Color;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -35,7 +37,11 @@ public class LandingMenu extends JFrame {
 		pageTitle.setFont(FontLoader.LILITA_ONE_REGULAR.deriveFont(55f));
 		pageTitle.setBounds(0, 50, Game.WINDOW_WIDTH - LandingMenuSidebar.WIDTH, 50);
 
+		JLabel pageImage = new JLabel(new ImageIcon(ImageLoader.LANDING_MENU_IMAGE));
+		pageImage.setBounds(10, 20, 752, 742);
+
 		this.add(pageTitle);
+		this.add(pageImage);
 		this.add(new LandingMenuSidebar(this));
 	}
 }

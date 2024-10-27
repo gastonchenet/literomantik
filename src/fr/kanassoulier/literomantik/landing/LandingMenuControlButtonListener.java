@@ -43,6 +43,7 @@ public class LandingMenuControlButtonListener implements ActionListener {
 				break;
 
 			case SEED:
+				this.button.getSidebar().getLeaderboard().setLeaderboardStatement(true);
 				this.button.getSidebar().getLeaderboard().makeLeaderboard(this.seed);
 				break;
 

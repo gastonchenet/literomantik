@@ -21,6 +21,7 @@ import fr.kanassoulier.literomantik.utils.FontLoader;
  */
 public class LandingMenuLeaderboard extends JPanel {
 	public static final int LEADERBOARD_SIZE = 15;
+	private boolean statement = false;
 
 	/**
 	 * constructeur de la classe
@@ -79,6 +80,16 @@ public class LandingMenuLeaderboard extends JPanel {
 		this.repaint();
 	}
 
+	public void setLeaderboardStatement(boolean statement) {
+		this.statement = statement;
+		this.revalidate();
+		this.repaint();
+	}
+
+	public boolean getLeaderboardStatement() {
+		return this.statement;
+	}
+
 	/**
 	 * réécriture de la méthode paintComponent pour dessiner le tableau des scores
 	 * 
@@ -100,6 +111,12 @@ public class LandingMenuLeaderboard extends JPanel {
 
 		g2d.setColor(new Color(0, 0, 0, 40));
 		g2d.fillRect(0, 0, this.getWidth(), 44);
+
+		if (!this.statement) {
+			g2d.setFont(FontLoader.LEXEND_BOLD.deriveFont(16f));
+			g2d.setColor(Color.WHITE);
+			g2d.drawString("Choisissez une seed", this.getWidth() / 6, this.getHeight() / 2);
+		}
 
 		g2d.setFont(FontLoader.LEXEND_BOLD.deriveFont(16f));
 		g2d.setColor(Color.WHITE);
