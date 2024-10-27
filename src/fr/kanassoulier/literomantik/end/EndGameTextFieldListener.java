@@ -38,7 +38,7 @@ public class EndGameTextFieldListener implements ActionListener {
 			Database data = new Database();
 
 			data.insertEndResult(egi);
-			data.closeDatabase();
+			data.close();
 
 			this.status = true;
 			this.statusTxt.setText("enregistré !");

@@ -29,19 +29,15 @@ public class CloseGameDialog extends JDialog {
 	public CloseGameDialog(Game game) {
 		super(game, "Quitter Dorfromantik", true);
 
-		this.setSize(350, 130);
-		this.setLocationRelativeTo(game);
 		this.setResizable(false);
 
 		JPanel content = new JPanel();
-		this.setContentPane(content);
-
 		content.setLayout(new GridBagLayout());
 		content.setBorder(new EmptyBorder(10, 10, 10, 10));
+		content.setBackground(Color.WHITE);
 
 		KButton yesButton = new KButton("Oui", KButtonType.YES);
-		yesButton.setBackground(new Color(220, 220, 220));
-		yesButton.setHoverBackground(new Color(210, 210, 210));
+		yesButton.setHoverBackground(new Color(230, 230, 230));
 		yesButton.addMouseListener(new CloseGameDialogButtonListener(yesButton, game));
 
 		KButton noButton = new KButton("Non", KButtonType.NO);
@@ -75,5 +71,9 @@ public class CloseGameDialog extends JDialog {
 		gbc.gridwidth = 1;
 		gbc.weightx = 0.5f;
 		content.add(noButton, gbc);
+
+		this.setContentPane(content);
+		this.pack();
+		this.setLocationRelativeTo(game);
 	}
 }

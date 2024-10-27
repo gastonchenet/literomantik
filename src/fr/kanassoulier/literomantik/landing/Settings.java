@@ -1,106 +1,134 @@
 package fr.kanassoulier.literomantik.landing;
 
 import javax.swing.JDialog;
-import javax.swing.JSlider;
+import javax.swing.border.EmptyBorder;
 
 import fr.kanassoulier.literomantik.Options;
 import fr.kanassoulier.literomantik.components.KButton;
+import fr.kanassoulier.literomantik.components.KCheckBox;
+import fr.kanassoulier.literomantik.components.KSlider;
 import fr.kanassoulier.literomantik.enums.KButtonType;
 import fr.kanassoulier.literomantik.enums.SoundChannel;
 import fr.kanassoulier.literomantik.utils.FontLoader;
 import fr.kanassoulier.literomantik.utils.ImageLoader;
 import fr.kanassoulier.literomantik.utils.SoundPlayer;
 
-import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.BorderFactory;
 
-import java.awt.GridLayout;
 import java.awt.FlowLayout;
-import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Window;
+import java.awt.Color;
 import java.awt.Dialog;
 
 /**
  * Interface graphique servant à modifier les paramètres pour la partie
  * 
- * @version 1.2
- * @author Maxence Raymond
+ * @version 1.3
+ * @author Maxence Raymond, Gaston Chenet
  */
 public class Settings extends JDialog {
-	private JSlider musicVolumeSlider;
-	private JSlider eventVolumeSlider;
-	private JCheckBox muteButton;
+	private KSlider musicVolumeSlider;
+	private KSlider eventVolumeSlider;
+	private KCheckBox muteButton;
 
 	/**
 	 * Constructeur du dialogue Parameters
 	 * 
-	 * @param menu endroit sur laquelle la modalite se base
+	 * @param dialog endroit sur laquelle la modalite se base
 	 */
-	public Settings(LandingMenu menu) {
-		super(menu, "Parametres", Dialog.ModalityType.APPLICATION_MODAL);
+	public Settings(Window dialog) {
+		super(dialog, "Parametres", Dialog.ModalityType.APPLICATION_MODAL);
 
 		this.setIconImage(ImageLoader.APP_ICON);
-		this.setLayout(new BorderLayout());
+		this.setSize(300, 280);
 
-		this.musicVolumeSlider = new JSlider(0, 100, Options.MUSIC_VOLUME);
-		this.eventVolumeSlider = new JSlider(0, 100, Options.SOUND_VOLUME);
-		this.muteButton = new JCheckBox("Couper tout les sons");
+		JPanel content = new JPanel();
 
-		if (Options.MUTED) {
-			this.muteButton.setSelected(true);
-		}
-
-		JPanel mainJPanel = new JPanel(new GridLayout(3, 1));
-
-		mainJPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-		JPanel top = new JPanel();
-		top.add(new JLabel("Volume de la musique :"));
-		top.add(this.musicVolumeSlider);
-
-		JPanel middle = new JPanel();
-		middle.add(new JLabel("Volume des effets sonores :"));
-		middle.add(this.eventVolumeSlider);
+		content.setBackground(Color.WHITE);
+		content.setLayout(new GridBagLayout());
+		content.setBorder(new EmptyBorder(10, 10, 10, 10));
 
 		JLabel title = new JLabel("Parametres de son");
-		title.setFont(FontLoader.LEXEND_REGULAR);
+		title.setFont(FontLoader.LEXEND_BOLD.deriveFont(26f));
+		title.setBorder(new EmptyBorder(0, 0, 25, 0));
 
-		mainJPanel.add(top);
-		mainJPanel.add(middle);
-		mainJPanel.add(this.muteButton);
+		JLabel musicVolumeLabel = new JLabel("Volume de la musique :");
+		JLabel eventVolumeLabel = new JLabel("Volume des effets sonores :");
 
-		this.add(title, BorderLayout.NORTH);
+		musicVolumeLabel.setFont(FontLoader.LEXEND_REGULAR.deriveFont(14f));
+		eventVolumeLabel.setFont(FontLoader.LEXEND_REGULAR.deriveFont(14f));
 
-		KButton validateButton = new KButton("Valider", KButtonType.SAVE);
+		this.musicVolumeSlider = new KSlider(0, 100);
+		this.eventVolumeSlider = new KSlider(0, 100);
+		this.muteButton = new KCheckBox("Couper tous les sons");
+		this.muteButton.setChecked(Options.MUTED);
+
+		KButton validateButton = new KButton("Sauvegarder", KButtonType.SAVE);
+		validateButton.setPadding(10, 26, 10, 26);
+		validateButton.setForeground(Color.WHITE);
+		validateButton.setBackground(new Color(71, 71, 252));
+		validateButton.setHoverBackground(new Color(50, 50, 201));
 		validateButton.addActionListener(new SettingsButtonListener(KButtonType.YES, this));
+
 		KButton cancelButton = new KButton("Annuler", KButtonType.CANCEL);
+		cancelButton.setPadding(10, 26, 10, 26);
+		cancelButton.setHoverBackground(new Color(230, 230, 230));
 		cancelButton.addActionListener(new SettingsButtonListener(KButtonType.CANCEL, this));
-		JPanel finalButtons = new JPanel(new FlowLayout(FlowLayout.LEADING));
 
-		finalButtons.add(validateButton);
-		finalButtons.add(cancelButton);
+		GridBagConstraints gbc = new GridBagConstraints();
 
-		this.add(finalButtons, BorderLayout.SOUTH);
-		this.add(mainJPanel, BorderLayout.CENTER);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		content.add(title);
 
-		this.pack();
-		this.setLocationRelativeTo(menu);
-		this.setVisible(true);
+		gbc.gridy = 1;
+		content.add(musicVolumeLabel, gbc);
+
+		gbc.gridy = 2;
+		gbc.insets = new Insets(0, 0, 10, 0);
+		content.add(this.musicVolumeSlider, gbc);
+
+		gbc.gridy = 3;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		content.add(eventVolumeLabel, gbc);
+
+		gbc.gridy = 4;
+		gbc.insets = new Insets(0, 0, 10, 0);
+		content.add(this.eventVolumeSlider, gbc);
+
+		gbc.gridy = 5;
+		content.add(this.muteButton, gbc);
+
+		JPanel buttons = new JPanel();
+		buttons.setOpaque(false);
+		buttons.setLayout(new FlowLayout(FlowLayout.RIGHT));
+
+		buttons.add(validateButton);
+		buttons.add(cancelButton);
+
+		gbc.insets = new Insets(0, 0, 0, 0);
+		gbc.gridy = 6;
+		gbc.gridwidth = 1;
+		content.add(buttons, gbc);
+
+		this.setContentPane(content);
+		this.setLocationRelativeTo(dialog);
+
+		this.musicVolumeSlider.setValue(Options.MUSIC_VOLUME, true);
+		this.eventVolumeSlider.setValue(Options.SOUND_VOLUME, true);
 	}
 
 	/**
 	 * Extrait et met à jour les valeurs
 	 */
 	protected final void setValues() {
-		if (this.muteButton.isSelected()) {
-			Options.MUTED = true;
-			SoundPlayer.deactivateSound(true);
-		} else {
-			Options.MUTED = false;
-			SoundPlayer.deactivateSound(false);
-		}
+		Options.MUTED = this.muteButton.isChecked();
+		SoundPlayer.setMuted(this.muteButton.isChecked());
 
 		int musicVolume = this.musicVolumeSlider.getValue();
 		int eventVolume = this.eventVolumeSlider.getValue();
@@ -111,27 +139,6 @@ public class Settings extends JDialog {
 		SoundPlayer.changeVolume(SoundChannel.MUSIC, musicVolume);
 		SoundPlayer.changeVolume(SoundChannel.SOUND, eventVolume);
 
-		this.exit();
-	}
-
-	/**
-	 * Demande confirmation avant de mettre à jour les valeurs
-	 */
-	public void confirm() {
-		int retour = JOptionPane.showConfirmDialog(this, new JLabel("Valider les changements ?"),
-				"Confirmation requise", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-		if (retour == JOptionPane.OK_OPTION) {
-			this.setValues();
-		}
-
-		this.exit();
-	}
-
-	/**
-	 * Ferme la fenêtre
-	 */
-	public void exit() {
 		this.dispose();
 	}
 }

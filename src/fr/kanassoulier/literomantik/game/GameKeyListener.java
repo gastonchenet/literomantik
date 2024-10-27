@@ -20,7 +20,7 @@ public class GameKeyListener extends KeyAdapter {
 			if (this.game.isFinished()) {
 				new EndMenu(this.game).setVisible(true);
 			} else {
-				new PauseWindow(this.game, "Pause", true);
+				new PauseWindow(this.game).setVisible(true);
 			}
 		}
 	}

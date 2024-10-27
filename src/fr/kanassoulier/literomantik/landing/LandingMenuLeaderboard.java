@@ -75,7 +75,7 @@ public class LandingMenuLeaderboard extends JPanel {
 			this.add(row);
 		}
 
-		db.closeDatabase();
+		db.close();
 		this.revalidate();
 		this.repaint();
 	}

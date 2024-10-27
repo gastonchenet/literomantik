@@ -35,7 +35,6 @@ public class LandingMenuSidebar extends JPanel {
 		this.setBorder(new EmptyBorder(15, 15, 15, 30));
 
 		this.leaderboard = new LandingMenuLeaderboard();
-		this.leaderboard.makeLeaderboard(154275265);
 
 		this.add(new LandingMenuControlButtonContainer(this), BorderLayout.SOUTH);
 		this.add(this.leaderboard, BorderLayout.CENTER);

@@ -1,5 +1,6 @@
 package fr.kanassoulier.literomantik.game;
 
+import java.awt.Color;
 import java.util.Random;
 
 import javax.swing.JFrame;
@@ -62,6 +63,7 @@ public class Game extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setLayout(null);
+		this.getContentPane().setBackground(Color.WHITE);
 
 		this.board = new Board(this);
 		this.gui = new Gui(this);

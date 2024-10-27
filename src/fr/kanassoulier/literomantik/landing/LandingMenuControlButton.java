@@ -4,11 +4,12 @@ import java.awt.Color;
 
 import fr.kanassoulier.literomantik.components.KButton;
 import fr.kanassoulier.literomantik.enums.KButtonType;
+import fr.kanassoulier.literomantik.utils.Seed;
 
 public class LandingMenuControlButton extends KButton {
 	private LandingMenuSidebar sidebar;
 
-	public LandingMenuControlButton(String text, KButtonType type, LandingMenuSidebar sidebar, long seed) {
+	private LandingMenuControlButton(String text, KButtonType type, LandingMenuSidebar sidebar, long seed) {
 		super(text, type);
 
 		this.sidebar = sidebar;
@@ -33,6 +34,10 @@ public class LandingMenuControlButton extends KButton {
 
 	public LandingMenuControlButton(String text, KButtonType type, LandingMenuSidebar sidebar) {
 		this(text, type, sidebar, 0);
+	}
+
+	public LandingMenuControlButton(Seed seed, KButtonType type, LandingMenuSidebar sidebar) {
+		this(seed.name, type, sidebar, seed.value);
 	}
 
 	public LandingMenuSidebar getSidebar() {

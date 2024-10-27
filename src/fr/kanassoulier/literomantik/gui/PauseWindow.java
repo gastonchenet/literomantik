@@ -2,6 +2,7 @@ package fr.kanassoulier.literomantik.gui;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import fr.kanassoulier.literomantik.enums.KButtonType;
@@ -14,14 +15,15 @@ import java.awt.Insets;
 import java.awt.GridBagConstraints;
 
 public class PauseWindow extends JDialog {
-	public PauseWindow(Game game, String title, Boolean modal) {
-		super(game, title, modal);
+	public PauseWindow(Game game) {
+		super(game, "Pause", true);
 
-		this.setSize(270, 285);
-		this.setLocationRelativeTo(game);
 		this.setResizable(false);
 
-		this.setLayout(new GridBagLayout());
+		JPanel content = new JPanel();
+		content.setBackground(Color.WHITE);
+		content.setBorder(new EmptyBorder(10, 10, 10, 10));
+		content.setLayout(new GridBagLayout());
 
 		GridBagConstraints gbc = new GridBagConstraints();
 
@@ -31,6 +33,8 @@ public class PauseWindow extends JDialog {
 		pauseTitle.setBorder(new EmptyBorder(15, 0, 0, 0));
 
 		PauseWindowButton continueButton = new PauseWindowButton("Continuer", KButtonType.CONTINUE, this, game);
+		PauseWindowButton restartButton = new PauseWindowButton("Recommencer", KButtonType.PLAY, this, game);
+		PauseWindowButton settingsButton = new PauseWindowButton("Paramètres", KButtonType.SETTINGS, this, game);
 		PauseWindowButton menuButton = new PauseWindowButton("Menu", KButtonType.MENU, this, game);
 		PauseWindowButton quitButton = new PauseWindowButton("Quitter", KButtonType.QUIT, this, game);
 
@@ -45,23 +49,33 @@ public class PauseWindow extends JDialog {
 
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		this.add(pauseTitle, gbc);
+		content.add(pauseTitle, gbc);
 
 		gbc.insets = new Insets(20, 5, 5, 5);
 
 		gbc.gridx = 0;
 		gbc.gridy = 1;
-		this.add(continueButton, gbc);
+		content.add(continueButton, gbc);
 
 		gbc.insets = new Insets(5, 5, 5, 5);
 		gbc.gridx = 0;
-		gbc.gridy = 2;
-		this.add(menuButton, gbc);
+		gbc.gridy = 3;
+		content.add(settingsButton, gbc);
 
 		gbc.gridx = 0;
-		gbc.gridy = 3;
-		this.add(quitButton, gbc);
+		gbc.gridy = 4;
+		content.add(restartButton, gbc);
 
-		this.setVisible(true);
+		gbc.gridx = 0;
+		gbc.gridy = 5;
+		content.add(menuButton, gbc);
+
+		gbc.gridx = 0;
+		gbc.gridy = 6;
+		content.add(quitButton, gbc);
+
+		this.setContentPane(content);
+		this.pack();
+		this.setLocationRelativeTo(game);
 	}
 }

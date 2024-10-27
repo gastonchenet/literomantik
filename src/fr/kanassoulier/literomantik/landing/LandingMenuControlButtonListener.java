@@ -2,6 +2,8 @@ package fr.kanassoulier.literomantik.landing;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import fr.kanassoulier.literomantik.components.KButton;
@@ -39,7 +41,7 @@ public class LandingMenuControlButtonListener implements ActionListener {
 				break;
 
 			case SETTINGS:
-				new Settings((LandingMenu) SwingUtilities.getWindowAncestor(this.button));
+				new Settings((JFrame) SwingUtilities.getWindowAncestor(this.button)).setVisible(true);
 				break;
 
 			case SEED:

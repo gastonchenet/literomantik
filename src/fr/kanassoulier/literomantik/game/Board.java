@@ -40,6 +40,7 @@ public class Board extends JLayeredPane {
 				Board.BOARD_RADIUS * 2, Board.BOARD_RADIUS * 2);
 
 		this.setLayout(null);
+		this.setOpaque(false);
 		this.add(new PlaceableTile(this, Board.BOARD_RADIUS, Board.BOARD_RADIUS));
 	}
 

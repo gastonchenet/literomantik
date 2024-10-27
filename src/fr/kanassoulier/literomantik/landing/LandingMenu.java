@@ -1,7 +1,6 @@
 package fr.kanassoulier.literomantik.landing;
 
 import java.awt.Color;
-import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;

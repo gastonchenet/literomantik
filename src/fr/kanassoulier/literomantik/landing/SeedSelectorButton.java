@@ -9,15 +9,14 @@ import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
 import fr.kanassoulier.literomantik.utils.FontLoader;
+import fr.kanassoulier.literomantik.utils.Seed;
 
 public class SeedSelectorButton extends JButton {
   private SeedSelectorButtonListener listener;
-  public long seed;
-  public String text;
+  public Seed seed;
   public boolean mouseOver = false;
 
-  public SeedSelectorButton(LandingMenu menu, String text, long seed) {
-    this.text = text;
+  public SeedSelectorButton(LandingMenu menu, Seed seed) {
     this.seed = seed;
 
     this.setBorderPainted(false);
@@ -50,11 +49,11 @@ public class SeedSelectorButton extends JButton {
 
     g2d.setColor(new Color(71, 71, 252));
     g2d.setFont(FontLoader.LEXEND_BOLD.deriveFont(16f));
-    g2d.drawString(this.text, 10, 22);
+    g2d.drawString(this.seed.name, 10, 22);
 
     g2d.setColor(new Color(150, 150, 150));
     g2d.setFont(FontLoader.LEXEND_REGULAR.deriveFont(12f));
-    g2d.drawString(Long.toString(this.seed), 10, 38);
+    g2d.drawString(Long.toString(this.seed.value), 10, 38);
 
     g2d.dispose();
   }

@@ -19,8 +19,7 @@ import fr.kanassoulier.literomantik.enums.SoundChannel;
  * @author Gaston Chenet, Maxence Raymond
  */
 public class SoundPlayer {
-	private static FloatControl musicControl;
-	private static HashMap<SoundChannel, Clip> channels = new HashMap<>();
+	private static HashMap<SoundChannel, SoundPlayer> channels = new HashMap<>();
 
 	/**
 	 * Normalise le volume entre 0 et 100 en dBFS.
@@ -46,13 +45,11 @@ public class SoundPlayer {
 	}
 
 	public static void changeVolume(SoundChannel channel, int volume) {
-		Clip clip = SoundPlayer.channels.get(channel);
-
-		if (clip == null) {
+		SoundPlayer player = SoundPlayer.channels.get(channel);
+		if (player == null)
 			return;
-		}
 
-		FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+		FloatControl gainControl = (FloatControl) player.clip.getControl(FloatControl.Type.MASTER_GAIN);
 		gainControl.setValue(SoundPlayer.normalizeVolume(volume));
 	}
 
@@ -64,23 +61,27 @@ public class SoundPlayer {
 	 */
 	public static void play(String soundPath, SoundChannel channel) {
 		try {
-			AudioInputStream sound = SoundPlayer.getInputStream(soundPath);
-			Clip clip = AudioSystem.getClip();
-			clip.open(sound);
+			SoundPlayer player = SoundPlayer.channels.get(channel);
 
-			SoundPlayer.channels.put(channel, clip);
-			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+			if (player == null) {
+				AudioInputStream sound = SoundPlayer.getInputStream(soundPath);
+				Clip clip = AudioSystem.getClip();
+				clip.open(sound);
+
+				FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+				player = new SoundPlayer(channel, clip, gainControl);
+				SoundPlayer.channels.put(channel, player);
+			}
 
 			switch (channel) {
 				case MUSIC:
-					gainControl.setValue(SoundPlayer.normalizeVolume(Options.MUTED ? 0 : Options.MUSIC_VOLUME, 0, 80));
-					SoundPlayer.musicControl = gainControl;
-					clip.loop(Clip.LOOP_CONTINUOUSLY);
+					player.control.setValue(SoundPlayer.normalizeVolume(Options.MUTED ? 0 : Options.MUSIC_VOLUME, 0, 80));
+					player.clip.loop(Clip.LOOP_CONTINUOUSLY);
 					break;
 
 				default:
-					gainControl.setValue(SoundPlayer.normalizeVolume(Options.MUTED ? 0 : Options.SOUND_VOLUME));
-					clip.start();
+					player.control.setValue(SoundPlayer.normalizeVolume(Options.MUTED ? 0 : Options.SOUND_VOLUME));
+					player.clip.start();
 					break;
 			}
 		} catch (Exception e) {
@@ -112,27 +113,39 @@ public class SoundPlayer {
 	 * 
 	 * @param state L'état du son
 	 */
-	public static void deactivateSound(boolean state) {
-		if (SoundPlayer.musicControl == null) {
-			return;
-		}
+	public static void setMuted(boolean state) {
+		for (SoundPlayer player : SoundPlayer.channels.values()) {
+			if (player.control == null)
+				return;
 
-		try {
-			if (state) {
-				SoundPlayer.musicControl.setValue(SoundPlayer.normalizeVolume(0));
-			} else {
-				SoundPlayer.musicControl.setValue(SoundPlayer.normalizeVolume(Options.MUSIC_VOLUME, 0, 80));
+			System.out.println(player.control);
+
+			switch (player.channel) {
+				case MUSIC:
+					player.control.setValue(SoundPlayer.normalizeVolume(state ? 0 : Options.MUSIC_VOLUME, 0, 80));
+					break;
+
+				default:
+					player.control.setValue(SoundPlayer.normalizeVolume(state ? 0 : Options.SOUND_VOLUME));
+					break;
 			}
-		} catch (NullPointerException e) {
-			System.err.println("Erreur lors de la désactivation du son");
-			e.printStackTrace();
 		}
 	}
 
 	public static void kill() {
-		for (Clip clip : SoundPlayer.channels.values()) {
-			clip.stop();
-			clip.close();
+		for (SoundPlayer player : SoundPlayer.channels.values()) {
+			player.clip.stop();
+			player.clip.close();
 		}
+	}
+
+	private SoundChannel channel;
+	private Clip clip;
+	private FloatControl control;
+
+	public SoundPlayer(SoundChannel channel, Clip clip, FloatControl control) {
+		this.channel = channel;
+		this.clip = clip;
+		this.control = control;
 	}
 }

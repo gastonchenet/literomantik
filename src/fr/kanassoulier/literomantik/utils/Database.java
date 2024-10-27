@@ -3,6 +3,8 @@ package fr.kanassoulier.literomantik.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.ArrayList;
 
 import fr.kanassoulier.literomantik.end.EndGameInfo;
 import fr.kanassoulier.literomantik.landing.LandingMenuLeaderboard;
@@ -13,8 +15,8 @@ import java.sql.ResultSet;
 /**
  * Classe qui permet d'interagir avec la base de donnée
  * 
- * @version 1.1
- * @author Marco Orfao
+ * @version 1.2
+ * @author Marco Orfao, Gaston Chenet
  */
 public class Database {
 	/**
@@ -52,7 +54,6 @@ public class Database {
 	 * 
 	 * @param endGameInfo information de fin de partie
 	 */
-
 	public void insertEndResult(EndGameInfo endGameInfo) {
 		try {
 			PreparedStatement statement = this.database
@@ -64,7 +65,6 @@ public class Database {
 			statement.setDate(4, endGameInfo.getDate());
 
 			statement.executeUpdate();
-
 			statement.close();
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
@@ -83,33 +83,33 @@ public class Database {
 		try {
 			EndGameInfo[] leaderboardRows = new EndGameInfo[LandingMenuLeaderboard.LEADERBOARD_SIZE];
 
-			PreparedStatement infoStatement = this.database
+			PreparedStatement statement = this.database
 					.prepareStatement("SELECT value, username FROM Score WHERE seed = ? ORDER BY value DESC LIMIT ?;");
 
-			infoStatement.setLong(1, seed);
-			infoStatement.setInt(2, LandingMenuLeaderboard.LEADERBOARD_SIZE);
-			infoStatement.executeUpdate();
+			statement.setLong(1, seed);
+			statement.setInt(2, LandingMenuLeaderboard.LEADERBOARD_SIZE);
 
-			ResultSet infoResult = infoStatement.executeQuery();
+			ResultSet result = statement.executeQuery();
 
 			for (int i = 0; i < LandingMenuLeaderboard.LEADERBOARD_SIZE; i++) {
-				infoResult.next();
+				result.next();
 
-				if (infoResult.isAfterLast())
+				if (result.isAfterLast())
 					break;
 
-				int score = infoResult.getInt(1);
-				String username = infoResult.getString(2);
+				int score = result.getInt(1);
+				String username = result.getString(2);
 				EndGameInfo infoLine = new EndGameInfo(score, username);
 
 				leaderboardRows[i] = infoLine;
 			}
 
-			infoStatement.close();
-			infoResult.close();
+			statement.close();
+			result.close();
+
 			return leaderboardRows;
-		} catch (SQLException ex) {
-			System.err.println(ex.getMessage());
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
 			return new EndGameInfo[0];
 		}
 	}
@@ -126,7 +126,6 @@ public class Database {
 					.prepareStatement("SELECT MAX(value) FROM Score WHERE seed = ?;");
 
 			statement.setLong(1, seed);
-			statement.executeUpdate();
 
 			ResultSet result = statement.executeQuery();
 			result.next();
@@ -143,11 +142,34 @@ public class Database {
 		}
 	}
 
+	public Seed[] getDefaultSeeds() {
+		try {
+			PreparedStatement statement = this.database
+					.prepareStatement("SELECT idSeed, seedName FROM DefaultSeed;");
+
+			ResultSet result = statement.executeQuery();
+			List<Seed> seeds = new ArrayList<Seed>();
+
+			while (result.next()) {
+				long id = result.getLong(1);
+				String name = result.getString(2);
+				seeds.add(new Seed(name, id));
+			}
+
+			statement.close();
+			result.close();
+
+			return seeds.toArray(new Seed[0]);
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			return new Seed[0];
+		}
+	}
+
 	/**
 	 * Fermer la base de donnée
-	 * 
 	 */
-	public void closeDatabase() {
+	public void close() {
 		try {
 			if (this.database != null)
 				this.database.close();
@@ -155,5 +177,4 @@ public class Database {
 			System.err.println(e.getMessage());
 		}
 	}
-
 }

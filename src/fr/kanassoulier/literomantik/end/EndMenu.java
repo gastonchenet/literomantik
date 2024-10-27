@@ -29,7 +29,6 @@ public class EndMenu extends JDialog {
 		this.setSize(400, 330);
 		this.setLocationRelativeTo(game);
 		this.setResizable(false);
-
 		this.addWindowListener(new EndMenuListener(this));
 
 		JPanel content = new JPanel();
@@ -47,9 +46,9 @@ public class EndMenu extends JDialog {
 		endScore.setBorder(new EmptyBorder(24, 0, 14, 0));
 
 		this.endBestScore = new JLabel("", JLabel.CENTER);
-		endBestScore.setForeground(Color.GRAY);
-		endBestScore.setFont(FontLoader.LEXEND_REGULAR.deriveFont(16f));
-		endBestScore.setBorder(new EmptyBorder(24, 0, 14, 0));
+		this.endBestScore.setForeground(Color.GRAY);
+		this.endBestScore.setFont(FontLoader.LEXEND_REGULAR.deriveFont(16f));
+		this.endBestScore.setBorder(new EmptyBorder(24, 0, 14, 0));
 		endScoreCompare(this.score);
 
 		JLabel endSeed = new JLabel("Seed : " + game.getSeed(), JLabel.CENTER);
@@ -79,7 +78,7 @@ public class EndMenu extends JDialog {
 		content.add(endTitle);
 		content.add(endSeed);
 		content.add(endScore);
-		content.add(endBestScore);
+		content.add(this.endBestScore);
 		content.add(endUsername);
 		content.add(usernameField);
 		content.add(endStatus);
@@ -89,9 +88,10 @@ public class EndMenu extends JDialog {
 	public void endScoreCompare(int score) {
 		Database db = new Database();
 		int bestScore = db.getBestScore(this.seed);
+
 		if (this.score > bestScore) {
 			this.endBestScore.setText("Nouveau record !");
-			endBestScore.setForeground(Color.GREEN);
+			this.endBestScore.setForeground(Color.GREEN);
 		} else {
 			this.endBestScore.setText("Meilleur score : " + bestScore);
 		}
