@@ -17,8 +17,8 @@ import fr.kanassoulier.literomantik.utils.FontLoader;
 /**
  * Permet d'effectuer certaines actions à la fermeture du programme
  * 
- * @version 1.0
- * @author Marco Orfao
+ * @version 1.1
+ * @author Marco Orfao, Gaston Chenet
  */
 public class CloseGameDialog extends JDialog {
 	/**

@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import fr.kanassoulier.literomantik.components.KButton;
+import fr.kanassoulier.literomantik.gui.Settings;
 
 /**
  * Class lacking javadoc by its first author

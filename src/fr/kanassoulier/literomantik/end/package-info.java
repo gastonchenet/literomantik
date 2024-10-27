@@ -3,6 +3,6 @@
  * partie
  * 
  * @version 1.0
- * @author Marco Orfao
+ * @author Marco Orfao, Gaston Chenet
  */
 package fr.kanassoulier.literomantik.end;

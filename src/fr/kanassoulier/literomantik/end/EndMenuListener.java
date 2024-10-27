@@ -5,6 +5,9 @@ import java.awt.event.WindowListener;
 
 /**
  * Classe permettant de gérer les événements de fenêtre sur un EndMenu
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
  */
 public class EndMenuListener implements WindowListener {
   private EndMenu dialog;

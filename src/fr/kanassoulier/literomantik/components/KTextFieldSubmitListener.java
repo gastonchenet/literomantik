@@ -6,6 +6,9 @@ import java.awt.event.MouseListener;
 
 /**
  * Classe permettant de gérer les événements de souris sur un KTextFieldSubmit
+ * 
+ * @version 1.0
+ * @author Gaston Chenet
  */
 public class KTextFieldSubmitListener implements MouseListener {
   private boolean mouseOver = false;

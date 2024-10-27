@@ -1,4 +1,4 @@
-package fr.kanassoulier.literomantik.landing;
+package fr.kanassoulier.literomantik.gui;
 
 import java.awt.event.ActionListener;
 

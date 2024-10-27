@@ -3,6 +3,6 @@
  * utilisés.
  * 
  * @version 1.0
- * @author Marco Orfao
+ * @author Gaston Chenet
  */
 package fr.kanassoulier.literomantik.components;
