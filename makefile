@@ -176,8 +176,8 @@ $(BUILD)/game/PlaceableTile.class : PlaceableTile.java $(BUILD)/game/Cell.class 
 $(BUILD)/game/Tile.class : Tile.java $(BUILD)/game/Cell.class
 	@javac -d $(BUILDDIR) -cp $(BUILDDIR) $< 
 
-$(BUILD)/game/Board.class : Board.java temp
-	@javac -d $(BUILDDIR) -cp $(BUILDDIR) $<
+$(BUILD)/game/Tile.class $(BUILD)/game/PlaceableTile.class $(BUILD)/game/PlaceableAreaListener.class $(BUILD)/game/PlaceableArea.class $(BUILD)/game/Cell.class $(BUILD)/game/EmptyCell.class $(BUILD)/game/Board.class : Board.java EmptyCell.java Cell.java PlaceableArea.java PlaceableAreaListener.java PlaceableTile.java Tile.java temp
+	@javac -d $(BUILDDIR) -cp $(BUILDDIR) $^ 
 
 temp : $(BUILD)/utils/Hexagon.class $(BUILD)/enums/TileSide.class  $(BUILD)/enums/Biome.class $(BUILD)/gui/AbstractGui.class
 
@@ -211,8 +211,8 @@ $(BUILD)/gui/PauseWindowButtonsListener.class : PauseWindowButtonsListener.java 
 $(BUILD)/gui/PauseWindowKeyListener.class : PauseWindowKeyListener.java
 	@javac -d $(BUILDDIR) -cp $(BUILDDIR) $< 
 
-# $(BUILD)/gui/AbstractPreviewTile.class : AbstractPreviewTile.java $(BUILD)/game/Tile.class $(BUILD)/Options.class
-# 	@javac -d $(BUILDDIR) -cp $(BUILDDIR) $< 
+$(BUILD)/gui/AbstractPreviewTile.class : AbstractPreviewTile.java $(BUILD)/game/Tile.class $(BUILD)/Options.class
+	@javac -d $(BUILDDIR) -cp $(BUILDDIR) $< 
 
 $(BUILD)/gui/PreviewTile.class : PreviewTile.java Tile.class $(BUILD)/Options.class $(BUILD)/gui/PreviewTileTimerListener.class $(BUILD)/enums/Biome.class
 	@javac -d $(BUILDDIR) -cp $(BUILDDIR) $< 
