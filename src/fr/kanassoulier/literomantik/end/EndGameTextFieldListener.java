@@ -57,8 +57,8 @@ public class EndGameTextFieldListener implements ActionListener {
 			data.close();
 
 			this.status = true;
-			this.statusTxt.setText("enregistré !");
-			this.statusTxt.setForeground(Color.GREEN);
+			this.statusTxt.setText("Enregistré !");
+			this.statusTxt.setForeground(new Color(13, 161, 33));
 		} else {
 			this.statusTxt.setText("Vous avez déjà enregistré votre score !");
 			this.statusTxt.setForeground(new Color(180, 180, 180));

@@ -36,7 +36,7 @@ public class EndMenu extends JDialog {
 		this.score = ScoreLogic.calculate(game.getBoard());
 		this.seed = game.getSeed();
 
-		this.setSize(400, 330);
+		this.setSize(400, 340);
 		this.setLocationRelativeTo(game);
 		this.setResizable(false);
 		this.addWindowListener(new EndMenuListener(this));
@@ -68,13 +68,13 @@ public class EndMenu extends JDialog {
 
 		JLabel endStatus = new JLabel("Non enregistré", JLabel.CENTER);
 		endStatus.setFont(FontLoader.LEXEND_REGULAR.deriveFont(12f));
-		endStatus.setForeground(Color.RED);
-		endStatus.setBorder(new EmptyBorder(15, 0, 0, 0));
+		endStatus.setForeground(new Color(224, 31, 41));
+		endStatus.setBorder(new EmptyBorder(15, 0, 5, 0));
 
 		JLabel endUsername = new JLabel("Pour vous enregistrer, entrez votre nom :", JLabel.LEFT);
 		endUsername.setForeground(Color.GRAY);
 		endUsername.setFont(FontLoader.LEXEND_REGULAR.deriveFont(14f));
-		endUsername.setBorder(new EmptyBorder(15, 10, 0, 0));
+		endUsername.setBorder(new EmptyBorder(15, 10, 5, 0));
 
 		KTextField usernameField = new KTextField();
 		usernameField.setBorder(new EmptyBorder(0, 0, 5, 0));
@@ -106,7 +106,7 @@ public class EndMenu extends JDialog {
 
 		if (this.score > bestScore) {
 			this.endBestScore.setText("Nouveau record !");
-			this.endBestScore.setForeground(Color.GREEN);
+			this.endBestScore.setForeground(new Color(13, 161, 33));
 		} else {
 			this.endBestScore.setText("Meilleur score : " + bestScore);
 		}
