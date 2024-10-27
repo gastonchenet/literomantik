@@ -115,10 +115,8 @@ public class SoundPlayer {
 	 */
 	public static void setMuted(boolean state) {
 		for (SoundPlayer player : SoundPlayer.channels.values()) {
-			if (player.control == null)
+			if (player == null)
 				return;
-
-			System.out.println(player.control);
 
 			switch (player.channel) {
 				case MUSIC:

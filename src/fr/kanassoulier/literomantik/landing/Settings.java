@@ -127,9 +127,6 @@ public class Settings extends JDialog {
 	 * Extrait et met à jour les valeurs
 	 */
 	protected final void setValues() {
-		Options.MUTED = this.muteButton.isChecked();
-		SoundPlayer.setMuted(this.muteButton.isChecked());
-
 		int musicVolume = this.musicVolumeSlider.getValue();
 		int eventVolume = this.eventVolumeSlider.getValue();
 
@@ -138,6 +135,9 @@ public class Settings extends JDialog {
 
 		SoundPlayer.changeVolume(SoundChannel.MUSIC, musicVolume);
 		SoundPlayer.changeVolume(SoundChannel.SOUND, eventVolume);
+
+		Options.MUTED = this.muteButton.isChecked();
+		SoundPlayer.setMuted(this.muteButton.isChecked());
 
 		this.dispose();
 	}
