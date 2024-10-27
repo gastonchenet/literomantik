@@ -7,7 +7,7 @@ import javax.swing.JLayeredPane;
 
 import fr.kanassoulier.literomantik.Options;
 import fr.kanassoulier.literomantik.enums.SoundChannel;
-import fr.kanassoulier.literomantik.gui.PreviewTile;
+import fr.kanassoulier.literomantik.gui.AbstractPreviewTile;
 import fr.kanassoulier.literomantik.gui.Scoreboard;
 import fr.kanassoulier.literomantik.utils.SoundPlayer;
 
@@ -126,7 +126,7 @@ public class Board extends JLayeredPane {
 
 		this.remove(area);
 
-		PreviewTile previewTile = this.game.getGui().getPreviewTile();
+		AbstractPreviewTile previewTile = this.game.getGui().getPreviewTile();
 		previewTile.animateTo(area.getCenter(), area.getViewportCenter());
 		this.animating = true;
 	}
@@ -137,7 +137,7 @@ public class Board extends JLayeredPane {
 	 * @param previewTile La tuile à afficher.
 	 * @param center      Le centre de la tuile.
 	 */
-	public void displayTile(PreviewTile previewTile, Point center) {
+	public void displayTile(AbstractPreviewTile previewTile, Point center) {
 		this.animating = false;
 		PlaceableTile tile = new PlaceableTile(previewTile, center);
 		this.add(tile);

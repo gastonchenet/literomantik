@@ -8,8 +8,8 @@ import javax.swing.JLayeredPane;
 
 import fr.kanassoulier.literomantik.Options;
 import fr.kanassoulier.literomantik.end.EndMenu;
+import fr.kanassoulier.literomantik.gui.AbstractGui;
 import fr.kanassoulier.literomantik.gui.CloseGameDialogListener;
-import fr.kanassoulier.literomantik.gui.Gui;
 import fr.kanassoulier.literomantik.utils.Database;
 import fr.kanassoulier.literomantik.utils.ImageLoader;
 
@@ -31,7 +31,7 @@ public class Game extends JFrame {
 	public static final int WINDOW_WIDTH = 1080, WINDOW_HEIGHT = 720;
 
 	private Board board;
-	private Gui gui;
+	private AbstractGui gui;
 	private Random randomizer;
 	private Database database;
 	private long seed;
@@ -66,7 +66,7 @@ public class Game extends JFrame {
 		this.getContentPane().setBackground(Color.WHITE);
 
 		this.board = new Board(this);
-		this.gui = new Gui(this);
+		this.gui = new AbstractGui(this);
 
 		this.add(this.gui, JLayeredPane.PALETTE_LAYER);
 		this.add(this.board, JLayeredPane.DEFAULT_LAYER);
@@ -102,7 +102,7 @@ public class Game extends JFrame {
 	 * 
 	 * @return La GUI du jeu
 	 */
-	public Gui getGui() {
+	public AbstractGui getGui() {
 		return this.gui;
 	}
 
