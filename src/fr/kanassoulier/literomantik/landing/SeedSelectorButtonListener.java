@@ -7,14 +7,15 @@ import java.awt.event.MouseListener;
 import javax.swing.SwingUtilities;
 
 import fr.kanassoulier.literomantik.game.Game;
+import fr.kanassoulier.literomantik.utils.Seed;
 
 public class SeedSelectorButtonListener implements MouseListener {
   private boolean mouseOver = false;
   private SeedSelectorButton button;
   private LandingMenu menu;
-  private long seed;
+  private Seed seed;
 
-  public SeedSelectorButtonListener(SeedSelectorButton button, LandingMenu menu, long seed) {
+  public SeedSelectorButtonListener(SeedSelectorButton button, LandingMenu menu, Seed seed) {
     this.button = button;
     this.menu = menu;
     this.seed = seed;
@@ -28,7 +29,7 @@ public class SeedSelectorButtonListener implements MouseListener {
   public void mouseClicked(MouseEvent e) {
     SwingUtilities.getWindowAncestor(this.button).dispose();
     this.menu.dispose();
-    new Game(this.seed).setVisible(true);
+    new Game(this.seed.value).setVisible(true);
   }
 
   @Override

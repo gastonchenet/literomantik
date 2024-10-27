@@ -20,12 +20,12 @@ public class EndMenuButtonsRow extends JPanel {
 
     KButton leaveButton = new KButton("Quitter", KButtonType.QUIT);
     leaveButton.setBackground(new Color(220, 220, 220));
-    leaveButton.setHoverBackground(new Color(210, 210, 210));
+    leaveButton.setHoverBackground(new Color(230, 230, 230));
     leaveButton.addActionListener(new EndMenuButtonListener(game));
 
     KButton menuButton = new KButton("Menu", KButtonType.MENU);
     menuButton.setBackground(new Color(220, 220, 220));
-    menuButton.setHoverBackground(new Color(210, 210, 210));
+    menuButton.setHoverBackground(new Color(230, 230, 230));
     menuButton.addActionListener(new EndMenuButtonListener(game));
 
     KButton restartButton = new KButton("Rejouer", KButtonType.PLAY);

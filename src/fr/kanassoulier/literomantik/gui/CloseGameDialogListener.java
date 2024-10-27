@@ -23,7 +23,7 @@ public class CloseGameDialogListener implements WindowListener {
 
 	@Override
 	public void windowClosed(WindowEvent e) {
-		this.game.getDatabase().closeDatabase();
+		this.game.getDatabase().close();
 	} // après fermeture
 
 	@Override

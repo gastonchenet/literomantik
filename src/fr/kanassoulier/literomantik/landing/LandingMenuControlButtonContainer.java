@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 
 import fr.kanassoulier.literomantik.components.KButton;
 import fr.kanassoulier.literomantik.enums.KButtonType;
+import fr.kanassoulier.literomantik.utils.Database;
+import fr.kanassoulier.literomantik.utils.Seed;
 
 /**
  * Classe permettant d'intégrer a la partie droite du menu les boutons de
@@ -28,32 +30,21 @@ public class LandingMenuControlButtonContainer extends JPanel {
 		KButton settingsButton = new LandingMenuControlButton("Paramètres", KButtonType.SETTINGS, sidebar);
 		KButton leaveButton = new LandingMenuControlButton("Quitter", KButtonType.QUIT, sidebar);
 
-		KButton alphaButton = new LandingMenuControlButton("alpha", KButtonType.SEED, sidebar, 154275265);
-		KButton betaButton = new LandingMenuControlButton("beta", KButtonType.SEED, sidebar, 534547947);
-		KButton gammaButton = new LandingMenuControlButton("gamma", KButtonType.SEED, sidebar, 874245424);
-		KButton deltaButton = new LandingMenuControlButton("delta", KButtonType.SEED, sidebar, 951984768);
-
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.insets.set(3, 3, 24, 3);
 		gbc.weightx = 0.1f;
-
+		gbc.gridy = 0;
 		gbc.gridx = 0;
-		gbc.gridy = 0;
-		this.add(alphaButton, gbc);
 
-		gbc.gridx = 1;
-		gbc.gridy = 0;
-		this.add(betaButton, gbc);
+		Database db = new Database();
 
-		gbc.gridx = 2;
-		gbc.gridy = 0;
-		this.add(gammaButton, gbc);
-
-		gbc.gridx = 3;
-		gbc.gridy = 0;
-		this.add(deltaButton, gbc);
+		for (Seed seed : db.getDefaultSeeds()) {
+			KButton seedButton = new LandingMenuControlButton(seed, KButtonType.SEED, sidebar);
+			this.add(seedButton, gbc);
+			gbc.gridx++;
+		}
 
 		gbc.insets.set(3, 3, 3, 3);
 		gbc.weightx = 0.1f;
@@ -72,5 +63,6 @@ public class LandingMenuControlButtonContainer extends JPanel {
 		this.add(leaveButton, gbc);
 
 		this.setOpaque(false);
+		db.close();
 	}
 }

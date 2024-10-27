@@ -9,8 +9,8 @@ import java.awt.event.ActionEvent;
 /**
  * Controleur concernant l'affichage de l'ecran de parametres
  * 
- * @version 1.0
- * @author Maxence Raymond
+ * @version 1.1
+ * @author Maxence Raymond, Gaston Chenet
  */
 public class SettingsButtonListener implements ActionListener {
 	/**
@@ -37,9 +37,9 @@ public class SettingsButtonListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (this.type == KButtonType.YES) {
-			this.instance.confirm();
+			this.instance.setValues();
 		} else {
-			this.instance.exit();
+			this.instance.dispose();
 		}
 	}
 }
